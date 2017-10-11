@@ -7,5 +7,18 @@ package pr1;
  */
 
 public class MoveResult {
-
+	
+	private int score;
+	
+	public MoveResult(int score) {
+		this.score = score;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+	
+	public boolean isEqualScore(int score) {
+		return (this.score == score);
+	}
 }

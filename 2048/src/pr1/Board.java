@@ -38,10 +38,10 @@ public class Board {
 	 * executes the displacing and merging of a move in the direction dir
 	 * 
 	 * @param dir
-	 * @return returns the bject containing the results
+	 * @return returns the Object containing the results
 	 */
 	public MoveResult executeMove(Direction dir){
 		
-		return move;
+		return new MoveResult();
 	}
 }
