@@ -3,6 +3,8 @@
  */
 package pr1;
 
+import java.lang.String;
+
 /**
  * @author Pablo Vazquez & Diego Ambite
  *
@@ -63,7 +65,7 @@ public class Cell {
 	 * if it result to merge, implements the merges returning a boolean value to indicate if the merge took place succesfully. 
 	 * 
 	 * @param neighbour
-	 * @return
+	 * @return true in the case that the merge can take place, false if not
 	 */
 	public boolean doMerge(Cell neighbour){
 
@@ -75,4 +77,14 @@ public class Cell {
 		}
 		return false;
 	}
+	
+	/**
+	 * returns a string contaning the value of the cell
+	 * 
+	 * @return a String containing the resut of the cell
+	 */
+	public String toString(){	
+		return String.valueOf(value);
+	}
+	
 }

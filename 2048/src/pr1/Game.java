@@ -41,4 +41,10 @@ public class Game {
 		public void move (Direction dir){
 			
 		}
+		
+		//just as reminder
+		public String toString(){
+			//calls the toString of the Board
+			return null;
+		}
 }

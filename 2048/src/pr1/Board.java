@@ -44,4 +44,10 @@ public class Board {
 		
 		return move;
 	}
+	
+	//just as reminder
+	public String toString(){
+		//call the toString of each cell ofthe array and put them together in the a string
+		return null;
+	}
 }
