@@ -14,7 +14,7 @@ public class Board {
 	
 	
 	/**
-	 * Constructr of the class Board.
+	 * Construct of the class Board.
 	 * 
 	 * @param size saves the dimension of the board
 	 */
@@ -41,7 +41,12 @@ public class Board {
 	 * @return returns the Object containing the results
 	 */
 	public MoveResult executeMove(Direction dir){
-		
-		return new MoveResult();
+		int score;
+		if (dir.equals(DirectionOption.DOWN)) {
+			if (dir.equals(DirectionOption.RIGHT)) {
+				
+			}
+		}
+		return new MoveResult(score);
 	}
 }

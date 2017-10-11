@@ -34,6 +34,10 @@ public class Direction {
 		dir = x;
 	}
 	
+	public boolean equals(DirectionOption x) {
+		return (dir == x);
+	}
+	
 	/**
 	 * 
 	 * @return the direction of the object

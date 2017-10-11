@@ -14,6 +14,7 @@ public class MoveResult {
 		this.score = score;
 	}
 	
+
 	public int getScore() {
 		return score;
 	}
