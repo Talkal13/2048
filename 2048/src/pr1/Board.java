@@ -49,4 +49,10 @@ public class Board {
 		}
 		return new MoveResult(score);
 	}
+	
+	//just as reminder
+	public String toString(){
+		//call the toString of each cell ofthe array and put them together in the a string
+		return null;
+	}
 }
