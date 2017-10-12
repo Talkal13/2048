@@ -4,7 +4,7 @@ package pr1;
  * 
  * @author Pablo & Diego
  * 
- * Clas which instance store the current state of a 2048 board and provides the methods to manipulate that state
+ * Class which instance store the current state of a 2048 board and provides the methods to manipulate that state
  *
  */
 public class Board {
@@ -34,6 +34,12 @@ public class Board {
 		this.board[pos.getX()][pos.getY()].setValue(value); 
 	}
 	
+	//TODO toString method
+	public String toString() {
+		String s = "";
+		return s;
+	}
+	
 	/**
 	 * executes the displacing and merging of a move in the direction dir
 	 * 
@@ -41,18 +47,43 @@ public class Board {
 	 * @return returns the Object containing the results
 	 */
 	public MoveResult executeMove(Direction dir){
-		int score;
+		int score = 0;
 		if (dir.equals(DirectionOption.DOWN)) {
-			if (dir.equals(DirectionOption.RIGHT)) {
-				
+			for (int i = 0; i < boardSize; i++) {
+				for (int j = 0; j < boardSize; j++) {
+					if (board[i][j].doMerge(board[i + 1][j])) {
+						score += board[i][j].getValue() + board[i + 1][j].getValue();
+					}
+				}
+			}
+		}
+		else if (dir.equals(DirectionOption.RIGHT)) {
+			for (int i = 0; i < boardSize; i++) {
+				for (int j = 0; j < boardSize; j++) {
+					if (board[i][j].doMerge(board[i][j + 1])) {
+						score += board[i][j].getValue() + board[i][j + 1].getValue();
+					}
+				}
+			}
+		}
+		else if (dir.equals(DirectionOption.LEFT)) {
+			for (int i = 0; i < boardSize; i++) {
+				for (int j = boardSize - 1; j >= 0; j--) {
+					if (board[i][j].doMerge(board[i][j - 1])) {
+						score += board[i][j].getValue() + board[i][j - 1].getValue();
+					}
+				}
+			}
+		}
+		else if (dir.equals(DirectionOption.UP)) {
+			for (int i = boardSize - 1; i >= 0; i++) {
+				for (int j = 0; j < boardSize; j++) {
+					if (board[i][j].doMerge(board[i - 1][j])) {
+						score += board[i][j].getValue() + board[i - 1][j].getValue();
+					}
+				}
 			}
 		}
 		return new MoveResult(score);
-	}
-	
-	//just as reminder
-	public String toString(){
-		//call the toString of each cell ofthe array and put them together in the a string
-		return null;
 	}
 }
