@@ -1,5 +1,7 @@
 package pr1;
 
+import pr1.util.MyStringUtils;
+
 /**
  * 
  * @author Pablo & Diego
@@ -21,7 +23,12 @@ public class Board {
 	
 	public Board(int size){
 		boardSize = size;
-		board = new Cell[boardSize][boardSize]; 
+		board = new Cell[boardSize][boardSize];
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				board[i][j] = new Cell(i, j);
+			}
+		}
 	}
 	
 	/**
@@ -31,12 +38,28 @@ public class Board {
 	 * @param value value which will be settled in the cell on the position pos
 	 */
 	public void setCell(Position pos, int value){
-		this.board[pos.getX()][pos.getY()].setValue(value); 
+		this.board[pos.getX()][pos.getY()].setValue(value);
 	}
 	
 	//TODO toString method
 	public String toString() {
 		String s = "";
+		for (int i = 0; i < boardSize; i++) {
+			s += MyStringUtils.repeat("-", 8 * boardSize);
+			s += "\n";
+			for (int j = 0; j < boardSize; j++) {
+				s += "|";
+				if (board[i][j].getValue() == 0) {
+					s += MyStringUtils.repeat(" ", 7);
+				}
+				else {
+					s += MyStringUtils.centre(board[i][j].toString(), 7);
+				}
+			}
+			s += "|\n";
+		}
+		s += MyStringUtils.repeat("-", 8 * boardSize);
+		
 		return s;
 	}
 	

@@ -13,11 +13,11 @@ public class Position {
 	/**
 	 * Defines the x position
 	 */
-	protected int x;
+	private int x;
 	/**
 	 * Defines the y position
 	 */
-	protected int y;
+	private int y;
 	
 	
 	public Position(int x, int y) {
