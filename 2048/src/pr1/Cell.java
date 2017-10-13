@@ -35,6 +35,10 @@ public class Cell {
 		empty = false;
 	}
 	
+	public void addValue(int newValue) {
+		this.value += newValue;
+	}
+	
 	/**
 	 * 
 	 * @return value the value of the cell
@@ -57,6 +61,7 @@ public class Cell {
 	}
 	
 	public void emptyCell() {
+		value = 0;
 		empty = true;
 	}
 	
@@ -68,9 +73,13 @@ public class Cell {
 	 * @return true in the case that the merge can take place, false if not
 	 */
 	public boolean doMerge(Cell neighbour){
-
-		if (neighbour.getValue() == this.value || neighbour.isEmpty() || this.isEmpty()) {
-			neighbour.setValue(value);
+		if (neighbour.isEmpty() && !this.isEmpty()) {
+			neighbour.setValue(this.value);
+			emptyCell();
+			return false;
+		}
+		else if (neighbour.getValue() == this.value) {
+			neighbour.addValue(value);
 			emptyCell();
 			return true;
 			

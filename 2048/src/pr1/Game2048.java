@@ -17,6 +17,18 @@ public class Game2048 {
 		Board b = new Board(4);
 		b.setCell(new Position(3, 2), 2);
 		b.setCell(new Position(1, 1), 4);
+		b.setCell(new Position(2, 2), 2);
+		System.out.print(b);
+		b.executeMove(new Direction(DirectionOption.UP));
+		System.out.print(b);
+		b.executeMove(new Direction(DirectionOption.RIGHT));
+		System.out.print(b);
+		b.setCell(new Position(3, 3), 8);
+		b.setCell(new Position(3, 1), 16);
+		System.out.print(b);
+		b.executeMove(new Direction(DirectionOption.DOWN));
+		System.out.print(b);
+		b.executeMove(new Direction(DirectionOption.LEFT));
 		System.out.print(b);
 
 	}

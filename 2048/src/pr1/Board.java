@@ -49,7 +49,7 @@ public class Board {
 			s += "\n";
 			for (int j = 0; j < boardSize; j++) {
 				s += "|";
-				if (board[i][j].getValue() == 0) {
+				if (board[i][j].isEmpty()) {
 					s += MyStringUtils.repeat(" ", 7);
 				}
 				else {
@@ -59,6 +59,7 @@ public class Board {
 			s += "|\n";
 		}
 		s += MyStringUtils.repeat("-", 8 * boardSize);
+		s += "\n";
 		
 		return s;
 	}
@@ -72,7 +73,7 @@ public class Board {
 	public MoveResult executeMove(Direction dir){
 		int score = 0;
 		if (dir.equals(DirectionOption.DOWN)) {
-			for (int i = 0; i < boardSize; i++) {
+			for (int i = 0; i < boardSize - 1; i++) {
 				for (int j = 0; j < boardSize; j++) {
 					if (board[i][j].doMerge(board[i + 1][j])) {
 						score += board[i][j].getValue() + board[i + 1][j].getValue();
@@ -82,7 +83,7 @@ public class Board {
 		}
 		else if (dir.equals(DirectionOption.RIGHT)) {
 			for (int i = 0; i < boardSize; i++) {
-				for (int j = 0; j < boardSize; j++) {
+				for (int j = 0; j < boardSize - 1; j++) {
 					if (board[i][j].doMerge(board[i][j + 1])) {
 						score += board[i][j].getValue() + board[i][j + 1].getValue();
 					}
@@ -90,8 +91,8 @@ public class Board {
 			}
 		}
 		else if (dir.equals(DirectionOption.LEFT)) {
-			for (int i = 0; i < boardSize; i++) {
-				for (int j = boardSize - 1; j >= 0; j--) {
+			for (int i = boardSize - 1; i > 0; i--) {
+				for (int j = boardSize - 1; j > 0; j--) {
 					if (board[i][j].doMerge(board[i][j - 1])) {
 						score += board[i][j].getValue() + board[i][j - 1].getValue();
 					}
@@ -99,7 +100,7 @@ public class Board {
 			}
 		}
 		else if (dir.equals(DirectionOption.UP)) {
-			for (int i = boardSize - 1; i >= 0; i++) {
+			for (int i = boardSize - 1; i > 0; i--) {
 				for (int j = 0; j < boardSize; j++) {
 					if (board[i][j].doMerge(board[i - 1][j])) {
 						score += board[i][j].getValue() + board[i - 1][j].getValue();
