@@ -16,7 +16,7 @@ public class Board {
 	
 	
 	/**
-	 * Construct of the class Board.
+	 * Construct of the class Board. creates a new board with the specified size
 	 * 
 	 * @param size saves the dimension of the board
 	 */
@@ -45,8 +45,10 @@ public class Board {
 	public String toString() {
 		String s = "";
 		for (int i = 0; i < boardSize; i++) {
+			//top separation line
 			s += MyStringUtils.repeat("-", 8 * boardSize);
 			s += "\n";
+			
 			for (int j = 0; j < boardSize; j++) {
 				s += "|";
 				if (board[i][j].isEmpty()) {
@@ -58,6 +60,8 @@ public class Board {
 			}
 			s += "|\n";
 		}
+		
+		//bottom separation line
 		s += MyStringUtils.repeat("-", 8 * boardSize);
 		s += "\n";
 		
@@ -67,11 +71,12 @@ public class Board {
 	/**
 	 * executes the displacing and merging of a move in the direction dir
 	 * 
-	 * @param dir
+	 * @param dir direction to execute the movement to
 	 * @return returns the Object containing the results
 	 */
 	public MoveResult executeMove(Direction dir){
 		int score = 0;
+		
 		if (dir.equals(DirectionOption.DOWN)) {
 			for (int i = 0; i < boardSize - 1; i++) {
 				for (int j = 0; j < boardSize; j++) {
@@ -81,6 +86,7 @@ public class Board {
 				}
 			}
 		}
+		
 		else if (dir.equals(DirectionOption.RIGHT)) {
 			for (int i = 0; i < boardSize; i++) {
 				for (int j = 0; j < boardSize - 1; j++) {
@@ -90,6 +96,7 @@ public class Board {
 				}
 			}
 		}
+		
 		else if (dir.equals(DirectionOption.LEFT)) {
 			for (int i = boardSize - 1; i > 0; i--) {
 				for (int j = boardSize - 1; j > 0; j--) {
@@ -99,6 +106,7 @@ public class Board {
 				}
 			}
 		}
+		
 		else if (dir.equals(DirectionOption.UP)) {
 			for (int i = boardSize - 1; i > 0; i--) {
 				for (int j = 0; j < boardSize; j++) {
@@ -108,6 +116,7 @@ public class Board {
 				}
 			}
 		}
+		
 		return new MoveResult(score);
 	}
 }

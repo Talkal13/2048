@@ -19,7 +19,12 @@ public class Position {
 	 */
 	private int y;
 	
-	
+	/**
+	 * Constructr of the class, sets the x and y values to the ones introduced
+	 * 
+	 * @param x sets the value of the row
+	 * @param y sets the value of the column
+	 */
 	public Position(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -27,41 +32,46 @@ public class Position {
 	
 	
 	/**
+	 * getter method of the row of the cell
 	 * 
-	 * @return x
+	 * @return x return the row of the cell
 	 */
 	public int getX() {
 		return x;
 	}
 	
 	/**
+	 * getter method of the column of the cell
 	 * 
-	 * @return y
+	 * @return y return the column of the cell
 	 */
 	public int getY() {
 		return y;
 	}
 	
 	/**
-	 * Sets x
-	 * @param x
+	 * setter method for the row of the cell
+	 * 
+	 * @param x new value to set on the row cell
 	 */
 	public void setX(int x) {
 		this.x = x;
 	}
 	
 	/**
-	 * Sets y
-	 * @param y
+	 * setter method for the column of the cell
+	 * 
+	 * @param y new value to set on the column of the cell
 	 */
 	public void setY(int y) {
 		this.y = y;
 	}
 	
 	/**
-	 * Sets x and y
-	 * @param x
-	 * @param y
+	 * Sets x and y in the same function
+	 * 
+	 * @param x sets the new value of the row
+	 * @param y sets the new value of the column
 	 */
 	public void set(int x, int y) {
 		this.x = x;

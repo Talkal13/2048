@@ -35,11 +35,17 @@ public class Cell {
 		empty = false;
 	}
 	
+	/**
+	 * Adds to the current value a new value intrcued as parameter
+	 * 
+	 * @param newValue value to be increased
+	 */
 	public void addValue(int newValue) {
 		this.value += newValue;
 	}
 	
 	/**
+	 * getter method of the class caell for its value
 	 * 
 	 * @return value the value of the cell
 	 */
@@ -50,7 +56,7 @@ public class Cell {
 	/**
 	 * Checks whether or not a cell is empty
 	 * 
-	 * @return
+	 * @return false if is empty or true if doesnt
 	 */
 	public boolean isEmpty() {
 		//if the value is different than 0 means that the cell is not empty
@@ -60,16 +66,19 @@ public class Cell {
 		return empty;
 	}
 	
+	/**
+	 * Set the value of the cell to 0 and set the boolean empty to true
+	 */
 	public void emptyCell() {
 		value = 0;
 		empty = true;
 	}
 	
 	/**
-	 * Checks whether a merge is allowed betweena cell and the neighbour cell provided as argumet 
+	 * Checks whether a merge is allowed between a cell and the neighbour cell provided as argumet 
 	 * if it result to merge, implements the merges returning a boolean value to indicate if the merge took place succesfully. 
 	 * 
-	 * @param neighbour
+	 * @param neighbour another cell which the merge could take place with
 	 * @return true in the case that the merge can take place, false if not
 	 */
 	public boolean doMerge(Cell neighbour){
