@@ -1,7 +1,7 @@
 package pr1;
 
-import java.util.Random;
 import java.util.Scanner;
+
 
 /**
  * 
@@ -22,27 +22,48 @@ public class Controller {
 	
 	
 	public Controller(Game  currentGame) {
-		currentGame = game;
+		game = currentGame;
 		in = new Scanner(System.in);
 	}
 	
-	//SHOULD BE MODIFIED IN THE FUTURE IN ORDER TO ACCEPT THE 3RD PARAMETER, THE ONE CONCERNING TO THE SEED
-	public void firstStep(){
-		sizeBoard = in.nextInt();
-		numDigit = in.nextInt();
-			
-	}
-	
-	
-	
-	
-	
-	
+
 	public void run(){
-		//read the first input
-		firstStep();
-		//creates a new game with the values preiously introduced
-		game = new Game(sizeBoard, numDigit, null);
-		
+		//executes the game
+		boolean on = true;
+		String input;
+		while(on){
+			System.out.print("Command > ");
+			input = in.nextLine().toLowerCase();
+			String[] parts = input.split(" ");
+			
+			switch (parts[0]) {
+				case "reset": ;
+				//the program returns to the initial state
+					break;
+				case "help": showHelp();
+				//displays the help text
+					break;
+				case "exit": System.out.print("Game over");
+					on = false;	
+				//terminates the program after printing the message "Game over"
+					break;
+				case "move": 
+					if(parts.length == 2){//check if the second term is an accepted command(up,down,right,left)
+						//performs the movement in the parts[2] direction 
+					}
+				//default case that the command is invalid, we ask for a new command
+				default: System.out.println("choose another option");	
+			}
+		}	
 	}
+
+	
+	public void showHelp(){
+		System.out.println("Move <direction>: execute a move in one of the fur directions, up, own,left, right");
+		System.out.println("Reset: start a new game");
+		System.out.println("Help: print this help message");
+		System.out.println("Exit: terminate the program");
+	}
+	
+	
 }

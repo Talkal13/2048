@@ -7,7 +7,6 @@ import pr1.util.MyStringUtils;
  * @author Pablo & Diego
  * 
  * Class which instance store the current state of a 2048 board and provides the methods to manipulate that state
- *
  */
 public class Board {
 
@@ -39,6 +38,10 @@ public class Board {
 	 */
 	public void setCell(Position pos, int value){
 		this.board[pos.getX()][pos.getY()].setValue(value);
+	}
+	
+	public boolean isBoardEmpty(int row, int col) {
+		return this.board[row][col].isEmpty();
 	}
 	
 	//TODO toString method

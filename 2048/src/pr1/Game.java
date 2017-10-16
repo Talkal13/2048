@@ -18,7 +18,10 @@ public class Game {
 		private int initCells;
 		private Random myRandom;
 		
-		//Not sure of the correctness of the third elemnt
+		private int currentCells;
+		private int randomRow;
+		private int randomCol;
+		
 		/**
 		 * Constructor of the class, saves the 3 values passed as arguments
 		 * 
@@ -30,11 +33,36 @@ public class Game {
 			size = sizeBoard;
 			initCells = numCells;
 			myRandom = seed;
+			currentCells = 0;
+			
+			board = new Board(sizeBoard);
+			
+			while(currentCells < numCells){
+				randomRow = generateRandom(sizeBoard);
+				randomCol = generateRandom(sizeBoard);
+					
+				if(board.isBoardEmpty(randomRow,randomCol)){
+					//this will be more complex in order to set a 4 or a 2
+					board.setCell(new Position(randomRow, randomCol), 2);
+					currentCells++;
+				}
+			}
+		}
+			
+		
+		/**
+		 * generates a randm number smaller than the size of the board
+		 * 
+		 * @param max size of the bord, the random number can't be greater han this number
+		 * @return a random number
+		 */
+		public int generateRandom(int max){
+			return (int) Math.floor(Math.random()*max);
 		}
 	
 		/**
-		 * method that performs a move in the direction dir on the bard
-		 * it updates the scoreand the value of the highest value
+		 * method that performs a move in the direction dir on the board
+		 * it updates the score and the value of the highest value
 		 * 
 		 * @param dir direction in which the move willtake place.
 		 */
@@ -43,8 +71,8 @@ public class Game {
 		}
 		
 		//just as reminder
-		public String toString(){
+		public void toPrint(){
 			//calls the toString of the Board
-			return null;
+			System.out.print(board.toString());
 		}
 }
