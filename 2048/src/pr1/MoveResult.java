@@ -8,15 +8,15 @@ package pr1;
 
 public class MoveResult {
 	
-	private int score;
+	private int score = 0;
+	private int value = 0;
 	
 	/**
 	 * constructor of the class
 	 * 
 	 * @param score current scre of the game
 	 */
-	public MoveResult(int score) {
-		this.score = score;
+	public MoveResult() {
 	}
 
 	/**
@@ -26,6 +26,37 @@ public class MoveResult {
 	 */
 	public int getScore() {
 		return score;
+	}
+	
+	/**
+	 * getter of the class
+	 * 
+	 * @return the value of the highest cell
+	 */
+	public int getValue() {
+		return value;
+	}
+	
+	/**
+	 * 
+	 * change the value of score
+	 * 
+	 * @param s
+	 */
+	
+	public void setScore(int s) {
+		this.score = s;
+	}
+	
+	/**
+	 * 
+	 * Change the value of the value of the highest cell
+	 * 
+	 * @param v
+	 */
+	
+	public void setValue(int v) {
+		this.value = v;
 	}
 	
 	/**

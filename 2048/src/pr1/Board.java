@@ -41,7 +41,6 @@ public class Board {
 		this.board[pos.getX()][pos.getY()].setValue(value);
 	}
 	
-	//TODO toString method
 	public String toString() {
 		String s = "";
 		for (int i = 0; i < boardSize; i++) {
@@ -68,6 +67,18 @@ public class Board {
 		return s;
 	}
 	
+	public MoveResult actualMove(Position cell, Position neightbour) {
+		MoveResult r = new MoveResult();
+		if (board[cell.getX()][cell.getY()].doMerge(board[neightbour.getX()][neightbour.getY()])) {
+			r.setScore(r.getScore() + board[cell.getX()][cell.getY()].getValue() + board[neightbour.getX()][neightbour.getY()].getValue());
+			if (board[neightbour.getX()][neightbour.getY()].getValue() > r.getValue()) {
+				r.setValue(board[neightbour.getX()][neightbour.getY()].getValue());
+			}
+		}
+		return r;
+
+	}
+	
 	/**
 	 * executes the displacing and merging of a move in the direction dir
 	 * 
@@ -75,14 +86,12 @@ public class Board {
 	 * @return returns the Object containing the results
 	 */
 	public MoveResult executeMove(Direction dir){
-		int score = 0;
+		MoveResult result = new MoveResult();
 		
 		if (dir.equals(DirectionOption.DOWN)) {
 			for (int i = 0; i < boardSize - 1; i++) {
 				for (int j = 0; j < boardSize; j++) {
-					if (board[i][j].doMerge(board[i + 1][j])) {
-						score += board[i][j].getValue() + board[i + 1][j].getValue();
-					}
+					result = actualMove(new Position(i, j), new Position(i + 1, j));
 				}
 			}
 		}
@@ -91,7 +100,7 @@ public class Board {
 			for (int i = 0; i < boardSize; i++) {
 				for (int j = 0; j < boardSize - 1; j++) {
 					if (board[i][j].doMerge(board[i][j + 1])) {
-						score += board[i][j].getValue() + board[i][j + 1].getValue();
+						result = actualMove(new Position(i, j), new Position(i, j + 1));
 					}
 				}
 			}
@@ -100,9 +109,7 @@ public class Board {
 		else if (dir.equals(DirectionOption.LEFT)) {
 			for (int i = boardSize - 1; i > 0; i--) {
 				for (int j = boardSize - 1; j > 0; j--) {
-					if (board[i][j].doMerge(board[i][j - 1])) {
-						score += board[i][j].getValue() + board[i][j - 1].getValue();
-					}
+					result = actualMove(new Position(i, j), new Position(i, j - 1));
 				}
 			}
 		}
@@ -110,13 +117,11 @@ public class Board {
 		else if (dir.equals(DirectionOption.UP)) {
 			for (int i = boardSize - 1; i > 0; i--) {
 				for (int j = 0; j < boardSize; j++) {
-					if (board[i][j].doMerge(board[i - 1][j])) {
-						score += board[i][j].getValue() + board[i - 1][j].getValue();
-					}
+					result = actualMove(new Position(i, j), new Position(i - 1, j));
 				}
 			}
 		}
 		
-		return new MoveResult(score);
+		return result;
 	}
 }

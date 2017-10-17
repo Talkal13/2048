@@ -1,5 +1,6 @@
 package pr1;
 
+import java.util.Random;
 
 /**
  * @author Pablo and Diego
@@ -14,7 +15,12 @@ package pr1;
 public class Game2048 {
 
 	public static void main(String[] args) {
-		Board b = new Board(4);
+		Game game = new Game(4, 2, new Random());
+		System.out.print(game);
+		game.move(new Direction(DirectionOption.UP));
+		System.out.print(game);
+		
+		/*Board b = new Board(4);
 		b.setCell(new Position(3, 2), 2);
 		b.setCell(new Position(1, 1), 4);
 		b.setCell(new Position(2, 2), 2);
@@ -29,7 +35,7 @@ public class Game2048 {
 		b.executeMove(new Direction(DirectionOption.DOWN));
 		System.out.print(b);
 		b.executeMove(new Direction(DirectionOption.LEFT));
-		System.out.print(b);
+		System.out.print(b);*/
 
 	}
 
