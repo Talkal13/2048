@@ -37,7 +37,9 @@ public class Controller {
 			String[] parts = input.split(" ");
 			
 			switch (parts[0]) {
-				case "reset": ;
+				case "reset": 
+					game.reset();
+					System.out.print(game);
 				//the program returns to the initial state
 					break;
 				case "help": showHelp();

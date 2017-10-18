@@ -20,7 +20,7 @@ public class Game {
 		private int score;
 		private int highestValueCell;
 		
-		//Not sure of the correctness of the third element
+		
 		/**
 		 * Constructor of the class, saves the 3 values passed as arguments
 		 * 
@@ -72,5 +72,16 @@ public class Game {
 			//calls the toString of the Board
 			return board.toString();
 			
+		}
+		
+		public void reset() {
+			score = 0;
+			this.highestValueCell = 0;
+			for (int i = 0; i < initCells; i++) {
+				if (myRandom.nextInt(100) < 10)
+					board.setCell(new Position(myRandom.nextInt(size), myRandom.nextInt(size)), 4);
+				else
+					board.setCell(new Position(myRandom.nextInt(size), myRandom.nextInt(size)), 2);
+			}
 		}
 }
