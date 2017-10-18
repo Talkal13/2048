@@ -49,7 +49,25 @@ public class Controller {
 					break;
 				case "move": 
 					if(parts.length == 2){//check if the second term is an accepted command(up,down,right,left)
-						//performs the movement in the parts[2] direction 
+						//performs the movement in the parts[2] direction
+						switch(parts[1]) {
+						case "up":
+							game.move(new Direction(DirectionOption.UP));
+							break;
+						case "down": 
+							game.move(new Direction(DirectionOption.DOWN));
+							break;
+						case "right": 
+							game.move(new Direction(DirectionOption.RIGHT));
+							break;
+						case "left": 
+							game.move(new Direction(DirectionOption.LEFT));
+							break;
+						default: System.out.println("choose a valid direction");
+						}
+						System.out.print(game);
+						break;
+						
 					}
 				//default case that the command is invalid, we ask for a new command
 				default: System.out.println("choose another option");	
