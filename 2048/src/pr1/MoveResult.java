@@ -60,6 +60,18 @@ public class MoveResult {
 	}
 	
 	/**
+	 *  
+	 * Merges two MoveResult objects 
+	 *  
+	 * @param a
+	 */
+	
+	public void add(MoveResult a) {
+		score += a.score;
+		value = a.getValue() > value ? a.getValue() : value;
+	}
+	
+	/**
 	 * checks wheter a score introduced as paramether and the one in the class is the same
 	 * @param score to check if is equal
 	 * @return true if is equal or false if doesnt

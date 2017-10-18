@@ -31,6 +31,14 @@ public class Board {
 		}
 	}
 	
+	public void reset() {
+		for (int i = 0; i < boardSize; i++) {
+			for (int j = 0; j < boardSize; j++) {
+				board[i][j].emptyCell();
+			}
+		}
+	}
+	
 	/**
 	 * Sets the value of the cell at a given position on the board
 	 * 
@@ -92,11 +100,16 @@ public class Board {
 	 */
 	public MoveResult executeMove(Direction dir){
 		MoveResult result = new MoveResult();
+		MoveResult tmp = new MoveResult();
 		
 		if (dir.equals(DirectionOption.DOWN)) {
 			for (int i = 0; i < boardSize - 1; i++) {
 				for (int j = 0; j < boardSize; j++) {
-					result = actualMove(new Position(i, j), new Position(i + 1, j));
+					result.add(actualMove(new Position(i, j), new Position(i + 1, j)));
+					if (tmp.getScore() < result.getScore()) {
+						j++;
+					}
+					tmp = result;
 				}
 			}
 		}
@@ -104,17 +117,24 @@ public class Board {
 		else if (dir.equals(DirectionOption.RIGHT)) {
 			for (int i = 0; i < boardSize; i++) {
 				for (int j = 0; j < boardSize - 1; j++) {
-					if (board[i][j].doMerge(board[i][j + 1])) {
-						result = actualMove(new Position(i, j), new Position(i, j + 1));
+					
+					result.add(actualMove(new Position(i, j), new Position(i, j + 1)));
+					if (tmp.getScore() < result.getScore()) {
+						i++;
 					}
+					tmp = result;
 				}
 			}
 		}
 		
 		else if (dir.equals(DirectionOption.LEFT)) {
-			for (int i = boardSize - 1; i > 0; i--) {
+			for (int i = 0; i < boardSize; i++) {
 				for (int j = boardSize - 1; j > 0; j--) {
-					result = actualMove(new Position(i, j), new Position(i, j - 1));
+					result.add(actualMove(new Position(i, j), new Position(i, j - 1)));
+					if (tmp.getScore() < result.getScore()) {
+						i--;
+					}
+					tmp = result;
 				}
 			}
 		}
@@ -122,7 +142,11 @@ public class Board {
 		else if (dir.equals(DirectionOption.UP)) {
 			for (int i = boardSize - 1; i > 0; i--) {
 				for (int j = 0; j < boardSize; j++) {
-					result = actualMove(new Position(i, j), new Position(i - 1, j));
+					result.add(actualMove(new Position(i, j), new Position(i - 1, j)));
+					if (tmp.getScore() < result.getScore()) {
+						j--;
+					}
+					tmp = result;
 				}
 			}
 		}

@@ -21,6 +21,20 @@ public class Game {
 		private int highestValueCell;
 		
 		
+		public void insertRandCell() {
+			int randx, randy;
+			
+			do {
+				randx = myRandom.nextInt(size);
+				randy = myRandom.nextInt(size);
+			} while(!board.isBoardEmpty(randx, randy));
+			
+			if (myRandom.nextInt(100) < 10)
+				board.setCell(new Position(randx, randy), 4);
+			else
+				board.setCell(new Position(randx, randy), 2);
+		}
+		
 		/**
 		 * Constructor of the class, saves the 3 values passed as arguments
 		 * 
@@ -32,12 +46,10 @@ public class Game {
 			size = sizeBoard;
 			initCells = numCells;
 			myRandom = random;
+			
 			board = new Board(sizeBoard);
 			for (int i = 0; i < numCells; i++) {
-				if (random.nextInt(100) < 10)
-					board.setCell(new Position(random.nextInt(sizeBoard), random.nextInt(sizeBoard)), 4);
-				else
-					board.setCell(new Position(random.nextInt(sizeBoard), random.nextInt(sizeBoard)), 2);
+				insertRandCell();
 			}
 			/*currentCells = 0;
 			
@@ -61,8 +73,9 @@ public class Game {
 		 * 
 		 * @param dir direction in which the move will take place.
 		 */
-		public void move (Direction dir){
+		public void move (Direction dir) {
 			MoveResult result = board.executeMove(dir);
+			insertRandCell();
 			score = result.getScore();
 			highestValueCell = result.getValue();
 		}
@@ -77,6 +90,7 @@ public class Game {
 		public void reset() {
 			score = 0;
 			this.highestValueCell = 0;
+			board.reset();
 			for (int i = 0; i < initCells; i++) {
 				if (myRandom.nextInt(100) < 10)
 					board.setCell(new Position(myRandom.nextInt(size), myRandom.nextInt(size)), 4);
