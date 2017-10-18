@@ -13,7 +13,10 @@ import java.util.Random;
  */
 
 public class Game2048 {
-
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Game game = new Game(4, 2, new Random());
 		System.out.print(game);
