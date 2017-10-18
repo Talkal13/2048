@@ -41,6 +41,11 @@ public class Board {
 		this.board[pos.getX()][pos.getY()].setValue(value);
 	}
 	
+	public boolean isBoardEmpty(int row, int col) {
+		return this.board[row][col].isEmpty();
+	}
+	
+	//TODO toString method
 	public String toString() {
 		String s = "";
 		for (int i = 0; i < boardSize; i++) {

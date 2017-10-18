@@ -39,6 +39,20 @@ public class Game {
 				else
 					board.setCell(new Position(random.nextInt(sizeBoard), random.nextInt(sizeBoard)), 2);
 			}
+			/*currentCells = 0;
+			
+			board = new Board(sizeBoard);
+			
+			while(currentCells < numCells){
+				randomRow = generateRandom(sizeBoard);
+				randomCol = generateRandom(sizeBoard);
+					
+				if(board.isBoardEmpty(randomRow,randomCol)){
+					//this will be more complex in order to set a 4 or a 2
+					board.setCell(new Position(randomRow, randomCol), 2);
+					currentCells++;
+				}
+			}*/
 		}
 	
 		/**

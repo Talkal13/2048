@@ -36,6 +36,16 @@ public class Game2048 {
 		System.out.print(b);
 		b.executeMove(new Direction(DirectionOption.LEFT));
 		System.out.print(b);*/
+		
+		/**
+		 * At the end should be just something like this
+		 *  the parametersintroduced on the game constructor are just random ones
+		 *  
+		 * Game game = new Game(6,2,null);
+		 * WOULD BE NICE TO CHECK SOMEWHERE THAT (numCells > sizeBoard * sizeBoard) IN WHICH CASE THE GAME CANT TAKE PLACE
+		 * Controller c = new Controller(game);
+		 * c.run(); 
+		 */
 
 	}
 
