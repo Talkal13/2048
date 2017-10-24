@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * 
- * @author Pablo & Diego
+ * @author Pablo and Diego
  * @version 1.0
  * @since 1.0
  *

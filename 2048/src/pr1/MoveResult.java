@@ -1,7 +1,7 @@
 package pr1;
 /**
  * 
- * @author Pablo & Diego
+ * @author Pablo and Diego
  *
  *	Encapsulates the result of executing a move on the board
  */
@@ -14,7 +14,7 @@ public class MoveResult {
 	/**
 	 * constructor of the class
 	 * 
-	 * @param score current scre of the game
+	 * 
 	 */
 	public MoveResult() {
 	}
@@ -41,7 +41,7 @@ public class MoveResult {
 	 * 
 	 * change the value of score
 	 * 
-	 * @param s
+	 * @param s the score
 	 */
 	
 	public void setScore(int s) {
@@ -52,7 +52,7 @@ public class MoveResult {
 	 * 
 	 * Change the value of the value of the highest cell
 	 * 
-	 * @param v
+	 * @param v the value
 	 */
 	
 	public void setValue(int v) {
@@ -63,7 +63,7 @@ public class MoveResult {
 	 *  
 	 * Merges two MoveResult objects 
 	 *  
-	 * @param a
+	 * @param a the object MoveResult to merge with
 	 */
 	
 	public void add(MoveResult a) {

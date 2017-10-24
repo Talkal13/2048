@@ -15,7 +15,7 @@ import java.util.Random;
 public class Game2048 {
 	/**
 	 * 
-	 * @param args
+	 * @param args the arguments of the game
 	 */
 	public static void main(String[] args) {
 		Game game = new Game(4, 2, new Random());

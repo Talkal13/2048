@@ -6,7 +6,7 @@ package pr1;
 import java.lang.String;
 
 /**
- * @author Pablo Vazquez & Diego Ambite
+ * @author Pablo Vazquez and Diego Ambite
  *
  */
 public class Cell {

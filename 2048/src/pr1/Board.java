@@ -4,7 +4,7 @@ import pr1.util.MyStringUtils;
 
 /**
  * 
- * @author Pablo & Diego
+ * @author Pablo and Diego
  * 
  * Class which instance store the current state of a 2048 board and provides the methods to manipulate that state
  *

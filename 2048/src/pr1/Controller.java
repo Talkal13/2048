@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 /**
  * 
- * @author Pablo & Diego
+ * @author Pablo and Diego
  * 
  * Class which instance controls the execution of the game 
  *
