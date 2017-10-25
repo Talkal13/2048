@@ -80,7 +80,7 @@ public class Board {
 		return s;
 	}
 	
-	public MoveResult actualMove(Position cell, Position neightbour) {
+	private MoveResult actualMove(Position cell, Position neightbour) {
 		MoveResult r = new MoveResult();
 		if (board[cell.getX()][cell.getY()].doMerge(board[neightbour.getX()][neightbour.getY()])) {
 			r.setScore(r.getScore() + board[cell.getX()][cell.getY()].getValue() + board[neightbour.getX()][neightbour.getY()].getValue());
