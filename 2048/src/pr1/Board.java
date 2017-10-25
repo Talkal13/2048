@@ -80,77 +80,85 @@ public class Board {
 		return s;
 	}
 	
-	private MoveResult actualMove(Position cell, Position neightbour) {
+	private void transpose() {
+		Cell tmp;
+		for (int i = 0; i < boardSize; i++) {
+			for (int j = i + 1; j < boardSize; j++) {
+				tmp = board[i][j];
+				board[i][j] = board[j][i];
+				board[j][i] = tmp;
+			}
+		}
+	}
+	
+	public void reflection() {
+		Cell tmp;
+		for (int i = 0; i < boardSize; i++) {
+			for (int j = 0; j < boardSize / 2; j++) {
+				tmp = board[i][j];
+				board[i][j] = board[i][boardSize - j - 1];
+				board[i][boardSize - j - 1] = tmp;
+			}
+		}
+	}
+	
+	
+	private MoveResult move_right() {
 		MoveResult r = new MoveResult();
-		if (board[cell.getX()][cell.getY()].doMerge(board[neightbour.getX()][neightbour.getY()])) {
-			r.setScore(r.getScore() + board[cell.getX()][cell.getY()].getValue() + board[neightbour.getX()][neightbour.getY()].getValue());
-			if (board[neightbour.getX()][neightbour.getY()].getValue() > r.getValue()) {
-				r.setValue(board[neightbour.getX()][neightbour.getY()].getValue());
+		for (int i = 0; i < boardSize; i++) {
+			for (int j = 0; j < boardSize - 1; j++) {
+				if (board[i][j].doMerge(board[i][j + 1])) {
+					if (r.getValue() < board[i][j + 1].getValue()) {
+						r.setValue(board[i][j + 1].getValue());
+					}
+					r.setScore(r.getScore() + board[i][j + 1].getValue());
+				}
 			}
 		}
 		return r;
-
 	}
 	
-	/**
-	 * executes the displacing and merging of a move in the direction dir
-	 * 
-	 * @param dir direction to execute the movement to
-	 * @return returns the Object containing the results
-	 */
-	public MoveResult executeMove(Direction dir){
-		MoveResult result = new MoveResult();
-		MoveResult tmp = new MoveResult();
-		
-		if (dir.equals(DirectionOption.DOWN)) {
-			for (int i = 0; i < boardSize - 1; i++) {
-				for (int j = 0; j < boardSize; j++) {
-					result.add(actualMove(new Position(i, j), new Position(i + 1, j)));
-					if (tmp.getScore() < result.getScore()) {
-						j++;
-					}
-					tmp = result;
-				}
-			}
+	private MoveResult move_left() {
+		MoveResult r = new MoveResult();
+		reflection();
+		r = move_right();
+		reflection();
+		return r;
+	}
+	
+	
+	private MoveResult move_down() {
+		MoveResult r = new MoveResult();
+		transpose();
+		r = move_right();
+		transpose();
+		return r;
+	}
+	
+	private MoveResult move_up() {
+		MoveResult r = new MoveResult();
+		transpose();
+		r = move_left();
+		transpose();
+		return r;
+	}
+	
+	
+	
+	public MoveResult executeMove(Direction dir) {
+		MoveResult r = new MoveResult();
+		if (dir.equals(DirectionOption.RIGHT)) {
+			r = move_right();
 		}
-		
-		else if (dir.equals(DirectionOption.RIGHT)) {
-			for (int i = 0; i < boardSize; i++) {
-				for (int j = 0; j < boardSize - 1; j++) {
-					
-					result.add(actualMove(new Position(i, j), new Position(i, j + 1)));
-					if (tmp.getScore() < result.getScore()) {
-						i++;
-					}
-					tmp = result;
-				}
-			}
+		else if (dir.equals(DirectionOption.DOWN)) {
+			r = move_down();
 		}
-		
-		else if (dir.equals(DirectionOption.LEFT)) {
-			for (int i = 0; i < boardSize; i++) {
-				for (int j = boardSize - 1; j > 0; j--) {
-					result.add(actualMove(new Position(i, j), new Position(i, j - 1)));
-					if (tmp.getScore() < result.getScore()) {
-						i--;
-					}
-					tmp = result;
-				}
-			}
-		}
-		
 		else if (dir.equals(DirectionOption.UP)) {
-			for (int i = boardSize - 1; i > 0; i--) {
-				for (int j = 0; j < boardSize; j++) {
-					result.add(actualMove(new Position(i, j), new Position(i - 1, j)));
-					if (tmp.getScore() < result.getScore()) {
-						j--;
-					}
-					tmp = result;
-				}
-			}
+			r = move_up();
 		}
-		
-		return result;
+		else if (dir.equals(DirectionOption.LEFT)) {
+			r = move_left();
+		}
+		return r;
 	}
 }

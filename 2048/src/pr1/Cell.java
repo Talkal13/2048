@@ -14,6 +14,7 @@ public class Cell {
 	private Position pos;
 	private int value = 0;
 	private boolean empty = true;
+	private boolean marked = false;
 	
 	/**
 	 * Constructor of the class Cell
@@ -54,6 +55,23 @@ public class Cell {
 	}
 	
 	/**
+	 * 
+	 * @param x
+	 */
+	
+	public void setMarked(boolean x) {
+		marked = x;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean getMarked() {
+		return marked;
+	}
+	
+	/**
 	 * Checks whether or not a cell is empty
 	 * 
 	 * @return false if is empty or true if doesnt
@@ -87,9 +105,10 @@ public class Cell {
 			emptyCell();
 			return false;
 		}
-		else if (neighbour.getValue() == this.value) {
+		else if (neighbour.getValue() == this.value && !neighbour.isEmpty() && !isEmpty()) {
 			neighbour.addValue(value);
 			emptyCell();
+			//this.setMarked(true);
 			return true;
 			
 		}
