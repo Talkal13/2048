@@ -91,7 +91,7 @@ public class Board {
 		}
 	}
 	
-	public void reflection() {
+	private void reflection() {
 		Cell tmp;
 		for (int i = 0; i < boardSize; i++) {
 			for (int j = 0; j < boardSize / 2; j++) {
@@ -106,12 +106,12 @@ public class Board {
 	private MoveResult move_right() {
 		MoveResult r = new MoveResult();
 		for (int i = 0; i < boardSize; i++) {
-			for (int j = 0; j < boardSize - 1; j++) {
-				if (board[i][j].doMerge(board[i][j + 1])) {
-					if (r.getValue() < board[i][j + 1].getValue()) {
-						r.setValue(board[i][j + 1].getValue());
+			for (int j = boardSize - 1; j > 0; j--) {
+				if (board[i][j - 1].doMerge(board[i][j])) {
+					if (r.getValue() < board[i][j].getValue()) {
+						r.setValue(board[i][j].getValue());
 					}
-					r.setScore(r.getScore() + board[i][j + 1].getValue());
+					r.setScore(r.getScore() + board[i][j].getValue());
 				}
 			}
 		}
