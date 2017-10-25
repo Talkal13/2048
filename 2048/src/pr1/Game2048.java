@@ -18,7 +18,30 @@ public class Game2048 {
 	 * @param args the arguments of the game
 	 */
 	public static void main(String[] args) {
-		Game game = new Game(4, 2, new Random());
+		
+/*	REMOVE BLOCK COMMENT TO TAKE INTO ACOUNT THE THIRD PARAMETER
+ 
+ 		int dim = Integer.parseInt(args[0]);
+		int nums = Integer.parseInt(args[1]);
+		long seed = -1;
+		
+		if(args.length == 2){
+			seed = Long.parseLong(args[2]);
+		}
+		
+		else if(args.length == 3){
+			seed = new Random().nextInt(1000);
+		}
+		
+		Random rand = new Random(seed);
+		
+		Game game = new Game(dim, nums, rand);
+		System.out.print(game);
+		Controller control = new Controller(game);
+		controller.run();
+*/
+		
+		Game game = new Game(4, 2,new Random());
 		System.out.print(game);
 		Controller control = new Controller(game);
 		control.run();

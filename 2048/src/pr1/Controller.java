@@ -15,7 +15,6 @@ public class Controller {
 
 	private Game game;
 	private Scanner in;
-	
 	//variable to store the conditions of the game to be developed
 	public int sizeBoard;
 	public int numDigit;
