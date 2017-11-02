@@ -19,13 +19,21 @@ public class Controller {
 	public int sizeBoard;
 	public int numDigit;
 	
+	/**
+	 * Constructor of the class Controller, which will control the game introduced as paramether
+	 * 
+	 * @param currentGame game to control
+	 */
 	
 	public Controller(Game  currentGame) {
 		game = currentGame;
 		in = new Scanner(System.in);
 	}
 	
-
+	/**
+	 * Method which runs the game taking into account which commands are introduced and performing the corresponding actions.
+	 */
+	
 	public void run(){
 		//executes the game
 		boolean on = true;
@@ -76,6 +84,9 @@ public class Controller {
 		}	
 	}
 
+	/**
+	 * Shows the different helpp messages to help the user about the different possibilities of movement
+	 */
 	
 	public void showHelp(){
 		System.out.println("Move <direction>: execute a move in one of the fur directions, up, own,left, right");

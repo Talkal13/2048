@@ -20,6 +20,10 @@ public class Game {
 		private int score;
 		private int highestValueCell;
 		
+		/**
+		 * Inserts in a random empty cell a 4 with a 10% of chances or a 2 with te other 90%
+		 * 
+		 */
 		
 		public void insertRandCell() {
 			int randx, randy;
@@ -68,8 +72,7 @@ public class Game {
 		}
 	
 		/**
-		 * method that performs a move in the direction dir on the bard
-		 * it updates the score and the value of the highest value
+		 * Method that performs a move in the direction dir in the board it updates the score and the value of the highest value
 		 * 
 		 * @param dir direction in which the move will take place.
 		 */
@@ -86,6 +89,10 @@ public class Game {
 			return board.toString();
 			
 		}
+		
+		/**
+		 * set both score and highestValueCell back to 0 and resets the board, finally places the inital cells
+		 */ 
 		
 		public void reset() {
 			score = 0;

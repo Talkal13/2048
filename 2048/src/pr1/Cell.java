@@ -27,17 +27,17 @@ public class Cell {
 	}
 	
 	/**
-	 * changes the value of the current cell to the new value introduced as parameter
+	 * changes the value of the current cell to the new value introduced as paramether
 	 * 
 	 * @param newValue the new value that the cell will have
 	 */
 	public void setValue(int newValue){
 		this.value = newValue;
-		empty = false;
+		this.empty = false;
 	}
 	
 	/**
-	 * Adds to the current value a new value intrcued as parameter
+	 * Adds to the current value a new value intrcued as paramether
 	 * 
 	 * @param newValue value to be increased
 	 */
@@ -46,7 +46,7 @@ public class Cell {
 	}
 	
 	/**
-	 * getter method of the class caell for its value
+	 * getter method of the class cell for its value
 	 * 
 	 * @return value the value of the cell
 	 */
@@ -55,8 +55,9 @@ public class Cell {
 	}
 	
 	/**
+	 * Sets the class attribute marked to the value introduced as paramether
 	 * 
-	 * @param x
+	 * @param x new value of the attribute marked
 	 */
 	
 	public void setMarked(boolean x) {
@@ -64,8 +65,9 @@ public class Cell {
 	}
 	
 	/**
+	 * Gets the value of the paramether marked
 	 * 
-	 * @return
+	 * @return the current value of the attribute marked
 	 */
 	public boolean getMarked() {
 		return marked;
@@ -100,11 +102,13 @@ public class Cell {
 	 * @return true in the case that the merge can take place, false if not
 	 */
 	public boolean doMerge(Cell neighbour){
+		//case the neighbour is an empty cell, we copy the value to this neighbour, we empty the current cell and we etrun false
 		if (neighbour.isEmpty() && !this.isEmpty()) {
 			neighbour.setValue(this.value);
 			emptyCell();
 			return false;
 		}
+		//if both the neighbour and the current aren't empty and share value, we add the value of the cell to the neighbour and we empty the cell
 		else if (neighbour.getValue() == this.value && !neighbour.isEmpty() && !isEmpty()) {
 			neighbour.addValue(value);
 			emptyCell();

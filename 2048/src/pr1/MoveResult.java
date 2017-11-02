@@ -12,8 +12,7 @@ public class MoveResult {
 	private int value = 0;
 	
 	/**
-	 * constructor of the class
-	 * 
+	 * Constructor of the class
 	 * 
 	 */
 	public MoveResult() {
@@ -38,7 +37,6 @@ public class MoveResult {
 	}
 	
 	/**
-	 * 
 	 * change the value of score
 	 * 
 	 * @param s the score
@@ -49,7 +47,6 @@ public class MoveResult {
 	}
 	
 	/**
-	 * 
 	 * Change the value of the value of the highest cell
 	 * 
 	 * @param v the value
@@ -59,8 +56,7 @@ public class MoveResult {
 		this.value = v;
 	}
 	
-	/**
-	 *  
+	/** 
 	 * Merges two MoveResult objects 
 	 *  
 	 * @param a the object MoveResult to merge with
@@ -73,6 +69,7 @@ public class MoveResult {
 	
 	/**
 	 * checks wheter a score introduced as paramether and the one in the class is the same
+	 * 
 	 * @param score to check if is equal
 	 * @return true if is equal or false if doesnt
 	 */

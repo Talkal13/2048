@@ -24,12 +24,18 @@ public class Board {
 	public Board(int size){
 		boardSize = size;
 		board = new Cell[boardSize][boardSize];
+		
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				board[i][j] = new Cell(i, j);
 			}
 		}
 	}
+	
+	/**
+	 * resets the board by emptying all it's cells
+	 * 
+	 */
 	
 	public void reset() {
 		for (int i = 0; i < boardSize; i++) {
@@ -45,10 +51,18 @@ public class Board {
 	 * @param pos position of the cell 
 	 * @param value value which will be settled in the cell on the position pos
 	 */
+	
 	public void setCell(Position pos, int value){
 		this.board[pos.getX()][pos.getY()].setValue(value);
 	}
 	
+	/**
+	 * checks if the cell in the position given by the paramethers is empty or not
+	 * 
+	 * @param row row of the cell to check
+	 * @param col column of the cell to check
+	 * @return true in case the cell is empty or false if is not empty
+	 */
 	public boolean isBoardEmpty(int row, int col) {
 		return this.board[row][col].isEmpty();
 	}
@@ -80,6 +94,11 @@ public class Board {
 		return s;
 	}
 	
+	/**
+	 * Goes through the right side of the board and for each position,the cell in that position is swapped for it's trasposed.
+	 * The trasposie of one position is the one which has the same value for the row and column but inverted.
+	 */
+	
 	private void transpose() {
 		Cell tmp;
 		for (int i = 0; i < boardSize; i++) {
@@ -90,6 +109,11 @@ public class Board {
 			}
 		}
 	}
+	
+	/**
+	 * Goes through the top right side of the board and for each position,the cell in that position is swapped for refected one.
+	 * The refection of one position is the one the same row and the reflected column.
+	 */
 	
 	private void reflection() {
 		Cell tmp;
@@ -102,9 +126,15 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * Performs a move to the right in the board of the game.	
+	 * 
+	 * @return the object MoveResult that results of the move to the right on the game
+	 */
 	
 	private MoveResult move_right() {
 		MoveResult r = new MoveResult();
+		
 		for (int i = 0; i < boardSize; i++) {
 			for (int j = boardSize - 1; j > 0; j--) {
 				if (board[i][j - 1].doMerge(board[i][j])) {
@@ -118,6 +148,12 @@ public class Board {
 		return r;
 	}
 	
+	/**
+	 * Performs a move to the left in the board of the game.
+	 * 
+	 * @return the object MoveResult that results of the move to the left on the game
+	 */
+	
 	private MoveResult move_left() {
 		MoveResult r = new MoveResult();
 		reflection();
@@ -126,6 +162,11 @@ public class Board {
 		return r;
 	}
 	
+	/**
+	 * Performs a move down in the board of the game.
+	 * 
+	 * @return the object MoveResult that results of the moving down on the game
+	 */
 	
 	private MoveResult move_down() {
 		MoveResult r = new MoveResult();
@@ -135,6 +176,12 @@ public class Board {
 		return r;
 	}
 	
+	/**
+	 * Performs a move up in the board of the game.
+	 * 
+	 * @return the object MoveResult that results of the moving up on the game
+	 */
+	
 	private MoveResult move_up() {
 		MoveResult r = new MoveResult();
 		transpose();
@@ -143,7 +190,12 @@ public class Board {
 		return r;
 	}
 	
-	
+	/**
+	 * Checks the paramether which tell us the direction to perform the movement, and calls to the corresponding method
+	 * 
+	 * @param dir direction where we want to move
+	 * @return the object MoveResult that results of the moving to the desired direction on the game
+	 */
 	
 	public MoveResult executeMove(Direction dir) {
 		MoveResult r = new MoveResult();

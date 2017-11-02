@@ -15,12 +15,12 @@ package pr1;
 public class Direction {
 	
 	
-	//Stores the direction
+	//Stores the direction of the movement
 	
 	DirectionOption dir;
 	
 	/**
-	 * Constructor instantiates a Direction Object with a direction
+	 * Constructor, instantiates a Direction Object with a direction iintroduced as paramether
 	 *
 	 * @param x direction to achieve the movement
 	 */
@@ -30,11 +30,12 @@ public class Direction {
 	}
 	
 	/**
-	 * checks if the direction introduces as parameter is the same as the direcion of the class
+	 * checks if the direction introduced as parameter is the same as the direcion of the class
 	 * 
 	 * @param x direction to check
 	 * @return true in case is equal and false if it doesnt
 	 */
+	
 	public boolean equals(DirectionOption x) {
 		return (dir == x);
 	}
