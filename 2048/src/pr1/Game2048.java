@@ -26,11 +26,11 @@ public class Game2048 {
 		long seed = -1;
 		
 		if(args.length == 2){
-			seed = Long.parseLong(args[2]);
+			seed = new Random().nextInt(1000);
 		}
 		
 		else if(args.length == 3){
-			seed = new Random().nextInt(1000);
+			seed = Long.parseLong(args[2]);
 		}
 		
 		Random rand = new Random(seed);

@@ -94,6 +94,7 @@ public class Cell {
 		empty = true;
 	}
 	
+	
 	/**
 	 * Checks whether a merge is allowed between a cell and the neighbour cell provided as argumet 
 	 * if it result to merge, implements the merges returning a boolean value to indicate if the merge took place succesfully. 
@@ -101,15 +102,15 @@ public class Cell {
 	 * @param neighbour another cell which the merge could take place with
 	 * @return true in the case that the merge can take place, false if not
 	 */
-	public boolean doMerge(Cell neighbour){
-		//case the neighbour is an empty cell, we copy the value to this neighbour, we empty the current cell and we etrun false
+	public boolean doMerge(Cell neighbour, boolean done){
+		//case the neighbour is an empty cell, we copy the value to this neighbour, we empty the current cell and we retrun false
 		if (neighbour.isEmpty() && !this.isEmpty()) {
 			neighbour.setValue(this.value);
 			emptyCell();
 			return false;
 		}
 		//if both the neighbour and the current aren't empty and share value, we add the value of the cell to the neighbour and we empty the cell
-		else if (neighbour.getValue() == this.value && !neighbour.isEmpty() && !isEmpty()) {
+		else if (neighbour.getValue() == this.value && !neighbour.isEmpty() && !isEmpty() && done) {
 			neighbour.addValue(value);
 			emptyCell();
 			//this.setMarked(true);

@@ -108,6 +108,7 @@ public class Board {
 				board[j][i] = tmp;
 			}
 		}
+		System.out.print(this);
 	}
 	
 	/**
@@ -124,6 +125,7 @@ public class Board {
 				board[i][boardSize - j - 1] = tmp;
 			}
 		}
+		System.out.print(this);
 	}
 	
 	/**
@@ -134,10 +136,12 @@ public class Board {
 	
 	private MoveResult move_right() {
 		MoveResult r = new MoveResult();
-		
+		boolean done;
 		for (int i = 0; i < boardSize; i++) {
-			for (int j = boardSize - 1; j > 0; j--) {
-				if (board[i][j - 1].doMerge(board[i][j])) {
+			done = false;
+			for (int j = 0; j < boardSize - 1; j++) {
+				if (board[i][j].doMerge(board[i][j + 1], !done)) {
+					done = true;
 					if (r.getValue() < board[i][j].getValue()) {
 						r.setValue(board[i][j].getValue());
 					}
