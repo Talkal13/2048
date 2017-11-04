@@ -35,8 +35,12 @@ public class Game {
 			
 			if (myRandom.nextInt(100) < 10)
 				board.setCell(new Position(randx, randy), 4);
+				if (this.highestValueCell < 4)
+					this.highestValueCell = 4;
 			else
 				board.setCell(new Position(randx, randy), 2);
+				if (this.highestValueCell < 2)
+					this.highestValueCell = 2;
 		}
 		
 		/**
@@ -86,7 +90,7 @@ public class Game {
 		//TODO: just as reminder
 		public String toString(){
 			//calls the toString of the Board
-			return board.toString();
+			return board.toString() + "highest: " + this.highestValueCell + "\tscore: " + this.score + "\n\n";
 			
 		}
 		

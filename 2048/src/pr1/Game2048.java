@@ -41,7 +41,7 @@ public class Game2048 {
 		controller.run();
 */
 		
-		Game game = new Game(4, 2,new Random());
+		Game game = new Game(4, 2, new Random());
 		System.out.print(game);
 		Controller control = new Controller(game);
 		control.run();
