@@ -19,6 +19,14 @@ public class MyStringUtils {
 		return result;
 	}
 	
+	/**
+	 * centers the paramether introduced in a space of length len
+	 * 
+	 * @param text string which is going to be placed on the center
+	 * @param len spaces which will be left at eatch side
+	 * @return the string with the text centered 
+	 */
+	
 	public static String centre(String text, int len){
 		String out = String.format("%"+len+"s%s%"+len+"s", "",text,"");
 		float mid = (out.length()/2);
