@@ -1,5 +1,6 @@
 package pr1;
 
+import pr1.util.ArrayAsList;
 import pr1.util.MyStringUtils;
 
 /**
@@ -12,8 +13,8 @@ import pr1.util.MyStringUtils;
 public class Board {
 
 	private Cell[][] board;
-	private int boardSize;
-	
+	private int size;
+	private ArrayAsList free;
 	
 	/**
 	 * Construct of the class Board. creates a new board with the specified size
@@ -22,14 +23,19 @@ public class Board {
 	 */
 	
 	public Board(int size){
-		boardSize = size;
-		board = new Cell[boardSize][boardSize];
-		
+		this.size = size;
+		board = new Cell[size][size];
+		free = new ArrayAsList(size * size);
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				board[i][j] = new Cell(i, j);
+				free.insert(new Position(i, j));
 			}
 		}
+	}
+	
+	public ArrayAsList getFree() {
+		return free;
 	}
 	
 	/**
@@ -38,9 +44,11 @@ public class Board {
 	 */
 	
 	public void reset() {
-		for (int i = 0; i < boardSize; i++) {
-			for (int j = 0; j < boardSize; j++) {
+		free = new ArrayAsList(size * size);
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
 				board[i][j].emptyCell();
+				free.insert(new Position(i, j));
 			}
 		}
 	}
@@ -70,12 +78,12 @@ public class Board {
 	//TODO toString method
 	public String toString() {
 		String s = "";
-		for (int i = 0; i < boardSize; i++) {
+		for (int i = 0; i < size; i++) {
 			//top separation line
-			s += MyStringUtils.repeat("-", 8 * boardSize);
+			s += MyStringUtils.repeat("-", 8 * size);
 			s += "\n";
 			
-			for (int j = 0; j < boardSize; j++) {
+			for (int j = 0; j < size; j++) {
 				s += "|";
 				if (board[i][j].isEmpty()) {
 					s += MyStringUtils.repeat(" ", 7);
@@ -88,7 +96,7 @@ public class Board {
 		}
 		
 		//bottom separation line
-		s += MyStringUtils.repeat("-", 8 * boardSize);
+		s += MyStringUtils.repeat("-", 8 * size);
 		s += "\n";
 		
 		return s;
@@ -101,8 +109,8 @@ public class Board {
 	
 	private void transpose() {
 		Cell tmp;
-		for (int i = 0; i < boardSize; i++) {
-			for (int j = i + 1; j < boardSize; j++) {
+		for (int i = 0; i < size; i++) {
+			for (int j = i + 1; j < size; j++) {
 				tmp = board[i][j];
 				board[i][j] = board[j][i];
 				board[j][i] = tmp;
@@ -117,11 +125,11 @@ public class Board {
 	
 	private void reflection() {
 		Cell tmp;
-		for (int i = 0; i < boardSize; i++) {
-			for (int j = 0; j < boardSize / 2; j++) {
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size / 2; j++) {
 				tmp = board[i][j];
-				board[i][j] = board[i][boardSize - j - 1];
-				board[i][boardSize - j - 1] = tmp;
+				board[i][j] = board[i][size - j - 1];
+				board[i][size - j - 1] = tmp;
 			}
 		}
 	}
@@ -134,14 +142,21 @@ public class Board {
 	
 	private MoveResult move_right() {
 		MoveResult r = new MoveResult();
-		
-		for (int i = 0; i < boardSize; i++) {
-			for (int j = boardSize - 1; j > 0; j--) {
-				if (board[i][j - 1].doMerge(board[i][j])) {
-					if (r.getValue() < board[i][j].getValue()) {
-						r.setValue(board[i][j].getValue());
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size - 1; j++) {
+				board[i][j + 1].setStatus(false);	
+				if (board[i][j].doMerge(board[i][j + 1])) {
+					free.insert(board[i][j + 1].getPos());
+					free.pop(board[i][j].getPos());
+					if (r.getValue() < board[i][j + 1].getValue()) {
+						r.setValue(board[i][j + 1].getValue());
 					}
-					r.setScore(r.getScore() + board[i][j].getValue());
+					r.setScore(r.getScore() + board[i][j + 1].getValue());
+				}
+				else {
+					//TODO in case two empty
+					free.pop(board[i][j + 1].getPos());
+					free.insert(board[i][j].getPos());
 				}
 			}
 		}

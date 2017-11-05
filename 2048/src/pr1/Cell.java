@@ -15,6 +15,7 @@ public class Cell {
 	private int value = 0;
 	private boolean empty = true;
 	private boolean marked = false;
+	private boolean status = false;
 	
 	/**
 	 * Constructor of the class Cell
@@ -55,23 +56,33 @@ public class Cell {
 	}
 	
 	/**
-	 * Sets the class attribute marked to the value introduced as paramether
+	 * getter method of the class cell for the status (merged or !merged)
 	 * 
-	 * @param x new value of the attribute marked
+	 * @return value the status of the cell
 	 */
-	
-	public void setMarked(boolean x) {
-		marked = x;
+	public boolean getStatus() {
+		return status;
 	}
 	
 	/**
-	 * Gets the value of the paramether marked
+	 * setter for the status of the cell
 	 * 
-	 * @return the current value of the attribute marked
+	 * @param t the status of the cell 
 	 */
-	public boolean getMarked() {
-		return marked;
+	public void setStatus(boolean t){
+		this.status = t;
 	}
+	
+	/**
+	 * getter for the position of the cell
+	 * 
+	 * @return the position of the cell
+	 */
+	
+	public Position getPos() {
+		return pos;
+	}
+	
 	
 	/**
 	 * Checks whether or not a cell is empty
@@ -94,6 +105,7 @@ public class Cell {
 		empty = true;
 	}
 	
+	
 	/**
 	 * Checks whether a merge is allowed between a cell and the neighbour cell provided as argumet 
 	 * if it result to merge, implements the merges returning a boolean value to indicate if the merge took place succesfully. 
@@ -102,16 +114,17 @@ public class Cell {
 	 * @return true in the case that the merge can take place, false if not
 	 */
 	public boolean doMerge(Cell neighbour){
-		//case the neighbour is an empty cell, we copy the value to this neighbour, we empty the current cell and we etrun false
+		//case the neighbour is an empty cell, we copy the value to this neighbour, we empty the current cell and we retrun false
 		if (neighbour.isEmpty() && !this.isEmpty()) {
 			neighbour.setValue(this.value);
 			emptyCell();
 			return false;
 		}
 		//if both the neighbour and the current aren't empty and share value, we add the value of the cell to the neighbour and we empty the cell
-		else if (neighbour.getValue() == this.value && !neighbour.isEmpty() && !isEmpty()) {
+		else if (neighbour.getValue() == this.value && !neighbour.isEmpty() && !isEmpty() && !neighbour.getStatus() && !this.getStatus()) {
 			neighbour.addValue(value);
 			emptyCell();
+			neighbour.setStatus(true);
 			//this.setMarked(true);
 			return true;
 			

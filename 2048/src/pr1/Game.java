@@ -1,5 +1,7 @@
 package pr1;
 
+import pr1.util.ArrayAsList;
+
 import java.util.Random;
 
 /**
@@ -20,23 +22,27 @@ public class Game {
 		private int score;
 		private int highestValueCell;
 		
+		
 		/**
 		 * Inserts in a random empty cell a 4 with a 10% of chances or a 2 with te other 90%
 		 * 
 		 */
 		
 		public void insertRandCell() {
-			int randx, randy;
 			
-			do {
-				randx = myRandom.nextInt(size);
-				randy = myRandom.nextInt(size);
-			} while(!board.isBoardEmpty(randx, randy));
+			ArrayAsList.shuffle(board.getFree(), myRandom);
 			
-			if (myRandom.nextInt(100) < 10)
-				board.setCell(new Position(randx, randy), 4);
-			else
-				board.setCell(new Position(randx, randy), 2);
+			if (myRandom.nextInt(100) < 10) {
+				board.setCell((Position) board.getFree().get(0), 4);
+				if (this.highestValueCell < 4)
+					this.highestValueCell = 4;
+			}
+			else {
+				board.setCell((Position) board.getFree().get(0), 2);
+				if (this.highestValueCell < 2)
+					this.highestValueCell = 2;
+			}
+			board.getFree().pop(0);
 		}
 		
 		/**
@@ -50,7 +56,6 @@ public class Game {
 			size = sizeBoard;
 			initCells = numCells;
 			myRandom = random;
-			
 			board = new Board(sizeBoard);
 			for (int i = 0; i < numCells; i++) {
 				insertRandCell();
@@ -86,7 +91,7 @@ public class Game {
 		//TODO: just as reminder
 		public String toString(){
 			//calls the toString of the Board
-			return board.toString();
+			return board.toString() + "highest: " + this.highestValueCell + "\tscore: " + this.score + "\n\n";
 			
 		}
 		

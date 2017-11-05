@@ -26,11 +26,11 @@ public class Game2048 {
 		long seed = -1;
 		
 		if(args.length == 2){
-			seed = Long.parseLong(args[2]);
+			seed = new Random().nextInt(1000);
 		}
 		
 		else if(args.length == 3){
-			seed = new Random().nextInt(1000);
+			seed = Long.parseLong(args[2]);
 		}
 		
 		Random rand = new Random(seed);
@@ -41,7 +41,7 @@ public class Game2048 {
 		controller.run();
 */
 		
-		Game game = new Game(4, 2,new Random());
+		Game game = new Game(4, 2, new Random());
 		System.out.print(game);
 		Controller control = new Controller(game);
 		control.run();

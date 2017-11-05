@@ -1,5 +1,6 @@
 package pr1.util;
 
+
 import java.util.Random;
 
 
@@ -9,16 +10,18 @@ public class ArrayAsList {
 // This method is static in order to be similar to the "shuffle () "
 // method of the standard library class "Collections ".
 	private int size;
+	private int maxSize;
 	private Object arrayAsList[];
 	
 	/**
-	 * Constructr of the class
+	 * Constructor of the class
 	 * 
 	 * @param lenght lenght which will have the Arraylist of the class
 	 */
 	public ArrayAsList(int lenght) {
-		size = lenght;
-		arrayAsList = new Object[size];
+		maxSize = lenght;
+		arrayAsList = new Object[maxSize];
+		size = 0;
 	}
 	
 	/**
@@ -76,4 +79,27 @@ public class ArrayAsList {
 		anArray[i] = anArray[j];	
 		anArray[j] = temp;
 	}
+	
+	public void insert(Object o) {
+		if (size < maxSize - 1 && getIndex(o) == -1) {
+			arrayAsList[size] = o;
+			size++;
+		}
+	}
+	
+	public void pop(Object o) {
+		if (getIndex(o) == -1) return;
+		for (int i = getIndex(o); i < size; i++) {
+			arrayAsList[i] = arrayAsList[i + 1];
+		}
+		size--;
+	}
+	
+	private int getIndex(Object o) {
+		for (int i = 0; i < size; i++) {
+			if (arrayAsList[i] == o) return i;
+		}
+		return -1;
+	}
+	
 }
