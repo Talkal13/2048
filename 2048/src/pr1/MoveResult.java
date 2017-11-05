@@ -11,6 +11,7 @@ public class MoveResult {
 	private int score = 0;
 	private int value = 0;
 	
+	
 	/**
 	 * Constructor of the class
 	 * 
