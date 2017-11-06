@@ -172,13 +172,15 @@ public class Board {
 		MoveResult r = new MoveResult();
 		moveFree_Right();
 		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size - 1; j++) {
-				if (canMerge(board[i][j], board[i][j + 1]) ) {
-					if (board[i][j].doMerge(board[i][j+1])) {
-						free.insert(board[i][j].getPos());
-						if (r.getValue() < board[i][j + 1].getValue()) r.setValue(board[i][j + 1].getValue());
-						r.setScore(r.getScore() + board[i][j + 1].getValue());
-						j++;
+			for (int j = size - 1; j > 0; j--) {
+				for (int k = j; k < size; k++) {
+					if (canMerge(board[i][k - 1], board[i][k]) ) {
+						if (board[i][k - 1].doMerge(board[i][k])) {
+							free.insert(board[i][k - 1].getPos());
+							if (r.getValue() < board[i][k].getValue()) r.setValue(board[i][k].getValue());
+							r.setScore(r.getScore() + board[i][k].getValue());
+							j--;
+						}
 					}
 				}
 			}
