@@ -121,10 +121,9 @@ public class Cell {
 			return false;
 		}
 		//if both the neighbour and the current aren't empty and share value, we add the value of the cell to the neighbour and we empty the cell
-		else if (neighbour.getValue() == this.value && !neighbour.isEmpty() && !isEmpty() && !neighbour.getStatus() && !this.getStatus()) {
+		else if (neighbour.getValue() == this.value && !neighbour.isEmpty() && !isEmpty()) {
 			neighbour.addValue(value);
 			emptyCell();
-			neighbour.setStatus(true);
 			//this.setMarked(true);
 			return true;
 			

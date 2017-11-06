@@ -134,6 +134,34 @@ public class Board {
 		}
 	}
 	
+	private boolean canMerge(Cell a, Cell b) {
+		if (!a.isEmpty() && !b.isEmpty() && a.getValue() == b.getValue()) {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean canMoveFree(Cell a, Cell b) {
+		if (!a.isEmpty() && b.isEmpty()) {
+			return true;
+		}
+		return false;
+	}
+	
+	private void moveFree_Right() {
+		for (int i = 0; i < size; i++) {
+			for (int j = size - 1; j > 0; j--) {
+				for (int k = j; k < size; k++) {
+					if (canMoveFree(board[i][k - 1], board[i][k])) {
+						board[i][k - 1].doMerge(board[i][k]);
+						free.insert(board[i][k - 1].getPos());
+						free.pop(board[i][k].getPos());
+					}
+				}
+			}
+		}
+	}
+	
 	/**
 	 * Performs a move to the right in the board of the game.	
 	 * 
@@ -142,24 +170,20 @@ public class Board {
 	
 	private MoveResult move_right() {
 		MoveResult r = new MoveResult();
+		moveFree_Right();
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size - 1; j++) {
-				board[i][j + 1].setStatus(false);	
-				if (board[i][j].doMerge(board[i][j + 1])) {
-					free.insert(board[i][j + 1].getPos());
-					free.pop(board[i][j].getPos());
-					if (r.getValue() < board[i][j + 1].getValue()) {
-						r.setValue(board[i][j + 1].getValue());
+				if (canMerge(board[i][j], board[i][j + 1]) ) {
+					if (board[i][j].doMerge(board[i][j+1])) {
+						free.insert(board[i][j].getPos());
+						if (r.getValue() < board[i][j + 1].getValue()) r.setValue(board[i][j + 1].getValue());
+						r.setScore(r.getScore() + board[i][j + 1].getValue());
+						j++;
 					}
-					r.setScore(r.getScore() + board[i][j + 1].getValue());
-				}
-				else {
-					//TODO in case two empty
-					free.pop(board[i][j + 1].getPos());
-					free.insert(board[i][j].getPos());
 				}
 			}
 		}
+		moveFree_Right();
 		return r;
 	}
 	
