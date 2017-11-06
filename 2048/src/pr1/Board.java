@@ -179,6 +179,7 @@ public class Board {
 							free.insert(board[i][k - 1].getPos());
 							if (r.getValue() < board[i][k].getValue()) r.setValue(board[i][k].getValue());
 							r.setScore(r.getScore() + board[i][k].getValue());
+							k++;
 							j--;
 						}
 					}
