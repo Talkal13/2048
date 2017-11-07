@@ -10,6 +10,10 @@ import pr1.util.MyStringUtils;
  * Class which instance store the current state of a 2048 board and provides the methods to manipulate that state
  *
  */
+
+
+
+
 public class Board {
 
 	private Cell[][] board;
@@ -75,6 +79,8 @@ public class Board {
 		return this.board[row][col].isEmpty();
 	}
 	
+	
+	
 	//TODO toString method
 	public String toString() {
 		String s = "";
@@ -100,6 +106,22 @@ public class Board {
 		s += "\n";
 		
 		return s;
+	}
+	
+	private int canMerge(Cell a, Cell b) {
+		if (!a.isEmpty() && !b.isEmpty() && b.getValue() == a.getValue()) return 0;
+		else if (!a.isEmpty() && !b.isEmpty()) return 1;
+		else if (a.isEmpty() && !b.isEmpty()) return 2;
+		else if (!a.isEmpty() && b.isEmpty()) return 3;
+		else return 4;
+	}
+	
+	private boolean executeMerge(Cell a, Cell b) {
+		return a.doMerge(b);
+	}
+	
+	private boolean displaceCell(Cell a, Cell b) {
+		return a.doMerge(b);
 	}
 	
 	/**
@@ -166,9 +188,48 @@ public class Board {
 	
 	/**
 	 * Performs a move to the right in the board of the game.	
-	 * 
-	 * @return the object MoveResult that results of the move to the right on the game
 	 */
+	
+	
+	private void execute() {
+		int fini = 0, cini = size - 1,incrc = -1,incrf = 0;
+		for(int i = 0; i < size; i++){
+			fini = i;
+			int k = fini;
+			int j = size - 1;
+			while ((j < size) && (j >= 0) && (k < size) && (k >= 0)){	
+				if(board[k][j].getValue() == board[k+incrf][j+incrc].getValue() && board[k][j].getValue() != 0){
+					if( (j != size-1 || (j == size-1 && incrc <= 0) ) && (j != 0 || (j == 0 && incrc >= 0) ) ) {
+						board[k][j].setValue(board[k][j].getValue() * 2);
+						board[k+incrf][j+incrc].setValue(0);
+						k += incrf;
+						j += incrc;
+					}
+					k += incrf;
+					j += incrc;
+				}else{
+				
+					fini += incrf;
+					cini += incrc;
+					k = fini;
+					j = cini;
+				}
+			}
+		}	
+	}
+	
+	private void moveFree_right() {
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size - 1; j++) {
+				if (!board[i][j].isEmpty() && board[i][j + 1].isEmpty()) {
+					board[i][j + 1].setValue(board[i][j].getValue());
+					board[i][j].emptyCell();
+					free.insert(board[i][j]);
+				}
+			}
+		}
+	}
+	
 	
 	private MoveResult move_right() {
 		MoveResult r = new MoveResult();

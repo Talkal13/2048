@@ -85,9 +85,7 @@ public class Game {
 			MoveResult result = board.executeMove(dir);
 			insertRandCell();
 			score += result.getScore();
-			if (highestValueCell < result.getValue()) {
-				highestValueCell = result.getValue();
-			}
+			if (highestValueCell < result.getValue()) highestValueCell = result.getValue();
 		}
 		
 		//TODO: just as reminder
