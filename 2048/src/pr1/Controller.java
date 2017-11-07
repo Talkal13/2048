@@ -1,5 +1,6 @@
 package pr1;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 
@@ -30,10 +31,55 @@ public class Controller {
 		in = new Scanner(System.in);
 	}
 	
+	
+	private char readKey() {
+		java.io.InputStreamReader reader = new java.io.InputStreamReader(System.in);
+		try {
+			return (char) System.in.read();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public void run(char key) {
+		while (key != 27) { //ESC
+			switch (key) {
+			case 'w':
+				game.move(new Direction(DirectionOption.UP));
+				break;
+			case 's':
+				game.move(new Direction(DirectionOption.DOWN));
+				break;
+			case 'a':
+				game.move(new Direction(DirectionOption.LEFT));
+				break;
+			case 'd':
+				game.move(new Direction(DirectionOption.RIGHT));
+				break;
+			case 'r': //the program returns to the initial state
+				game.reset();
+				System.out.print(game);
+				break;
+			case 27: //exit
+				break;
+			case 'h': //displays the help text
+				showHelp();
+				break;
+			default:
+				break;
+			}
+			System.out.print(game);
+			key = readKey();
+			
+		}
+	}
+	
+	
 	/**
 	 * Method which runs the game taking into account which commands are introduced and performing the corresponding actions.
 	 */
-	
 	public void run(){
 		//executes the game
 		boolean on = true;

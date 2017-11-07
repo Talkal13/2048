@@ -14,8 +14,6 @@ public class Cell {
 	private Position pos;
 	private int value = 0;
 	private boolean empty = true;
-	private boolean marked = false;
-	private boolean status = false;
 	
 	/**
 	 * Constructor of the class Cell
@@ -59,7 +57,7 @@ public class Cell {
 	 * getter method of the class cell for the status (merged or !merged)
 	 * 
 	 * @return value the status of the cell
-	 */
+	 *
 	public boolean getStatus() {
 		return status;
 	}
@@ -68,7 +66,7 @@ public class Cell {
 	 * setter for the status of the cell
 	 * 
 	 * @param t the status of the cell 
-	 */
+	 *
 	public void setStatus(boolean t){
 		this.status = t;
 	}
@@ -121,10 +119,9 @@ public class Cell {
 			return false;
 		}
 		//if both the neighbour and the current aren't empty and share value, we add the value of the cell to the neighbour and we empty the cell
-		else if (neighbour.getValue() == this.value && !neighbour.isEmpty() && !isEmpty() && !neighbour.getStatus() && !this.getStatus()) {
+		else if (neighbour.getValue() == this.value && !neighbour.isEmpty() && !isEmpty()) {
 			neighbour.addValue(value);
 			emptyCell();
-			neighbour.setStatus(true);
 			//this.setMarked(true);
 			return true;
 			
