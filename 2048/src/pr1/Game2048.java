@@ -1,7 +1,6 @@
 package pr1;
 
 import java.util.Random;
-
 /**
  * @author Pablo and Diego
  * @version 1.0
@@ -45,7 +44,6 @@ public class Game2048 {
 		System.out.print(game);
 		Controller control = new Controller(game);
 		control.run();
-		
 		/*Board b = new Board(4);
 		b.setCell(new Position(3, 2), 2);
 		b.setCell(new Position(1, 1), 4);

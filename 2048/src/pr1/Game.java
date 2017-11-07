@@ -42,7 +42,7 @@ public class Game {
 				if (this.highestValueCell < 2)
 					this.highestValueCell = 2;
 			}
-			board.getFree().pop(0);
+			board.getFree().pop(board.getFree().get(0));
 		}
 		
 		/**
@@ -84,8 +84,10 @@ public class Game {
 		public void move (Direction dir) {
 			MoveResult result = board.executeMove(dir);
 			insertRandCell();
-			score = result.getScore();
-			highestValueCell = result.getValue();
+			score += result.getScore();
+			if (highestValueCell < result.getValue()) {
+				highestValueCell = result.getValue();
+			}
 		}
 		
 		//TODO: just as reminder

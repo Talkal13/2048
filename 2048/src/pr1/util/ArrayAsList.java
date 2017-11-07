@@ -81,7 +81,7 @@ public class ArrayAsList {
 	}
 	
 	public void insert(Object o) {
-		if (size < maxSize - 1 && getIndex(o) == -1) {
+		if (size < maxSize && getIndex(o) == -1) {
 			arrayAsList[size] = o;
 			size++;
 		}
@@ -89,7 +89,7 @@ public class ArrayAsList {
 	
 	public void pop(Object o) {
 		if (getIndex(o) == -1) return;
-		for (int i = getIndex(o); i < size; i++) {
+		for (int i = getIndex(o); i < size - 1; i++) {
 			arrayAsList[i] = arrayAsList[i + 1];
 		}
 		size--;
@@ -101,5 +101,6 @@ public class ArrayAsList {
 		}
 		return -1;
 	}
+	
 	
 }

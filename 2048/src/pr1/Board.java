@@ -104,7 +104,7 @@ public class Board {
 	
 	/**
 	 * Goes through the right side of the board and for each position,the cell in that position is swapped for it's trasposed.
-	 * The trasposie of one position is the one which has the same value for the row and column but inverted.
+	 * The transpose of one position is the one which has the same value for the row and column but inverted.
 	 */
 	
 	private void transpose() {
@@ -119,8 +119,8 @@ public class Board {
 	}
 	
 	/**
-	 * Goes through the top right side of the board and for each position,the cell in that position is swapped for refected one.
-	 * The refection of one position is the one the same row and the reflected column.
+	 * Goes through the top right side of the board and for each position,the cell in that position is swapped for reflected one.
+	 * The reflection of one position is the one the same row and the reflected column.
 	 */
 	
 	private void reflection() {
@@ -149,13 +149,15 @@ public class Board {
 	}
 	
 	private void moveFree_Right() {
+		Cell a, b;
 		for (int i = 0; i < size; i++) {
 			for (int j = size - 1; j > 0; j--) {
 				for (int k = j; k < size; k++) {
-					if (canMoveFree(board[i][k - 1], board[i][k])) {
-						board[i][k - 1].doMerge(board[i][k]);
-						free.insert(board[i][k - 1].getPos());
-						free.pop(board[i][k].getPos());
+					a = board[i][k - 1]; b = board[i][k];
+					if (canMoveFree(a, b)) {
+						a.doMerge(b);
+						free.insert(a.getPos());
+						free.pop(b.getPos());
 					}
 				}
 			}

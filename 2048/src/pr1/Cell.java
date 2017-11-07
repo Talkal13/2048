@@ -14,8 +14,6 @@ public class Cell {
 	private Position pos;
 	private int value = 0;
 	private boolean empty = true;
-	private boolean marked = false;
-	private boolean status = false;
 	
 	/**
 	 * Constructor of the class Cell
@@ -59,7 +57,7 @@ public class Cell {
 	 * getter method of the class cell for the status (merged or !merged)
 	 * 
 	 * @return value the status of the cell
-	 */
+	 *
 	public boolean getStatus() {
 		return status;
 	}
@@ -68,7 +66,7 @@ public class Cell {
 	 * setter for the status of the cell
 	 * 
 	 * @param t the status of the cell 
-	 */
+	 *
 	public void setStatus(boolean t){
 		this.status = t;
 	}
