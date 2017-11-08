@@ -4,9 +4,9 @@ import pr1.util.ArrayAsList;
 import pr1.util.MyStringUtils;
 
 /**
- * 
+ *
  * @author Pablo and Diego
- * 
+ *
  * Class which instance store the current state of a 2048 board and provides the methods to manipulate that state
  *
  */
@@ -19,13 +19,13 @@ public class Board {
 	private Cell[][] board;
 	private int size;
 	private ArrayAsList free;
-	
+
 	/**
 	 * Construct of the class Board. creates a new board with the specified size
-	 * 
+	 *
 	 * @param size saves the dimension of the board
 	 */
-	
+
 	public Board(int size){
 		this.size = size;
 		board = new Cell[size][size];
@@ -37,16 +37,20 @@ public class Board {
 			}
 		}
 	}
-	
+
 	public ArrayAsList getFree() {
 		return free;
 	}
-	
+
+	public int getSize() {
+		return size;
+	}
+
 	/**
 	 * resets the board by emptying all it's cells
-	 * 
+	 *
 	 */
-	
+
 	public void reset() {
 		free = new ArrayAsList(size * size);
 		for (int i = 0; i < size; i++) {
@@ -56,21 +60,21 @@ public class Board {
 			}
 		}
 	}
-	
+
 	/**
 	 * Sets the value of the cell at a given position on the board
-	 * 
-	 * @param pos position of the cell 
+	 *
+	 * @param pos position of the cell
 	 * @param value value which will be settled in the cell on the position pos
 	 */
-	
+
 	public void setCell(Position pos, int value){
 		this.board[pos.getX()][pos.getY()].setValue(value);
 	}
-	
+
 	/**
 	 * checks if the cell in the position given by the paramethers is empty or not
-	 * 
+	 *
 	 * @param row row of the cell to check
 	 * @param col column of the cell to check
 	 * @return true in case the cell is empty or false if is not empty
@@ -78,9 +82,9 @@ public class Board {
 	public boolean isBoardEmpty(int row, int col) {
 		return this.board[row][col].isEmpty();
 	}
-	
-	
-	
+
+
+
 	//TODO toString method
 	public String toString() {
 		String s = "";
@@ -88,7 +92,7 @@ public class Board {
 			//top separation line
 			s += MyStringUtils.repeat("-", 8 * size);
 			s += "\n";
-			
+
 			for (int j = 0; j < size; j++) {
 				s += "|";
 				if (board[i][j].isEmpty()) {
@@ -100,19 +104,19 @@ public class Board {
 			}
 			s += "|\n";
 		}
-		
+
 		//bottom separation line
 		s += MyStringUtils.repeat("-", 8 * size);
 		s += "\n";
-		
+
 		return s;
 	}
-	
+
 	/**
 	 * Goes through the right side of the board and for each position,the cell in that position is swapped for it's trasposed.
 	 * The transpose of one position is the one which has the same value for the row and column but inverted.
 	 */
-	
+
 	private void transpose() {
 		Cell tmp;
 		for (int i = 0; i < size; i++) {
@@ -123,12 +127,12 @@ public class Board {
 			}
 		}
 	}
-	
+
 	/**
 	 * Goes through the top right side of the board and for each position,the cell in that position is swapped for reflected one.
 	 * The reflection of one position is the one the same row and the reflected column.
 	 */
-	
+
 	private void reflection() {
 		Cell tmp;
 		for (int i = 0; i < size; i++) {
@@ -139,21 +143,21 @@ public class Board {
 			}
 		}
 	}
-	
+
 	private boolean canMerge(Cell a, Cell b) {
 		if (!a.isEmpty() && !b.isEmpty() && a.getValue() == b.getValue()) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	private boolean canMoveFree(Cell a, Cell b) {
 		if (!a.isEmpty() && b.isEmpty()) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	private void moveFree_Right() {
 		Cell a, b;
 		for (int i = 0; i < size; i++) {
@@ -169,12 +173,12 @@ public class Board {
 			}
 		}
 	}
-	
+
 	/**
-	 * Performs a move to the right in the board of the game.	
+	 * Performs a move to the right in the board of the game.
 	 */
-	
-	
+
+
 	private MoveResult move_right() {
 		MoveResult r = new MoveResult();
 		moveFree_Right();
@@ -196,13 +200,13 @@ public class Board {
 		moveFree_Right();
 		return r;
 	}
-	
+
 	/**
 	 * Performs a move to the left in the board of the game.
-	 * 
+	 *
 	 * @return the object MoveResult that results of the move to the left on the game
 	 */
-	
+
 	private MoveResult move_left() {
 		MoveResult r = new MoveResult();
 		reflection();
@@ -210,13 +214,13 @@ public class Board {
 		reflection();
 		return r;
 	}
-	
+
 	/**
 	 * Performs a move down in the board of the game.
-	 * 
+	 *
 	 * @return the object MoveResult that results of the moving down on the game
 	 */
-	
+
 	private MoveResult move_down() {
 		MoveResult r = new MoveResult();
 		transpose();
@@ -224,13 +228,13 @@ public class Board {
 		transpose();
 		return r;
 	}
-	
+
 	/**
 	 * Performs a move up in the board of the game.
-	 * 
+	 *
 	 * @return the object MoveResult that results of the moving up on the game
 	 */
-	
+
 	private MoveResult move_up() {
 		MoveResult r = new MoveResult();
 		transpose();
@@ -238,14 +242,14 @@ public class Board {
 		transpose();
 		return r;
 	}
-	
+
 	/**
 	 * Checks the paramether which tell us the direction to perform the movement, and calls to the corresponding method
-	 * 
+	 *
 	 * @param dir direction where we want to move
 	 * @return the object MoveResult that results of the moving to the desired direction on the game
 	 */
-	
+
 	public MoveResult executeMove(Direction dir) {
 		MoveResult r = new MoveResult();
 		if (dir.equals(DirectionOption.RIGHT)) {
