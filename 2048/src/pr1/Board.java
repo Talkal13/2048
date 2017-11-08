@@ -70,6 +70,7 @@ public class Board {
 
 	public void setCell(Position pos, int value){
 		this.board[pos.getX()][pos.getY()].setValue(value);
+		free.pop(pos);
 	}
 
 	/**
