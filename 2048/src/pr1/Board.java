@@ -45,6 +45,10 @@ public class Board {
 	public int getSize() {
 		return size;
 	}
+	
+	public Cell getCell(int i, int j) {
+		return board[i][j];
+	}
 
 	/**
 	 * resets the board by emptying all it's cells
