@@ -41,12 +41,14 @@ public class Game2048 {
 */
 
 		Game game = new Game(4, 2, new Random());
-		System.out.print(game);
 		game.insertCell(1024, new Position(0, 0));
 		game.insertCell(1024, new Position(0, 1));
+		
+		System.out.print(game);
+		
 		Controller control = new Controller(game);
-		GUI window = new GUI("2048", game.getBoard());
-		control.run('r');
+		//GUI window = new GUI("2048", game.getBoard());
+		control.run(); // insert j for the cahr version or r for the normal one
 
 		/*Board b = new Board(4);
 		b.setCell(new Position(3, 2), 2);

@@ -74,7 +74,10 @@ public class Controller {
 			default:
 				break;
 			}
-			if (game.getHigh() == 2048) break; //TODO: Pring message of game is won
+			if (game.getHigh() == 2048){
+				System.out.println("CONGRATULATIONS YOU HAVE WON!");
+				 break;
+			} 
 
 			key = readKey();
 
@@ -126,10 +129,15 @@ public class Controller {
 						default: System.out.println("choose a valid direction");
 						}
 						System.out.print(game);
-						if (game.getHigh() == 2048) on = true; //TODO: Pring message of game is won
+						
+						if (game.getHigh() == 2048){
+						System.out.println("CONGRATULATIONS YOU HAVE WON!");
+						on = false; 
 						break;
 
 					}
+					
+				}
 				//default case that the command is invalid, we ask for a new command
 				default: System.out.println("choose another option");
 			}
