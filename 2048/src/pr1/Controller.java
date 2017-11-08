@@ -131,13 +131,18 @@ public class Controller {
 						System.out.print(game);
 						
 						if (game.getHigh() == 2048){
-						System.out.println("CONGRATULATIONS YOU HAVE WON!");
-						on = false; 
-						break;
-
+							System.out.println("CONGRATULATIONS YOU HAVE WON!");
+							on = false; 
+							break;
+						}
+						
+						if (game.getBoard().getFree().size() == 0){
+							System.out.println("YOU HAVE RUN OUT OF MOVEMENTS, YOU LOSS!");
+							on = false; 
+							break;
+						}
 					}
 					
-				}
 				//default case that the command is invalid, we ask for a new command
 				default: System.out.println("choose another option");
 			}

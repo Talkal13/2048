@@ -198,6 +198,7 @@ public class Board {
 			}
 		}
 		moveFree_Right();
+		
 		return r;
 	}
 

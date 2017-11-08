@@ -41,14 +41,28 @@ public class Game2048 {
 */
 
 		Game game = new Game(4, 2, new Random());
-		game.insertCell(1024, new Position(0, 0));
-		game.insertCell(1024, new Position(0, 1));
+		game.insertCell(16, new Position(0, 0));
+		game.insertCell(32, new Position(0, 1));
+		game.insertCell(16, new Position(0, 2));
+		game.insertCell(32, new Position(0, 3));
+		game.insertCell(64, new Position(1, 0));
+		game.insertCell(128,new Position(1, 1));
+		game.insertCell(64, new Position(1, 2));
+		game.insertCell(128, new Position(1, 3));
+		game.insertCell(256, new Position(2, 0));
+		game.insertCell(512, new Position(2, 1));
+		game.insertCell(256, new Position(2, 2));
+		game.insertCell(512, new Position(2, 3));
+		game.insertCell(16, new Position(3, 0));
+		game.insertCell(32, new Position(3, 1));
+		game.insertCell(16, new Position(3, 2));
+		game.insertCell(32, new Position(3, 3));
 		
 		System.out.print(game);
 		
 		Controller control = new Controller(game);
 		//GUI window = new GUI("2048", game.getBoard());
-		control.run(); // insert j for the cahr version or r for the normal one
+		control.run(); // insert j for the char version or r for the normal one
 
 		/*Board b = new Board(4);
 		b.setCell(new Position(3, 2), 2);
