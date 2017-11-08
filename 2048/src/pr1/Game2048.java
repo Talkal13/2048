@@ -44,7 +44,7 @@ public class Game2048 {
 		System.out.print(game);
 		Controller control = new Controller(game);
 		GUI window = new GUI("2048", game.getBoard());
-		control.run();
+		control.run('r');
 
 		/*Board b = new Board(4);
 		b.setCell(new Position(3, 2), 2);

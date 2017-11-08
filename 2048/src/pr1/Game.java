@@ -23,6 +23,14 @@ public class Game {
 		private int highestValueCell;
 
 
+		public int getHigh() {
+			return highestValueCell;
+		}
+
+		public void insertCell(int value, Position pos) {
+			board.setCell(pos, value);
+		}
+
 		/**
 		 * Inserts in a random empty cell a 4 with a 10% of chances or a 2 with te other 90%
 		 *
