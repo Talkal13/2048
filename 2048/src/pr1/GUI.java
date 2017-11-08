@@ -12,6 +12,7 @@ class GUI {
     for (int i = 0; i < b.getSize(); i++) {
       for (int j = 0; j < b.getSize(); j++) {
           frame.getContentPane().add(new GUICell(i, j));
+          frame.pack();
       }
     }
   }
