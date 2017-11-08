@@ -29,7 +29,7 @@ class GUI {
 }
 
 class GUICell extends JPanel {
-  protected static final int RECT_X = 20;
+  protected static final int RECT_X = 30;
   protected static final int RECT_Y = RECT_X;
   protected static final int RECT_WIDTH = 100;
   protected static final int RECT_HEIGHT = RECT_WIDTH;

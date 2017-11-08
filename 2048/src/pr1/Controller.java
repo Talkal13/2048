@@ -44,25 +44,29 @@ public class Controller {
 	}
 
 	public void run(char key) {
-		while (key != 27) { //ESC
+		while (key != 'q') { //ESC
 			switch (key) {
 			case 'w':
 				game.move(new Direction(DirectionOption.UP));
+				System.out.print(game);
 				break;
 			case 's':
 				game.move(new Direction(DirectionOption.DOWN));
+				System.out.print(game);
 				break;
 			case 'a':
 				game.move(new Direction(DirectionOption.LEFT));
+				System.out.print(game);
 				break;
 			case 'd':
 				game.move(new Direction(DirectionOption.RIGHT));
+				System.out.print(game);
 				break;
 			case 'r': //the program returns to the initial state
 				game.reset();
 				System.out.print(game);
 				break;
-			case 27: //exit
+			case 'q': //exit
 				break;
 			case 'h': //displays the help text
 				showHelp();
@@ -70,7 +74,8 @@ public class Controller {
 			default:
 				break;
 			}
-			System.out.print(game);
+			if (game.getHigh() == 2048) break; //TODO: Pring message of game is won
+
 			key = readKey();
 
 		}

@@ -42,6 +42,8 @@ public class Game2048 {
 
 		Game game = new Game(4, 2, new Random());
 		System.out.print(game);
+		game.insertCell(1024, new Position(0, 0));
+		game.insertCell(1024, new Position(0, 1));
 		Controller control = new Controller(game);
 		GUI window = new GUI("2048", game.getBoard());
 		control.run('r');
