@@ -5,6 +5,8 @@ package pr1;
 
 import java.lang.String;
 
+import javax.swing.*;
+
 /**
  * @author Pablo Vazquez and Diego Ambite
  *
@@ -122,4 +124,6 @@ public class Cell {
 		return String.valueOf(value);
 	}
 	
+	
 }
+

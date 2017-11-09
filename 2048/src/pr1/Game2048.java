@@ -10,7 +10,6 @@ import java.util.Random;
  *Reads the the values passed via command line as attributes (2 or 3)
  *Creates a new game and a new controler and then invokes the controller�s method.
  */
-
 public class Game2048 {
 	/**
 	 *
@@ -39,9 +38,10 @@ public class Game2048 {
 		}
 
 		Random rand = new Random(seed);
-
+		
 		Game game = new Game(dim, nums, rand);
 		System.out.print(game);
+		GUI gui = new GUI("2048", game.getBoard());
 		Controller control = new Controller(game);
 		control.run();
 
