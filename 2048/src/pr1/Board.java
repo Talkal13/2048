@@ -18,7 +18,7 @@ public class Board {
 
 	private Cell[][] board;
 	private int size;
-	private ArrayAsList free;
+	private PositionAsList free;
 
 	/**
 	 * Construct of the class Board. creates a new board with the specified size
@@ -29,7 +29,7 @@ public class Board {
 	public Board(int size){
 		this.size = size;
 		board = new Cell[size][size];
-		free = new ArrayAsList(size * size);
+		free = new PositionAsList(size * size);
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				board[i][j] = new Cell(i, j);
@@ -56,7 +56,7 @@ public class Board {
 	 */
 
 	public void reset() {
-		free = new ArrayAsList(size * size);
+		free = new PositionAsList(size * size);
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				board[i][j].emptyCell();
@@ -74,6 +74,7 @@ public class Board {
 
 	public void setCell(Position pos, int value){
 		this.board[pos.getX()][pos.getY()].setValue(value);
+		free.pop(pos);
 	}
 
 	/**

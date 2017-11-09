@@ -25,6 +25,7 @@ public class Cell {
 		pos = new Position(x, y);
 	}
 	
+	
 	/**
 	 * changes the value of the current cell to the new value introduced as paramether
 	 * 
@@ -53,23 +54,6 @@ public class Cell {
 		return value;
 	}
 	
-	/**
-	 * getter method of the class cell for the status (merged or !merged)
-	 * 
-	 * @return value the status of the cell
-	 *
-	public boolean getStatus() {
-		return status;
-	}
-	
-	/**
-	 * setter for the status of the cell
-	 * 
-	 * @param t the status of the cell 
-	 *
-	public void setStatus(boolean t){
-		this.status = t;
-	}
 	
 	/**
 	 * getter for the position of the cell

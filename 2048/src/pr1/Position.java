@@ -3,6 +3,8 @@
  */
 package pr1;
 
+import pr1.util.ArrayAsList;
+
 /**
  * @author Pablo and Diego
  * @version 1.0
@@ -77,4 +79,59 @@ public class Position {
 		this.x = x;
 		this.y = y;
 	}
+	
+	/**
+	 * 
+	 * Equalizer method 
+	 * 
+	 * @param position2
+	 * @return true if the values x and y are equal
+	 */
+	
+	public boolean equals(Position position2) {
+		return this.x == position2.getX() && this.y == position2.getY();
+	}
+}
+
+class PositionAsList extends ArrayAsList {
+	/*
+	public Position get(int index) {
+		return (Position) super.get()[index];
+	}
+	
+	public void set(int index, Position x) {
+		super.set(index, x);
+	}
+	*/
+	PositionAsList(int lenght) {
+		super(lenght);
+		this.set(new Position[lenght]);
+	}
+	
+	public boolean insert(Position o) {
+		if (!isFull() && getIndex(o) == -1) {
+			set(size, o);
+			size++;
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean pop(Position o) {
+		int index = getIndex(o);
+		if (index == -1) return false;
+		for (int i = index; i < size - 1; i++) {
+			set(i, get(i + 1));
+		}
+		size--;
+		return true;
+	}
+	
+	private int getIndex(Position o) {
+		for (int i = 0; i < size; i++) {
+			if (o.equals((Position) get(i))) return i;
+		}
+		return -1;
+	}
+	
 }

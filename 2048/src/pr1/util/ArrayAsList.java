@@ -9,7 +9,7 @@ public class ArrayAsList {
 // The other methods of this class will not be static .
 // This method is static in order to be similar to the "shuffle () "
 // method of the standard library class "Collections ".
-	private int size;
+	protected int size;
 	private int maxSize;
 	private Object arrayAsList[];
 	
@@ -20,7 +20,7 @@ public class ArrayAsList {
 	 */
 	public ArrayAsList(int lenght) {
 		maxSize = lenght;
-		arrayAsList = new Object[maxSize];
+		set(new Object[maxSize]);
 		size = 0;
 	}
 	
@@ -32,8 +32,30 @@ public class ArrayAsList {
 	 */
 	public static void shuffle(ArrayAsList list, Random random) {
 			for (int i = list.size(); i > 1; i--) {
-				swap(list.arrayAsList, i - 1, random.nextInt(i));
+				swap(list.get(), i - 1, random.nextInt(i));
 			}
+	}
+	
+	/**
+	 * 
+	 * Checks if the object is full
+	 * 
+	 * @return true if is full, false otherwise
+	 */
+	
+	public boolean isFull() {
+		return size == maxSize;
+	}
+	
+	/**
+	 * 
+	 * Checks if the array is empty
+	 * 
+	 * @return true if is empty, false otherwise
+	 */
+	
+	public boolean isEmpty() {
+		return size == 0;
 	}
 	
 	/**
@@ -45,6 +67,12 @@ public class ArrayAsList {
 		return size;
 	}
 	
+	protected boolean set(int index, Object o) {
+		if (index > size) return false;
+		arrayAsList[index] = o;
+		return true;
+	}
+	
 	/**
 	 * return the position (Object) which has been indicated in the paramether index
 	 * 
@@ -52,6 +80,7 @@ public class ArrayAsList {
 	 * @return the object which contains the cell of the array
 	 */
 	public Object get(int index){
+		if (index > size) return null;
 		return arrayAsList[index];
 	}
 
@@ -80,27 +109,55 @@ public class ArrayAsList {
 		anArray[j] = temp;
 	}
 	
-	public void insert(Object o) {
-		if (size < maxSize && getIndex(o) == -1) {
-			arrayAsList[size] = o;
+	public boolean insert(Object o) {
+		if (!isFull() && getIndex(o) == -1) {
+			get()[size] = o;
 			size++;
+			return true;
 		}
+		return false;
 	}
 	
-	public void pop(Object o) {
-		if (getIndex(o) == -1) return;
-		for (int i = getIndex(o); i < size - 1; i++) {
-			arrayAsList[i] = arrayAsList[i + 1];
+	public boolean pop(Object o) {
+		int index = getIndex(o);
+		if (index == -1) return false;
+		for (int i = index; i < size - 1; i++) {
+			get()[i] = get()[i + 1];
 		}
 		size--;
+		return true;
 	}
 	
 	private int getIndex(Object o) {
 		for (int i = 0; i < size; i++) {
-			if (arrayAsList[i] == o) return i;
+			if (get()[i].equals(o)) return i;
 		}
 		return -1;
 	}
 	
 	
+	public String toString() {
+		String s = "";
+		for (int i = 0; i < size; i++) {
+			s += get()[i] + " ";
+		}
+		s += "\n";
+		return s;
+	}
+
+	/**
+	 * @return the arrayAsList
+	 */
+	public Object[] get() {
+		return arrayAsList;
+	}
+
+	/**
+	 * @param arrayAsList the arrayAsList to set
+	 */
+	public void set(Object arrayAsList[]) {
+		this.arrayAsList = arrayAsList;
+	}
+	
 }
+
