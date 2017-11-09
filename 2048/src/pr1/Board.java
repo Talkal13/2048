@@ -64,6 +64,19 @@ public class Board {
 			}
 		}
 	}
+	
+	public boolean noMoves() {
+		for (int i = 1; i < size - 1; i++) {
+			for (int j = 1; i < size - 1; j++) {
+				if (board[i][j].equals(board[i + 1][j])) return false;
+				else if (board[i][j].equals(board[i - 1][j])) return false;
+				else if (board[i][j].equals(board[i][j + 1])) return false;
+				else if (board[i][j].equals(board[i][j - 1])) return false;
+				
+			}
+		}
+		return true;
+	}
 
 	/**
 	 * Sets the value of the cell at a given position on the board

@@ -105,6 +105,16 @@ public class Game {
 			return board.toString() + "highest: " + this.highestValueCell + "\tscore: " + this.score + "\n\n";
 
 		}
+		
+		public boolean isOver() {
+			if (highestValueCell == 2048) return true;
+			else if (board.getFree().isEmpty() && board.noMoves()) return true;
+			else return false;
+		}
+		
+		public boolean isWon() {
+			return highestValueCell == 2048;
+		}
 
 		/**
 		 * set both score and highestValueCell back to 0 and resets the board, finally places the inital cells

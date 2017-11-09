@@ -74,7 +74,7 @@ public class Controller {
 			default:
 				break;
 			}
-			if (game.getHigh() == 2048){
+			if (game.isWon()){
 				System.out.println("CONGRATULATIONS YOU HAVE WON!");
 				 break;
 			} 
@@ -90,6 +90,7 @@ public class Controller {
 	 */
 	public void run(){
 		//executes the game
+		
 		boolean on = true;
 		String input;
 		while(on){

@@ -124,6 +124,10 @@ public class Cell {
 		return String.valueOf(value);
 	}
 	
+	public boolean equals(Cell a) {
+		return a.getValue() == getValue() && !a.isEmpty() && !isEmpty();
+	}
+	
 	
 }
 

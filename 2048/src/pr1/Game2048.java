@@ -19,10 +19,12 @@ public class Game2048 {
 		
 		int dim = 4, nums = 2;
 		long seed = -1;
+		String gui = "";
 		
 		try {
 			dim = Integer.parseInt(args[0]);
 			nums = Integer.parseInt(args[1]);
+			gui = args[3];
 		} catch (ArrayIndexOutOfBoundsException e) {
 			seed = new Random().nextInt(1000);
 		}
@@ -40,10 +42,15 @@ public class Game2048 {
 		Random rand = new Random(seed);
 		
 		Game game = new Game(dim, nums, rand);
-		System.out.print(game);
-		GUI gui = new GUI("2048", game.getBoard());
-		Controller control = new Controller(game);
-		control.run();
+		
+		if (gui.equals("--gui")) {
+			new GUI("2048", game.getBoard(), game);
+		}
+		else {
+			System.out.print(game);
+			Controller control = new Controller(game);
+			control.run();
+		}
 
 	}
 
