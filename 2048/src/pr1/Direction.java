@@ -20,7 +20,7 @@ public class Direction {
 	DirectionOption dir;
 	
 	/**
-	 * Constructor, instantiates a Direction Object with a direction iintroduced as paramether
+	 * Constructor, instantiates a Direction Object with a direction introduced as parameter
 	 *
 	 * @param x direction to achieve the movement
 	 */
@@ -30,10 +30,10 @@ public class Direction {
 	}
 	
 	/**
-	 * checks if the direction introduced as parameter is the same as the direcion of the class
+	 * checks if the direction introduced as parameter is the same as the direction of the class
 	 * 
 	 * @param x direction to check
-	 * @return true in case is equal and false if it doesnt
+	 * @return true in case is equal and false if it doesn't
 	 */
 	
 	public boolean equals(DirectionOption x) {
@@ -41,7 +41,7 @@ public class Direction {
 	}
 	
 	/**
-	 * getter of the direcion of the class
+	 * getter of the direction of the class
 	 * 
 	 * @return the direction of the object
 	 */
@@ -51,7 +51,7 @@ public class Direction {
 	}
 	
 	/**
-	 * setter of the direction od the class
+	 * setter of the direction of the class
 	 * 
 	 * @param x new value to store in the variable x of the class
 	 */

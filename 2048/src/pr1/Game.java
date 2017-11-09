@@ -50,7 +50,6 @@ public class Game {
 				if (this.highestValueCell < 2)
 					this.highestValueCell = 2;
 			}
-			board.getFree().pop(board.getFree().get(0));
 		}
 
 		public Board getBoard() {

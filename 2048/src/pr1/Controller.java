@@ -136,6 +136,7 @@ public class Controller {
 						break;
 
 					}
+						break;
 					
 				}
 				//default case that the command is invalid, we ask for a new command
