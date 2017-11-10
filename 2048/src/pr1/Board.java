@@ -81,6 +81,11 @@ public class Board {
 		free.pop(pos);
 	}
 	
+	/**
+	 * Checks if there are moves available
+	 * 
+	 * @return true if there are not and false otherwise 
+	 */
 	public boolean noMoves() {
 		for (int i = 1; i < size - 1; i++) {
 			for (int j = 1; j < size - 1; j++) {
