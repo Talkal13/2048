@@ -128,11 +128,23 @@ public class Game {
 
 	}
 	
+	/**
+	 * Checks if a game is over by checking if the there is acell with the value of 2048 or if there is no moves to make.
+	 * 
+	 * @return true in the case that the game is over or false if it isnt.
+	 */
+	
 	public boolean isOver() {
 		if (highestValueCell == 2048) return true;
 		else if (board.getFree().isEmpty() && board.noMoves()) return true;
 		else return false;
 	}
+	
+	/**
+	 * Checks if there is any cell witha value of 2048.
+	 * 
+	 * @return true if there is a cell with its value equals to 2048.
+	 */
 	
 	public boolean isWon() {
 		return highestValueCell == 2048;
