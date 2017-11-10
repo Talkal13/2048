@@ -4,15 +4,10 @@ import pr1.util.ArrayAsList;
 import pr1.util.MyStringUtils;
 
 /**
- *
  * @author Pablo and Diego
  *
- * Class which instance store the current state of a 2048 board and provides the methods to manipulate that state
- *
+ * Class which instance store the current state of a 2048 board and provides the methods to manipulate that state.
  */
-
-
-
 
 public class Board {
 
@@ -21,15 +16,16 @@ public class Board {
 	private PositionAsList free;
 
 	/**
-	 * Construct of the class Board. creates a new board with the specified size
+	 * Construct of the class Board. creates a new board with the specified size.
 	 *
-	 * @param size saves the dimension of the board
+	 * @param size saves the dimension of the board.
 	 */
 
 	public Board(int size){
 		this.size = size;
 		board = new Cell[size][size];
 		free = new PositionAsList(size * size);
+		
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				board[i][j] = new Cell(i, j);
@@ -37,17 +33,29 @@ public class Board {
 			}
 		}
 	}
+	
+	/**
+	 * Getter to recive the Arraylist which contains the list of cells that currently has a score equals to 0.
+	 * 
+	 * @return the list with the free positions.
+	 */
 
 	public ArrayAsList getFree() {
 		return free;
 	}
+	
+	/**
+	 * Getter of the paramether size.
+	 * 
+	 * @return the size of the board.
+	 */
 
 	public int getSize() {
 		return size;
 	}
 
 	/**
-	 * resets the board by emptying all it's cells
+	 * Resets the board by emptying all it's cells.
 	 *
 	 */
 
@@ -62,10 +70,10 @@ public class Board {
 	}
 
 	/**
-	 * Sets the value of the cell at a given position on the board
+	 * Sets the value of the cell at a given position on the board.
 	 *
-	 * @param pos position of the cell
-	 * @param value value which will be settled in the cell on the position pos
+	 * @param pos position of the cell.
+	 * @param value value which will be settled in the cell on the position pos.
 	 */
 
 	public void setCell(Position pos, int value){
@@ -74,21 +82,24 @@ public class Board {
 	}
 
 	/**
-	 * checks if the cell in the position given by the paramethers is empty or not
+	 * Checks if the cell in the position given by the paramethers is empty or not.
 	 *
-	 * @param row row of the cell to check
-	 * @param col column of the cell to check
-	 * @return true in case the cell is empty or false if is not empty
+	 * @param row row of the cell to check.
+	 * @param col column of the cell to check.
+	 * @return true in case the cell is empty or false if is not empty.
 	 */
+	
 	public boolean isBoardEmpty(int row, int col) {
 		return this.board[row][col].isEmpty();
 	}
 
-
-
-	//TODO toString method
+	/**
+	 * Draws the board in that exact moment of the game, with all the differet values that each cell has.
+	 */
+	
 	public String toString() {
 		String s = "";
+		
 		for (int i = 0; i < size; i++) {
 			//top separation line
 			s += MyStringUtils.repeat("-", 8 * size);
@@ -120,6 +131,7 @@ public class Board {
 
 	private void transpose() {
 		Cell tmp;
+		
 		for (int i = 0; i < size; i++) {
 			for (int j = i + 1; j < size; j++) {
 				tmp = board[i][j];
@@ -136,6 +148,7 @@ public class Board {
 
 	private void reflection() {
 		Cell tmp;
+		
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size / 2; j++) {
 				tmp = board[i][j];
@@ -145,12 +158,28 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Checks if to given cells will be abe to merge, this will happen if they are both non empty nad have the same value.
+	 * 
+	 * @param a First cell to check.
+	 * @param b Second cell, the one which will be the neighbour.
+	 * @return true in case that the merge of this cells is possible and false if is not.
+	 */
+	
 	private boolean canMerge(Cell a, Cell b) {
 		if (!a.isEmpty() && !b.isEmpty() && a.getValue() == b.getValue()) {
 			return true;
 		}
 		return false;
 	}
+	
+	/**
+	 * Checks if the movement between two cells can take place.
+	 * 
+	 * @param a First cell to check, this will take the place of the cell b, so cant be empty.
+	 * @param b Second cell, this will have to be empty.
+	 * @return true if the move can take place and false if doesnt.
+	 */
 
 	private boolean canMoveFree(Cell a, Cell b) {
 		if (!a.isEmpty() && b.isEmpty()) {
@@ -159,10 +188,17 @@ public class Board {
 		return false;
 	}
 
+	/**
+	 * Makes the first step of a right movement, by moving all the non empty cells to the right most side
+	 * leaving the board ready to perform the move_right methd.
+	 */
+	
 	private void moveFree_Right() {
 		Cell a, b;
+		
 		for (int i = 0; i < size; i++) {
 			for (int j = size - 1; j > 0; j--) {
+				
 				for (int k = j; k < size; k++) {
 					a = board[i][k - 1]; b = board[i][k];
 					if (canMoveFree(a, b)) {
@@ -176,15 +212,17 @@ public class Board {
 	}
 
 	/**
-	 * Performs a move to the right in the board of the game.
+	 * Performs the second step pfa move to the right in the board of the game.
+	 * 
+	 * @return the object MoveResult that results of the moving right on the game.
 	 */
-
 
 	private MoveResult move_right() {
 		MoveResult r = new MoveResult();
 		moveFree_Right();
 		for (int i = 0; i < size; i++) {
 			for (int j = size - 1; j > 0; j--) {
+				
 				for (int k = j; k < size; k++) {
 					if (canMerge(board[i][k - 1], board[i][k]) ) {
 						if (board[i][k - 1].doMerge(board[i][k])) {
@@ -245,10 +283,10 @@ public class Board {
 	}
 
 	/**
-	 * Checks the paramether which tell us the direction to perform the movement, and calls to the corresponding method
+	 * Checks the paramether which tell us the direction to perform the movement, and calls to the corresponding method.
 	 *
-	 * @param dir direction where we want to move
-	 * @return the object MoveResult that results of the moving to the desired direction on the game
+	 * @param dir direction where we want to move.
+	 * @return the object MoveResult that results of the moving to the desired direction on the game.
 	 */
 
 	public MoveResult executeMove(Direction dir) {

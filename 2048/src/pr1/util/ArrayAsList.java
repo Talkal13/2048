@@ -3,7 +3,6 @@ package pr1.util;
 
 import java.util.Random;
 
-
 public class ArrayAsList {
 // The rest of the code for the ArrayAsList class is to be added here.
 // The other methods of this class will not be static .
@@ -14,10 +13,11 @@ public class ArrayAsList {
 	private Object arrayAsList[];
 	
 	/**
-	 * Constructor of the class
+	 * Constructor of the class.
 	 * 
-	 * @param lenght lenght which will have the Arraylist of the class
+	 * @param lenght lenght which will have the Arraylist of the class.
 	 */
+	
 	public ArrayAsList(int lenght) {
 		maxSize = lenght;
 		set(new Object[maxSize]);
@@ -25,11 +25,12 @@ public class ArrayAsList {
 	}
 	
 	/**
-	 * shuffles the Arraylist by swaping the positions of the arrayListthe length of the array times
+	 * Shuffles the Arraylist by swaping the positions of the arrayListthe length of the array times.
 	 * 
-	 * @param list the list to be shuffled
-	 * @param random seed used to get the random value to sawp
+	 * @param list the list to be shuffled.
+	 * @param random seed used to get the random value to sawp.
 	 */
+	
 	public static void shuffle(ArrayAsList list, Random random) {
 			for (int i = list.size(); i > 1; i--) {
 				swap(list.get(), i - 1, random.nextInt(i));
@@ -37,10 +38,9 @@ public class ArrayAsList {
 	}
 	
 	/**
+	 * Checks if the object is full.
 	 * 
-	 * Checks if the object is full
-	 * 
-	 * @return true if is full, false otherwise
+	 * @return true if is full, false otherwise.
 	 */
 	
 	public boolean isFull() {
@@ -48,10 +48,9 @@ public class ArrayAsList {
 	}
 	
 	/**
+	 * Checks if the array is empty.
 	 * 
-	 * Checks if the array is empty
-	 * 
-	 * @return true if is empty, false otherwise
+	 * @return true if is empty, false otherwise.
 	 */
 	
 	public boolean isEmpty() {
@@ -59,13 +58,22 @@ public class ArrayAsList {
 	}
 	
 	/**
-	 * method to get the size of the array
+	 * Method to get the size of the array.
 	 * 
-	 * @return the size of the array
+	 * @return the size of the array.
 	 */
+	
 	public int size() {
 		return size;
 	}
+	
+	/**
+	 * Insert in the index position of the list the object introduced as paramether.
+	 * 
+	 * @param index index where the object will be placed.
+	 * @param o object position to introduce in the list.
+	 * @return true if the setting was possible, false if it wasnt.
+	 */
 	
 	protected boolean set(int index, Object o) {
 		if (index > size) return false;
@@ -74,34 +82,36 @@ public class ArrayAsList {
 	}
 	
 	/**
-	 * return the position (Object) which has been indicated in the paramether index
+	 * Return the position (Object) which has been indicated in the paramether index.
 	 * 
-	 * @param index the position of the array we are interested in getting
-	 * @return the object which contains the cell of the array
+	 * @param index the position of the array we are interested in getting.
+	 * @return the object which contains the cell of the array.
 	 */
+	
 	public Object get(int index){
 		if (index > size) return null;
 		return arrayAsList[index];
 	}
 
 	/**
-	 * choose a random position (Object)of the Array
+	 * Choose a random position (Object)of the Array.
 	 * This method is static in order to be similar to the "shuffle () " method.
 	 * 
-	 * @param list which the random position position will be chosen from
-	 * @param random seed which will be ussed to select the random position 
-	 * @return the radom position encapsulated in an object
+	 * @param list which the random position position will be chosen from.
+	 * @param random seed which will be ussed to select the random position.
+	 * @return the radom position encapsulated in an object.
 	 */
+	
 	public static Object choice(ArrayAsList list, Random random) {
 		return list.get(random.nextInt(list.size()));
 	}
 	
 	/**
-	 * swap to positions of a given array
+	 * Swap to positions of a given array.
 	 * 
-	 * @param anArray array which contains the position to be swapped
-	 * @param i position which will be overwritten and then restored from the temporal value
-	 * @param j position which will overwrite i
+	 * @param anArray array which contains the position to be swapped.
+	 * @param i position which will be overwritten and then restored from the temporal value.
+	 * @param j position which will overwrite i.
 	 */
 	private static void swap(Object[] anArray, int i, int j) {
 		Object temp = anArray[i];
@@ -109,6 +119,12 @@ public class ArrayAsList {
 		anArray[j] = temp;
 	}
 	
+	/**
+	 * Insterts the object introduced as paramether at the end of the list.
+	 * 
+	 * @param o object Position to include in the list
+	 * @return true if the object was introduced correctly or false if it wasnt.
+	 */
 	public boolean insert(Object o) {
 		if (!isFull() && getIndex(o) == -1) {
 			get()[size] = o;
@@ -117,6 +133,13 @@ public class ArrayAsList {
 		}
 		return false;
 	}
+	
+	/**
+	 * Pops one Object introduced as paramether, by moving all the elements in the list that are on its right one position to its left.
+	 * 
+	 * @param o object to pop from the list
+	 * @return true if it was possible of false if it wasnt.
+	 */
 	
 	public boolean pop(Object o) {
 		int index = getIndex(o);
@@ -128,6 +151,13 @@ public class ArrayAsList {
 		return true;
 	}
 	
+	/**
+	 * Gets the index of a certain object introduced as paramether.
+	 * 
+	 * @param o object position which index we want to know.
+	 * @return the index of the object in the list, or -1 if is not on the list.
+	 */
+	
 	private int getIndex(Object o) {
 		for (int i = 0; i < size; i++) {
 			if (get()[i].equals(o)) return i;
@@ -135,6 +165,11 @@ public class ArrayAsList {
 		return -1;
 	}
 	
+	/**
+	 * Stores in one string the all the objects stored in the ArrayList.
+	 * 
+	 * @return the string containing all the positions.
+	 */
 	
 	public String toString() {
 		String s = "";
@@ -146,6 +181,8 @@ public class ArrayAsList {
 	}
 
 	/**
+	 * Getter of the class for its ArrayList
+	 * 
 	 * @return the arrayAsList
 	 */
 	public Object[] get() {
@@ -153,8 +190,11 @@ public class ArrayAsList {
 	}
 
 	/**
-	 * @param arrayAsList the arrayAsList to set
+	 * Setter f the class for its ArrayList.
+	 * 
+	 * @param arrayAsList the arrayAsList to set.
 	 */
+	
 	public void set(Object arrayAsList[]) {
 		this.arrayAsList = arrayAsList;
 	}

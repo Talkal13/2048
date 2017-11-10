@@ -5,32 +5,34 @@ import java.util.Scanner;
 
 
 /**
- *
  * @author Pablo and Diego
  *
- * Class which instance controls the execution of the game
- *
+ * Class which instance the control which executes of the game.
  */
 
 public class Controller {
 
 	private Game game;
 	private Scanner in;
-	//variable to store the conditions of the game to be developed
 	public int sizeBoard;
 	public int numDigit;
 
 	/**
-	 * Constructor of the class Controller, which will control the game introduced as paramether
+	 * Constructor of the class Controller, which will control the game introduced as paramether.
 	 *
-	 * @param currentGame game to control
+	 * @param currentGame game to control.
 	 */
 
 	public Controller(Game  currentGame) {
 		game = currentGame;
 		in = new Scanner(System.in);
 	}
-
+	
+	/**
+	 * Reads the character to reun the game without the needd of introducing the whole move X command.
+	 * 
+	 * @return 0, the returning value is not really going to be used.
+	 */
 
 	private char readKey() {
 		java.io.InputStreamReader reader = new java.io.InputStreamReader(System.in);
@@ -42,6 +44,12 @@ public class Controller {
 		}
 		return 0;
 	}
+	
+	/**
+	 * Method which runs the game depending on the introduced key, performing the corresponding actions.
+	 * 
+	 * @param key char which indicates the psoition to move.
+	 */
 
 	public void run(char key) {
 		while (key != 'q') { //ESC

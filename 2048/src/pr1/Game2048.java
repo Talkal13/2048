@@ -3,19 +3,20 @@ package pr1;
 import java.util.Random;
 /**
  * @author Pablo and Diego
- * @version 1.0
- * @since 1.0
  *
- *Contains the main of the application
- *Reads the the values passed via command line as attributes (2 or 3)
- *Creates a new game and a new controler and then invokes the controller�s method.
+ *Contains the main of the application.
+ *Reads the the values passed via command line as attributes (2 or 3).
+ *Creates a new game and a new controler and then invokes the controllers method.
  */
 
 public class Game2048 {
+	
 	/**
+	 * Main method
 	 *
 	 * @param args the arguments of the game
 	 */
+	
 	public static void main(String[] args) {
 		
 		int dim = 4, nums = 2;
@@ -27,8 +28,6 @@ public class Game2048 {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			seed = new Random().nextInt(1000);
 		}
-		
-		
 		
 		if(args.length == 2){
 			seed = new Random().nextInt(1000);

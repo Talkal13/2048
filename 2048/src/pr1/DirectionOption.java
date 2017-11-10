@@ -1,13 +1,11 @@
-/**
- * 
- */
 package pr1;
 
 /**
  * @author Pablo and Diego
- * @version 1.0
- * @since 1.0
+ * 
+ * Defines the list of different directions to move during the game.
  */
+
 public enum DirectionOption {
 	UP, 
 	DOWN, 
