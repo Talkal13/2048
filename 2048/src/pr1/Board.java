@@ -87,7 +87,7 @@ public class Board {
 	 */
 	public boolean noMoves() {
 		for (int i = 1; i < size - 1; i++) {
-			for (int j = 1; i < size - 1; j++) {
+			for (int j = 1; j < size - 1; j++) {
 				
 				if (board[i][j].equals(board[i + 1][j])) return false;
 				else if (board[i][j].equals(board[i - 1][j])) return false;
