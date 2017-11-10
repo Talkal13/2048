@@ -80,6 +80,19 @@ public class Board {
 		this.board[pos.getX()][pos.getY()].setValue(value);
 		free.pop(pos);
 	}
+	
+	public boolean noMoves() {
+		for (int i = 1; i < size - 1; i++) {
+			for (int j = 1; i < size - 1; j++) {
+				if (board[i][j].equals(board[i + 1][j])) return false;
+				else if (board[i][j].equals(board[i - 1][j])) return false;
+				else if (board[i][j].equals(board[i][j + 1])) return false;
+				else if (board[i][j].equals(board[i][j - 1])) return false;
+				
+			}
+		}
+		return true;
+	}
 
 	/**
 	 * Checks if the cell in the position given by the paramethers is empty or not.

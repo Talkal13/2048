@@ -82,10 +82,14 @@ public class Controller {
 			default:
 				break;
 			}
-			if (game.getHigh() == 2048){
+			if (game.isWon()){
 				System.out.println("CONGRATULATIONS YOU HAVE WON!");
 				 break;
-			} 
+			}
+			else if (game.isOver()) {
+				System.out.println("CONGRATULATIONS YOU HAVE WON!");
+				 break;
+			}
 
 			key = readKey();
 
@@ -138,15 +142,19 @@ public class Controller {
 						}
 						System.out.print(game);
 						
-						if (game.getHigh() == 2048){
-						System.out.println("CONGRATULATIONS YOU HAVE WON!");
-						on = false; 
+						if (game.isWon()){
+							System.out.println("CONGRATULATIONS YOU HAVE WON!");
+							on = false;
+							 break;
+						}
+						else if (game.isOver()) {
+							System.out.println("SORRY... MORE LUCK NEXT TIME");
+							on = false;
+							 break;
+						}
 						break;
 
 					}
-						break;
-					
-				}
 				//default case that the command is invalid, we ask for a new command
 				default: System.out.println("choose another option");
 			}
