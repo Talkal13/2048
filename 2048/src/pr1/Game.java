@@ -71,20 +71,6 @@ public class Game {
 			for (int i = 0; i < numCells; i++) {
 				insertRandCell();
 			}
-			/*currentCells = 0;
-
-			board = new Board(sizeBoard);
-
-			while(currentCells < numCells){
-				randomRow = generateRandom(sizeBoard);
-				randomCol = generateRandom(sizeBoard);
-
-				if(board.isBoardEmpty(randomRow,randomCol)){
-					//this will be more complex in order to set a 4 or a 2
-					board.setCell(new Position(randomRow, randomCol), 2);
-					currentCells++;
-				}
-			}*/
 		}
 
 		/**
@@ -100,6 +86,7 @@ public class Game {
 		}
 
 		//TODO: just as reminder
+		@Override
 		public String toString(){
 			//calls the toString of the Board
 			return board.toString() + "highest: " + this.highestValueCell + "\tscore: " + this.score + "\n\n";

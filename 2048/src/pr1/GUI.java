@@ -29,6 +29,9 @@ class GUI {
 
 class GUIBoard extends JFrame implements KeyListener {
 	
+	/**
+	 * 
+	 */
 	protected static final int RECT_WIDTH = 100;
 	protected static final int RECT_HEIGHT = RECT_WIDTH;
 	private GUICell board[][];

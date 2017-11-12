@@ -5,8 +5,6 @@ package pr1;
 
 import java.lang.String;
 
-import javax.swing.*;
-
 /**
  * @author Pablo Vazquez and Diego Ambite
  *
@@ -120,6 +118,7 @@ public class Cell {
 	 * 
 	 * @return a String containing the resut of the cell
 	 */
+	@Override
 	public String toString(){	
 		return String.valueOf(value);
 	}
