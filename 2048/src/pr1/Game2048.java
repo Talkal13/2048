@@ -6,7 +6,7 @@ import java.util.Random;
  *
  *Contains the main of the application.
  *Reads the the values passed via command line as attributes (2 or 3).
- *Creates a new game and a new controler and then invokes the controllers method.
+ *Creates a new game and a new controller and then invokes the controllers method.
  */
 
 public class Game2048 {
