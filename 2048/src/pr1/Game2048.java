@@ -25,7 +25,6 @@ public class Game2048 {
 		try {
 			dim = Integer.parseInt(args[0]);
 			nums = Integer.parseInt(args[1]);
-			gui = args[3];
 		} catch (ArrayIndexOutOfBoundsException e) {
 			seed = new Random().nextInt(1000);
 		}
@@ -36,6 +35,9 @@ public class Game2048 {
 
 		else if(args.length == 3){
 			seed = Long.parseLong(args[2]);
+		}
+		else if (args.length == 4) {
+			gui = args[3];
 		}
 
 		Random rand = new Random(seed);
