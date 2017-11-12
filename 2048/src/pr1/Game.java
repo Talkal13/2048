@@ -93,29 +93,43 @@ public class Game {
 
 		}
 		
-		public boolean isOver() {
-			if (highestValueCell == 2048) return true;
-			else if (board.getFree().isEmpty() && board.noMoves()) return true;
-			else return false;
-		}
+
+	/**
+	 * Checks if a game is over by checking if the there is a cell with the value of 2048 or if there is no moves to make.
+	 * 
+	 * @return true in the case that the game is over or false if it is
+	
+	*/
+
+	public boolean isOver() {
+		if (highestValueCell == 2048) return true;
+		else if (board.getFree().isEmpty() && board.noMoves()) return true;
+		else return false;
+	}
+	
+	/**
+	 * Checks if there is any cell witha value of 2048.
+	 * 
+	 * @return true if there is a cell with its value equals to 2048.
+	 */
 		
-		public boolean isWon() {
-			return highestValueCell == 2048;
-		}
+	public boolean isWon() {
+		return highestValueCell == 2048;
+	}
 
-		/**
-		 * set both score and highestValueCell back to 0 and resets the board, finally places the inital cells
-		 */
+	/**
+	 * set both score and highestValueCell back to 0 and resets the board, finally places the inital cells
+	 */
 
-		public void reset() {
-			score = 0;
-			this.highestValueCell = 0;
-			board.reset();
-			for (int i = 0; i < initCells; i++) {
-				if (myRandom.nextInt(100) < 10)
-					board.setCell(new Position(myRandom.nextInt(size), myRandom.nextInt(size)), 4);
-				else
-					board.setCell(new Position(myRandom.nextInt(size), myRandom.nextInt(size)), 2);
-			}
+	public void reset() {
+		score = 0;
+		this.highestValueCell = 0;
+		board.reset();
+		for (int i = 0; i < initCells; i++) {
+			if (myRandom.nextInt(100) < 10)
+				board.setCell(new Position(myRandom.nextInt(size), myRandom.nextInt(size)), 4);
+			else
+				board.setCell(new Position(myRandom.nextInt(size), myRandom.nextInt(size)), 2);
 		}
+	}
 }

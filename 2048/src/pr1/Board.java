@@ -65,9 +65,16 @@ public class Board {
 		}
 	}
 	
+
+	/**
+	 * Check if in the board there is any movement possible by checking if there are two cells one next to the other with the same value.
+	 * 
+	 * @return true in the case that there is no possibility of movement in any cell or false if there is.
+	 */
 	public boolean noMoves() {
 		for (int i = 1; i < size - 1; i++) {
 			for (int j = 1; j < size - 1; j++) {
+				
 				if (board[i][j].equals(board[i + 1][j])) return false;
 				else if (board[i][j].equals(board[i - 1][j])) return false;
 				else if (board[i][j].equals(board[i][j + 1])) return false;
@@ -102,9 +109,10 @@ public class Board {
 	}
 
 
-
-	//TODO toString method
-	@Override
+	/**
+	 * Draws the board in that exact moment of the game, with all the differet values that each cell has.
+	 */
+	
 	public String toString() {
 		String s = "";
 		for (int i = 0; i < size; i++) {

@@ -118,7 +118,6 @@ public class Cell {
 	 * 
 	 * @return a String containing the resut of the cell
 	 */
-	@Override
 	public String toString(){	
 		return String.valueOf(value);
 	}

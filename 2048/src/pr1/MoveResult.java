@@ -1,9 +1,9 @@
 package pr1;
+
 /**
- * 
  * @author Pablo and Diego
  *
- *	Encapsulates the result of executing a move on the board
+ *	Encapsulates the result of executing a move on the board.
  */
 
 public class MoveResult {
@@ -11,36 +11,37 @@ public class MoveResult {
 	private int score = 0;
 	private int value = 0;
 	
-	
 	/**
 	 * Constructor of the class
-	 * 
 	 */
+	
 	public MoveResult() {
 	}
 
 	/**
-	 * getter of the class
+	 * Getter of the class for the score.
 	 * 
-	 * @return the score of the game
+	 * @return the score of the game.
 	 */
+	
 	public int getScore() {
 		return score;
 	}
 	
 	/**
-	 * getter of the class
+	 * Getter of the class for the value.
 	 * 
-	 * @return the value of the highest cell
+	 * @return the value of the highest cell.
 	 */
+	
 	public int getValue() {
 		return value;
 	}
 	
 	/**
-	 * change the value of score
+	 * Setter for the value of score.
 	 * 
-	 * @param s the score
+	 * @param s the score.
 	 */
 	
 	public void setScore(int s) {
@@ -48,7 +49,7 @@ public class MoveResult {
 	}
 	
 	/**
-	 * Change the value of the value of the highest cell
+	 * Setter for the value of the highest cell.
 	 * 
 	 * @param v the value
 	 */
@@ -58,9 +59,9 @@ public class MoveResult {
 	}
 	
 	/** 
-	 * Merges two MoveResult objects 
+	 * Adds the score of two MoveResult objects. 
 	 *  
-	 * @param a the object MoveResult to merge with
+	 * @param a the object MoveResult to merge with.
 	 */
 	
 	public void add(MoveResult a) {
@@ -69,11 +70,12 @@ public class MoveResult {
 	}
 	
 	/**
-	 * checks wheter a score introduced as paramether and the one in the class is the same
+	 * Checks wheter a score introduced as paramether and the one in the class is the same.
 	 * 
-	 * @param score to check if is equal
-	 * @return true if is equal or false if doesnt
+	 * @param score to check if is equal.
+	 * @return true if is equal or false if doesnt.
 	 */
+	
 	public boolean isEqualScore(int score) {
 		return (this.score == score);
 	}

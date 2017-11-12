@@ -1,28 +1,19 @@
-/**
- * 
- */
 package pr1;
 
 /**
  * @author Pablo and Diego
- * @version 1.0
- * @since 1.0
- *	
+ * 
+ * Class which contains the direction of a movement.
  */
 
-
-
 public class Direction {
-	
-	
-	//Stores the direction of the movement
 	
 	DirectionOption dir;
 	
 	/**
-	 * Constructor, instantiates a Direction Object with a direction introduced as parameter
+	 * Constructor, instantiates a Direction Object with a direction introduced as paramether.
 	 *
-	 * @param x direction to achieve the movement
+	 * @param x direction to achieve the movement.
 	 */
 	
 	public Direction(DirectionOption x) {
@@ -30,10 +21,10 @@ public class Direction {
 	}
 	
 	/**
-	 * checks if the direction introduced as parameter is the same as the direction of the class
+	 * Checks if the direction introduced as parameter is the same as the direction of the class.
 	 * 
-	 * @param x direction to check
-	 * @return true in case is equal and false if it doesn't
+	 * @param x direction to check.
+	 * @return true in case is equal and false if it doesn't.
 	 */
 	
 	public boolean equals(DirectionOption x) {
@@ -41,9 +32,9 @@ public class Direction {
 	}
 	
 	/**
-	 * getter of the direction of the class
+	 * Getter of the direction of the class.
 	 * 
-	 * @return the direction of the object
+	 * @return the direction of the object.
 	 */
 	
 	public DirectionOption getDirection() {
@@ -51,9 +42,9 @@ public class Direction {
 	}
 	
 	/**
-	 * setter of the direction of the class
+	 * Setter of the direction of the class.
 	 * 
-	 * @param x new value to store in the variable x of the class
+	 * @param x new value to store in the variable x of the class.
 	 */
 	
 	public void setDirection(DirectionOption x) {
