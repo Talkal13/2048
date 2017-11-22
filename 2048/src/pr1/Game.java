@@ -52,10 +52,6 @@ public class Game {
 			}
 		}
 
-		public Board getBoard() {
-			return board;
-		}
-
 		/**
 		 * Constructor of the class, saves the 3 values passed as arguments
 		 *
