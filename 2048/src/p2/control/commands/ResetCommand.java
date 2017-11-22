@@ -3,7 +3,7 @@ package p2.control.commands;
 import p2.control.Controller;
 import p2.logic.multigames.Game;
 
-public class ResetCommand extends Command {
+public class ResetCommand extends NoParamsCommand {
 	
 	public ResetCommand(String commandInfo, String helpInfo) {
 		super(commandInfo, helpInfo);
@@ -12,13 +12,8 @@ public class ResetCommand extends Command {
 
 	@Override
 	public void execute(Game game, Controller controller) {
-		// TODO Auto-generated method stub
-		
+		game.reset();
+		controller.setNoPrintGameState(false);
 	}
 
-	@Override
-	public Command parse(String[] commandWords, Controller controller) {
-		if (commandWords[0] == this.commandName) return this;
-		return null;
-	}
 }

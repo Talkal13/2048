@@ -3,6 +3,8 @@ package p2.control;
 import java.io.IOException;
 import java.util.Scanner;
 
+import p2.control.commands.Command;
+import p2.control.invoker.CommandParser;
 import p2.logic.multigames.Game;
 import pr1.*;
 
@@ -19,6 +21,7 @@ public class Controller {
 	private Scanner in;
 	public int sizeBoard;
 	public int numDigit;
+	private boolean gameEnd, gameState;
 
 	/**
 	 * Constructor of the class Controller, which will control the game introduced as paramether.
@@ -98,6 +101,14 @@ public class Controller {
 
 		}
 	}
+	
+	public void setOver(boolean x) {
+		this.gameEnd = x;
+	}
+	
+	public void setNoPrintGameState(boolean x) {
+		this.gameState = x;
+	}
 
 
 	/**
@@ -106,11 +117,23 @@ public class Controller {
 	public void run(){
 		//executes the game
 		
-		boolean on = true;
 		String input;
-		while(on){
+		while(!gameEnd){
 			System.out.print("Command > ");
 			input = in.nextLine().toLowerCase();
+			String[] parts = input.split("\\s+");
+			Command control = CommandParser.parseCommand(parts, this);
+			try {
+				control.execute(game, this);
+				if (!this.gameState) {
+					System.out.println(game);
+				}
+			} catch (java.lang.NullPointerException e) {
+				if (parts[0].equals("move")) System.out.println("Unknown direction for move command");
+				else System.out.println("Unknown command");
+			}
+		}
+			/*
 			String[] parts = input.split(" ");
 
 			switch (parts[0]) {
@@ -162,7 +185,7 @@ public class Controller {
 				//default case that the command is invalid, we ask for a new command
 				default: System.out.println("choose another option");
 			}
-		}
+			*/
 	}
 
 	/**

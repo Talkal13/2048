@@ -6,7 +6,7 @@ import p2.control.commands.*;
 public class CommandParser {
 	
 	private static Command[] availableCommands = { new HelpCommand("help", "print this help message."), new ResetCommand("reset", "start a new game."),
-			new ExitCommand("exit", "terminate the program."), new MoveCommand("move", "execute a move in one of the directions: up, down, left, right.") } ;
+			new ExitCommand("exit", "terminate the program."), new MoveCommand("move <direction>", "execute a move in one of the directions: up, down, left, right.") } ;
 
 	
 	public static Command parseCommand(String[] commandWords, Controller controller) {
@@ -19,7 +19,7 @@ public class CommandParser {
 	public static String commandHelp() {
 		String s = "";
 		for (Command x : availableCommands) {
-			s += (x.helpText() + "\n");
+			s += ("\t" + x.helpText() + "\n");
 		}
 		return s;
 	}

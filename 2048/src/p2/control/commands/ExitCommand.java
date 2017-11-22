@@ -3,7 +3,7 @@ package p2.control.commands;
 import p2.control.Controller;
 import p2.logic.multigames.Game;
 
-public class ExitCommand extends Command {
+public class ExitCommand extends NoParamsCommand {
 
 	public ExitCommand(String commandInfo, String helpInfo) {
 		super(commandInfo, helpInfo);
@@ -12,14 +12,9 @@ public class ExitCommand extends Command {
 
 	@Override
 	public void execute(Game game, Controller controller) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Command parse(String[] commandWords, Controller controller) {
-		if (commandWords[0] == this.commandName) return this;
-		return null;
+		controller.setOver(true);
+		controller.setNoPrintGameState(true);
+		System.out.println("Game Over");
 	}
 	
 }

@@ -86,7 +86,7 @@ public class Game {
 		@Override
 		public String toString(){
 			//calls the toString of the Board
-			return board.toString() + "highest: " + this.highestValueCell + "\tscore: " + this.score + "\n\n";
+			return board.toString() + "highest: " + this.highestValueCell + "\tscore: " + this.score + "\n";
 
 		}
 		
@@ -113,6 +113,7 @@ public class Game {
 	public boolean isWon() {
 		return highestValueCell == 2048;
 	}
+	
 
 	/**
 	 * set both score and highestValueCell back to 0 and resets the board, finally places the inital cells
