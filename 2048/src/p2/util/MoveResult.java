@@ -1,4 +1,4 @@
-package pr1;
+package p2.util;
 
 /**
  * @author Pablo and Diego

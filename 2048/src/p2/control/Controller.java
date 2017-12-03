@@ -6,7 +6,8 @@ import java.util.Scanner;
 import p2.control.commands.Command;
 import p2.control.invoker.CommandParser;
 import p2.logic.multigames.Game;
-import pr1.*;
+import p2.util.Direction;
+import p2.util.DirectionOption;
 
 
 /**
@@ -22,6 +23,7 @@ public class Controller {
 	public int sizeBoard;
 	public int numDigit;
 	private boolean gameEnd, gameState;
+	private ErrorCode code = ErrorCode.NO_ERROR;
 
 	/**
 	 * Constructor of the class Controller, which will control the game introduced as paramether.
@@ -109,6 +111,12 @@ public class Controller {
 	public void setNoPrintGameState(boolean x) {
 		this.gameState = x;
 	}
+	
+	public void setErrorMessage(ErrorCode e) {
+		if (code == ErrorCode.NO_ERROR || code == ErrorCode.BAD_COMMAND) {
+			code = e;
+		}
+	}
 
 
 	/**
@@ -119,6 +127,8 @@ public class Controller {
 		
 		String input;
 		while(!gameEnd){
+			setNoPrintGameState(false);
+			setErrorMessage(ErrorCode.NO_ERROR);
 			System.out.print("Command > ");
 			input = in.nextLine().toLowerCase();
 			String[] parts = input.split("\\s+");
@@ -129,8 +139,11 @@ public class Controller {
 					System.out.println(game);
 				}
 			} catch (java.lang.NullPointerException e) {
-				if (parts[0].equals("move")) System.out.println("Unknown direction for move command");
-				else System.out.println("Unknown command");
+				e.printStackTrace();
+				String x = this.getErrorMessage();
+				if (x != null) {
+					System.out.println(x);
+				}
 			}
 		}
 			/*
@@ -186,6 +199,20 @@ public class Controller {
 				default: System.out.println("choose another option");
 			}
 			*/
+	}
+	
+	
+	private String getErrorMessage() {
+		switch (code) {
+		case BAD_COMMAND:
+			return "Unknown command";
+		case BAD_ARGUMENT:
+			return "Unknown direction for move command";
+		case NO_ARGUMENT:
+			return "Move must be followed by a direction: up, down, left or right";
+		default:
+			return null;
+		}
 	}
 
 	/**

@@ -13,7 +13,6 @@ public class ResetCommand extends NoParamsCommand {
 	@Override
 	public void execute(Game game, Controller controller) {
 		game.reset();
-		controller.setNoPrintGameState(false);
 	}
 
 }

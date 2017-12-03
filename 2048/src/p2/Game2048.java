@@ -20,7 +20,6 @@ public class Game2048 {
 	 */
 	
 	public static void main(String[] args) {
-		
 		int dim = 4, nums = 2;
 		long seed = -1;
 		
@@ -46,6 +45,8 @@ public class Game2048 {
 			System.out.println(game);
 			Controller control = new Controller(game);
 			control.run();
+			
+		
 
 	}
 

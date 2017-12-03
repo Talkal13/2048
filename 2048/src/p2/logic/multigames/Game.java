@@ -1,9 +1,13 @@
 package p2.logic.multigames;
 
-import pr1.*;
-import pr1.util.*;
-
 import java.util.Random;
+
+import p2.logic.ArrayState;
+import p2.logic.GameState;
+import p2.util.ArrayAsList;
+import p2.util.Direction;
+import p2.util.MoveResult;
+import p2.util.Position;
 
 /**
  *
@@ -22,6 +26,7 @@ public class Game {
 		private Random myRandom;
 		private int score;
 		private int highestValueCell;
+		private ArrayState states;
 
 
 		public int getHigh() {
@@ -80,6 +85,7 @@ public class Game {
 			insertRandCell();
 			score += result.getScore();
 			if (highestValueCell < result.getValue()) highestValueCell = result.getValue();
+			states.push(new GameState(board.getState()));
 		}
 
 		//TODO: just as reminder
@@ -130,4 +136,28 @@ public class Game {
 				board.setCell(new Position(myRandom.nextInt(size), myRandom.nextInt(size)), 2);
 		}
 	}
+	
+	/**
+	 * 
+	 * 	undoes the last move in the stack
+	 */
+	public void undo() {
+		GameState x = states.pop();
+		board.setState(x.getState());
+		states.push(x);
+	}
+	
+	/**
+	 * Redoes the last move in the stack
+	 */
+	
+	public void redo() {
+		board.setState(states.pop().getState());
+	}
+	
+	public GameState getState() {
+		return new GameState(board.getState());
+		
+	}
+	
 }
