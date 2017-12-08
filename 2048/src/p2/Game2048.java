@@ -42,9 +42,9 @@ public class Game2048 {
 		
 		Game game = new Game(dim, nums, rand);
 		
-			System.out.println(game);
-			Controller control = new Controller(game);
-			control.run();
+		System.out.println(game);
+		Controller control = new Controller(game);
+		control.run();
 			
 		
 

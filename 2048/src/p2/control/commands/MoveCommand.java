@@ -24,7 +24,6 @@ public class MoveCommand extends Command {
 	public Command parse(String[] commandWords, Controller controller) {
 		
 		if (!commandWords[0].equals(this.commandName)) {
-			controller.setErrorMessage(ErrorCode.BAD_COMMAND);
 			return null;
 		} 
 		else {
@@ -43,11 +42,15 @@ public class MoveCommand extends Command {
 					dir = new Direction(DirectionOption.LEFT);
 					break;
 				default:
-					controller.setErrorMessage(ErrorCode.BAD_ARGUMENT);
+					controller.setErrorCode(false);
+					controller.setNoPrintGameState(true);
+					System.out.println(Controller.getErrorMessage(ErrorCode.BAD_ARGUMENT));
 					return null;
 				}
 			} catch (ArrayIndexOutOfBoundsException e) {
-				controller.setErrorMessage(ErrorCode.NO_ARGUMENT);
+				controller.setErrorCode(false);
+				controller.setNoPrintGameState(true);
+				System.out.println(Controller.getErrorMessage(ErrorCode.NO_ARGUMENT));
 				return null;
 			}
 		}

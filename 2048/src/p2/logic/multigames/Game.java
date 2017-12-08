@@ -26,7 +26,7 @@ public class Game {
 		private Random myRandom;
 		private int score;
 		private int highestValueCell;
-		private ArrayState states;
+		//private ArrayState states;
 
 
 		public int getHigh() {
@@ -85,7 +85,7 @@ public class Game {
 			insertRandCell();
 			score += result.getScore();
 			if (highestValueCell < result.getValue()) highestValueCell = result.getValue();
-			states.push(new GameState(board.getState()));
+			//states.push(new GameState(board.getState()));
 		}
 
 		//TODO: just as reminder
@@ -142,9 +142,9 @@ public class Game {
 	 * 	undoes the last move in the stack
 	 */
 	public void undo() {
-		GameState x = states.pop();
-		board.setState(x.getState());
-		states.push(x);
+		//GameState x = states.pop();
+	//	board.setState(x.getState());
+		//states.push(x);
 	}
 	
 	/**
@@ -152,7 +152,7 @@ public class Game {
 	 */
 	
 	public void redo() {
-		board.setState(states.pop().getState());
+	//	board.setState(states.pop().getState());
 	}
 	
 	public GameState getState() {

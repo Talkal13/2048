@@ -22,8 +22,7 @@ public class Controller {
 	private Scanner in;
 	public int sizeBoard;
 	public int numDigit;
-	private boolean gameEnd, gameState;
-	private ErrorCode code = ErrorCode.NO_ERROR;
+	private boolean gameEnd, gameState, errorCode;
 
 	/**
 	 * Constructor of the class Controller, which will control the game introduced as paramether.
@@ -112,10 +111,8 @@ public class Controller {
 		this.gameState = x;
 	}
 	
-	public void setErrorMessage(ErrorCode e) {
-		if (code == ErrorCode.NO_ERROR || code == ErrorCode.BAD_COMMAND) {
-			code = e;
-		}
+	public void setErrorCode(boolean x) {
+		this.errorCode = x;
 	}
 
 
@@ -128,22 +125,18 @@ public class Controller {
 		String input;
 		while(!gameEnd){
 			setNoPrintGameState(false);
-			setErrorMessage(ErrorCode.NO_ERROR);
+			setErrorCode(true);
 			System.out.print("Command > ");
 			input = in.nextLine().toLowerCase();
 			String[] parts = input.split("\\s+");
 			Command control = CommandParser.parseCommand(parts, this);
-			try {
+			if (control != null) 
 				control.execute(game, this);
-				if (!this.gameState) {
-					System.out.println(game);
-				}
-			} catch (java.lang.NullPointerException e) {
-				e.printStackTrace();
-				String x = this.getErrorMessage();
-				if (x != null) {
-					System.out.println(x);
-				}
+			else if (errorCode) {
+				System.out.println(Controller.getErrorMessage(ErrorCode.BAD_COMMAND));
+			}
+			if (!this.gameState) {
+				System.out.println(game);
 			}
 		}
 			/*
@@ -202,7 +195,7 @@ public class Controller {
 	}
 	
 	
-	private String getErrorMessage() {
+	public static String getErrorMessage(ErrorCode code) {
 		switch (code) {
 		case BAD_COMMAND:
 			return "Unknown command";
@@ -214,6 +207,7 @@ public class Controller {
 			return null;
 		}
 	}
+ 
 
 	/**
 	 * Shows the different helpp messages to help the user about the different possibilities of movement
