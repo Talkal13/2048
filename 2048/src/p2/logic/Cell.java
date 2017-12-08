@@ -35,7 +35,11 @@ public class Cell {
 	 */
 	public void setValue(int newValue){
 		this.value = newValue;
-		this.empty = false;
+		if (newValue == 0) {
+			empty = true;
+		}
+		else 
+			empty = false;
 	}
 	
 	/**

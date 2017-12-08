@@ -2,8 +2,8 @@ package p2.logic.multigames;
 
 import java.util.Random;
 
-import p2.logic.ArrayState;
-import p2.logic.GameState;
+import p2.util.GameStateStack;
+import p2.util.GameState;
 import p2.util.ArrayAsList;
 import p2.util.Direction;
 import p2.util.MoveResult;
@@ -26,7 +26,8 @@ public class Game {
 		private Random myRandom;
 		private int score;
 		private int highestValueCell;
-		//private ArrayState states;
+		private GameStateStack undoStack = new GameStateStack();
+		private GameStateStack redoStack = new GameStateStack();
 
 
 		public int getHigh() {
@@ -81,11 +82,12 @@ public class Game {
 		 * @param dir direction in which the move will take place.
 		 */
 		public void move (Direction dir) {
+			undoStack.push(getState());
 			MoveResult result = board.executeMove(dir);
 			insertRandCell();
 			score += result.getScore();
 			if (highestValueCell < result.getValue()) highestValueCell = result.getValue();
-			//states.push(new GameState(board.getState()));
+			
 		}
 
 		//TODO: just as reminder
@@ -142,9 +144,14 @@ public class Game {
 	 * 	undoes the last move in the stack
 	 */
 	public void undo() {
-		//GameState x = states.pop();
-	//	board.setState(x.getState());
-		//states.push(x);
+		GameState s = getState();
+		try {
+			setState(undoStack.pop());
+			redoStack.push(s);
+		} catch (NullPointerException e) {
+			//TODO Send error message
+		} 
+		
 	}
 	
 	/**
@@ -152,12 +159,18 @@ public class Game {
 	 */
 	
 	public void redo() {
-	//	board.setState(states.pop().getState());
+		GameState s = getState();
+		setState(redoStack.pop());
+		undoStack.push(s);
 	}
 	
 	public GameState getState() {
 		return new GameState(board.getState());
-		
+	}
+	
+	public void setState(GameState aState) {
+		board.setState(aState.getState());
+		score = aState.getScore();
 	}
 	
 }
