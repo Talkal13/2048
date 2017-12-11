@@ -1,5 +1,8 @@
 package p2.logic;
 
+// trial delete later this line
+
+
 public class ArrayState {
 	private static final int CAPACITY = 20;
 
@@ -8,6 +11,8 @@ public class ArrayState {
 	
 	public ArrayState() {
 		array = new GameState[CAPACITY];
+		
+		
 		size = 0;
 	}
 	
