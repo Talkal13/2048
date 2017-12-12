@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import p2.control.commands.Command;
 import p2.control.invoker.CommandParser;
-import p2.logic.multigames.Game;
+import p2.logic.Game;
 import p2.util.Direction;
 import p2.util.DirectionOption;
 

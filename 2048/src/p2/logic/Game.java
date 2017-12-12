@@ -1,4 +1,4 @@
-package p2.logic.multigames;
+package p2.logic;
 
 import java.util.Random;
 

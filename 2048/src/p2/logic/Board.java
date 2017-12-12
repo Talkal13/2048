@@ -1,6 +1,5 @@
-package p2.logic.multigames;
+package p2.logic;
 
-import p2.logic.*;
 import p2.util.*;
 
 /**
@@ -45,6 +44,7 @@ public class Board {
 	public int getSize() {
 		return size;
 	}
+
 	
 	/**
 	 * resets the board by emptying all it's cells

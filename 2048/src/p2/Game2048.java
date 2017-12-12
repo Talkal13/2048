@@ -3,7 +3,7 @@ package p2;
 import java.util.Random;
 
 import p2.control.Controller;
-import p2.logic.multigames.Game;
+import p2.logic.Game;
 /**
  * @author Pablo and Diego
  *
