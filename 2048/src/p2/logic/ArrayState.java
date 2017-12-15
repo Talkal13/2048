@@ -1,5 +1,7 @@
 package p2.logic;
 
+import p2.util.GameState;
+
 // trial delete later this line
 
 

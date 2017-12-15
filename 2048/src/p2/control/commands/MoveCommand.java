@@ -2,7 +2,7 @@ package p2.control.commands;
 
 import p2.control.Controller;
 import p2.control.ErrorCode;
-import p2.logic.multigames.Game;
+import p2.logic.Game;
 import p2.util.Direction;
 import p2.util.DirectionOption;
 

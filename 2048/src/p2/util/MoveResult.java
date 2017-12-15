@@ -9,7 +9,6 @@ package p2.util;
 public class MoveResult {
 	
 	private int score = 0;
-	private int value = 0;
 	
 	/**
 	 * Constructor of the class
@@ -28,15 +27,6 @@ public class MoveResult {
 		return score;
 	}
 	
-	/**
-	 * Getter of the class for the value.
-	 * 
-	 * @return the value of the highest cell.
-	 */
-	
-	public int getValue() {
-		return value;
-	}
 	
 	/**
 	 * Setter for the value of score.
@@ -54,10 +44,6 @@ public class MoveResult {
 	 * @param v the value
 	 */
 	
-	public void setValue(int v) {
-		this.value = v;
-	}
-	
 	/** 
 	 * Adds the score of two MoveResult objects. 
 	 *  
@@ -66,7 +52,6 @@ public class MoveResult {
 	
 	public void add(MoveResult a) {
 		score += a.score;
-		value = a.getValue() > value ? a.getValue() : value;
 	}
 	
 	/**

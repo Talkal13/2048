@@ -36,7 +36,7 @@ public class Board {
 			}
 		}
 	}
-
+	
 	public ArrayAsList getFree() {
 		return free;
 	}
@@ -44,7 +44,37 @@ public class Board {
 	public int getSize() {
 		return size;
 	}
-
+	
+	public int getMax() {
+		int max = board[0][0].getValue();
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (max < board[i][j].getValue()) max = board[i][j].getValue();
+			}
+		}
+		return max;
+	}
+	
+	public int getMin() {
+		int min = board[0][0].getValue();
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (min > board[i][j].getValue()) min = board[i][j].getValue();
+			}
+		}
+		return min;
+	}
+	
+	public boolean isFull() {
+		boolean x = true;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				x &= !board[i][j].isEmpty();
+			}
+		}
+		return x;
+	}
+	
 	
 	/**
 	 * resets the board by emptying all it's cells
@@ -103,6 +133,7 @@ public class Board {
 	public boolean isBoardEmpty(int row, int col) {
 		return this.board[row][col].isEmpty();
 	}
+
 
 
 	/**
@@ -211,7 +242,8 @@ public class Board {
 					if (canMerge(board[i][k - 1], board[i][k]) ) {
 						if (board[i][k - 1].doMerge(board[i][k])) {
 							free.insert(board[i][k - 1].getPos());
-							if (r.getValue() < board[i][k].getValue()) r.setValue(board[i][k].getValue());
+							if (max < board[i][k].getValue()) max = board[i][k].getValue(); //set up max;
+							if (min > board[i][k].getValue()) min = board[i][k].getValue(); //set up min;
 							r.setScore(r.getScore() + board[i][k].getValue());
 							k++;
 							j--;

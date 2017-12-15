@@ -2,18 +2,20 @@ package p2.logic.multigames;
 
 import java.util.Random;
 
-import p2.logic.*;
+import p2.logic.Board;
+import p2.logic.Cell;
+import p2.logic.GameRules;
 import p2.util.Position;
 
-public class Rules2048 implements GameRules {
-	
+public class RulesFib implements GameRules {
+		
 	@Override
 	public void addNewCellAt(Board board, Position pos, Random rand) {
 		int random = rand.nextInt(99);
 		if (random < 10) {
-			board.setCell(pos, 2);
+			board.setCell(pos, 1);
 		} else {
-			board.setCell(pos, 4);
+			board.setCell(pos, 2);
 		}
 	}
 
@@ -25,12 +27,11 @@ public class Rules2048 implements GameRules {
 
 	@Override
 	public int getWinValue(Board board) {
-		return board.getMax(); //TODO
+		return board.getMax(); 
 	}
 
 	@Override
 	public boolean win(Board board) {
-		return (board.getMax() == 2048);
+		return (board.getMax() == 144);
 	}
-
 }

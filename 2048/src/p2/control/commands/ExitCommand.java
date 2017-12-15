@@ -1,7 +1,7 @@
 package p2.control.commands;
 
 import p2.control.Controller;
-import p2.logic.multigames.Game;
+import p2.logic.Game;
 
 public class ExitCommand extends NoParamsCommand {
 

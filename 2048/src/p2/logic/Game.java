@@ -86,7 +86,6 @@ public class Game {
 			MoveResult result = board.executeMove(dir);
 			insertRandCell();
 			score += result.getScore();
-			if (highestValueCell < result.getValue()) highestValueCell = result.getValue();
 			
 		}
 
@@ -150,8 +149,15 @@ public class Game {
 			redoStack.push(s);
 		} catch (NullPointerException e) {
 			//TODO Send error message
-		} 
-		
+		}
+	}
+	
+	public boolean isUndoStackEmpty() {
+		return undoStack.isEmpty();
+	}
+	
+	public boolean isRedoStackEmpty() {
+		return redoStack.isEmpty();
 	}
 	
 	/**
