@@ -4,6 +4,12 @@ import p2.control.Controller;
 import p2.control.invoker.CommandParser;
 import p2.logic.Game;
 
+/**
+ * 
+ * @author Pablo & Diego
+ *
+ */
+
 public class HelpCommand extends NoParamsCommand {
 
 	public HelpCommand(String commandInfo, String helpInfo) {

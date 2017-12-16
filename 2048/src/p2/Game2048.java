@@ -46,8 +46,6 @@ public class Game2048 {
 		Controller control = new Controller(game);
 		control.run();
 			
-		
-
 	}
 
 }

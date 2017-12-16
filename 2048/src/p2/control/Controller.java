@@ -9,7 +9,6 @@ import p2.logic.Game;
 import p2.util.Direction;
 import p2.util.DirectionOption;
 
-
 /**
  * @author Pablo and Diego
  *
@@ -25,7 +24,7 @@ public class Controller {
 	private boolean gameEnd, gameState, errorCode;
 
 	/**
-	 * Constructor of the class Controller, which will control the game introduced as paramether.
+	 * Constructor of the class Controller, which will control the game introduced as parameter.
 	 *
 	 * @param currentGame game to control.
 	 */
@@ -36,7 +35,7 @@ public class Controller {
 	}
 	
 	/**
-	 * Reads the character to reun the game without the needd of introducing the whole move X command.
+	 * Reads the character to run the game with no need of introducing the whole move X command.
 	 * 
 	 * @return 0, the returning value is not really going to be used.
 	 */
@@ -55,7 +54,7 @@ public class Controller {
 	/**
 	 * Method which runs the game depending on the introduced key, performing the corresponding actions.
 	 * 
-	 * @param key char which indicates the psoition to move.
+	 * @param key char which indicates the position to move.
 	 */
 
 	public void run(char key) {
@@ -103,22 +102,40 @@ public class Controller {
 		}
 	}
 	
+	/**
+	 * Sets the value of the boolean attribute gameEnd which marks if the game has came to an end.
+	 * 
+	 * @param x the boolean value of this parameter will set the existing one of the attribute gameEnd.
+	 */
+	
 	public void setOver(boolean x) {
 		this.gameEnd = x;
 	}
+	
+	/**
+	 * Sets the value of the boolean attribute gameState which marks if the board of the game should be printed.
+	 * 
+	 * @param x the boolean value of this parameter will set the existing one of the attribute gameState.
+	 */
 	
 	public void setNoPrintGameState(boolean x) {
 		this.gameState = x;
 	}
 	
+	/**
+	 * Sets the value of the boolean attribute errorCode which indicates if any of the possible error (enumerated in the class ErrorCode) has happened.
+	 * 
+	 * @param x the boolean value of this parameter will set the existing one of the attribute errorCode.
+	 */
+	
 	public void setErrorCode(boolean x) {
 		this.errorCode = x;
 	}
 
-
 	/**
 	 * Method which runs the game taking into account which commands are introduced and performing the corresponding actions.
 	 */
+	
 	public void run(){
 		//executes the game
 		
@@ -194,6 +211,13 @@ public class Controller {
 			*/
 	}
 	
+	/**
+	 * Method which receives an error code and depending which, returns a string describing in deeper detailed what happened to notify the user about what went wrong.
+	 * 
+	 * @param code one of the possible error that can occur during the interaction with the program, enumerated in the class ErrorCode.
+	 * @return A string with the text which explains more detailed what went wrong, in case that is not one of the error in the cases 
+	 * (for example is the NO_ERROR) the method will return null.
+	 */
 	
 	public static String getErrorMessage(ErrorCode code) {
 		switch (code) {
@@ -208,9 +232,8 @@ public class Controller {
 		}
 	}
  
-
 	/**
-	 * Shows the different helpp messages to help the user about the different possibilities of movement
+	 * Shows the different help messages to help the user about the different possibilities of movement.
 	 */
 
 	public void showHelp(){
