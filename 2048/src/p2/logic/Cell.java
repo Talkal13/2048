@@ -101,22 +101,8 @@ public class Cell {
 	 * @param neighbour another cell which the merge could take place with
 	 * @return true in the case that the merge can take place, false if not
 	 */
-	public boolean doMerge(Cell neighbour){
-		//case the neighbour is an empty cell, we copy the value to this neighbour, we empty the current cell and we retrun false
-		if (neighbour.isEmpty() && !this.isEmpty()) {
-			neighbour.setValue(this.value);
-			emptyCell();
-			return false;
-		}
-		//if both the neighbour and the current aren't empty and share value, we add the value of the cell to the neighbour and we empty the cell
-		else if (neighbour.getValue() == this.value && !neighbour.isEmpty() && !isEmpty()) {
-			neighbour.addValue(value);
-			emptyCell();
-			//this.setMarked(true);
-			return true;
-			
-		}
-		return false;
+	public int doMerge(Cell neighbour, GameRules currentRules){
+		return currentRules.merge(this, neighbour);
 	}
 	
 	/**

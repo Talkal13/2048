@@ -219,7 +219,8 @@ public class Board {
 				for (int k = j; k < size; k++) {
 					a = board[i][k - 1]; b = board[i][k];
 					if (canMoveFree(a, b)) {
-						a.doMerge(b);
+						b.setValue(a.getValue());
+						a.emptyCell();
 						free.insert(a.getPos());
 						free.pop(b.getPos());
 					}
@@ -233,21 +234,15 @@ public class Board {
 	 */
 
 
-	private MoveResult move_right() {
+	private MoveResult move_right(GameRules currentRules) {
 		MoveResult r = new MoveResult();
 		moveFree_Right();
 		for (int i = 0; i < size; i++) {
 			for (int j = size - 1; j > 0; j--) {
 				for (int k = j; k < size; k++) {
 					if (canMerge(board[i][k - 1], board[i][k]) ) {
-						if (board[i][k - 1].doMerge(board[i][k])) {
-							free.insert(board[i][k - 1].getPos());
-							if (max < board[i][k].getValue()) max = board[i][k].getValue(); //set up max;
-							if (min > board[i][k].getValue()) min = board[i][k].getValue(); //set up min;
-							r.setScore(r.getScore() + board[i][k].getValue());
-							k++;
-							j--;
-						}
+						r.setScore(board[i][k - 1].doMerge(board[i][k], currentRules));
+						free.insert(board[i][k - 1].getPos());
 					}
 				}
 			}
@@ -262,10 +257,10 @@ public class Board {
 	 * @return the object MoveResult that results of the move to the left on the game
 	 */
 
-	private MoveResult move_left() {
+	private MoveResult move_left(GameRules currentRules) {
 		MoveResult r = new MoveResult();
 		reflection();
-		r = move_right();
+		r = move_right(currentRules);
 		reflection();
 		return r;
 	}
@@ -276,10 +271,10 @@ public class Board {
 	 * @return the object MoveResult that results of the moving down on the game
 	 */
 
-	private MoveResult move_down() {
+	private MoveResult move_down(GameRules currentRules) {
 		MoveResult r = new MoveResult();
 		transpose();
-		r = move_right();
+		r = move_right(currentRules);
 		transpose();
 		return r;
 	}
@@ -290,10 +285,10 @@ public class Board {
 	 * @return the object MoveResult that results of the moving up on the game
 	 */
 
-	private MoveResult move_up() {
+	private MoveResult move_up(GameRules currentRules) {
 		MoveResult r = new MoveResult();
 		transpose();
-		r = move_left();
+		r = move_left(currentRules);
 		transpose();
 		return r;
 	}
@@ -305,19 +300,19 @@ public class Board {
 	 * @return the object MoveResult that results of the moving to the desired direction on the game
 	 */
 
-	public MoveResult executeMove(Direction dir) {
+	public MoveResult executeMove(Direction dir, GameRules currentRules) {
 		MoveResult r = new MoveResult();
 		if (dir.equals(DirectionOption.RIGHT)) {
-			r = move_right();
+			r = move_right(currentRules);
 		}
 		else if (dir.equals(DirectionOption.DOWN)) {
-			r = move_down();
+			r = move_down(currentRules);
 		}
 		else if (dir.equals(DirectionOption.UP)) {
-			r = move_up();
+			r = move_up(currentRules);
 		}
 		else if (dir.equals(DirectionOption.LEFT)) {
-			r = move_left();
+			r = move_left(currentRules);
 		}
 		return r;
 	}

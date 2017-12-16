@@ -25,14 +25,10 @@ public class Game {
 		private int initCells;
 		private Random myRandom;
 		private int score;
-		private int highestValueCell;
 		private GameStateStack undoStack = new GameStateStack();
 		private GameStateStack redoStack = new GameStateStack();
+		private GameRules currentRules;
 
-
-		public int getHigh() {
-			return highestValueCell;
-		}
 
 		public void insertCell(int value, Position pos) {
 			board.setCell(pos, value);
@@ -44,19 +40,7 @@ public class Game {
 		 */
 
 		public void insertRandCell() {
-
-			ArrayAsList.shuffle(board.getFree(), myRandom);
-
-			if (myRandom.nextInt(100) < 10) {
-				board.setCell((Position) board.getFree().get(0), 4);
-				if (this.highestValueCell < 4)
-					this.highestValueCell = 4;
-			}
-			else {
-				board.setCell((Position) board.getFree().get(0), 2);
-				if (this.highestValueCell < 2)
-					this.highestValueCell = 2;
-			}
+			currentRules.addNewCell(board, myRandom);
 		}
 
 		/**
@@ -66,10 +50,34 @@ public class Game {
 		 * @param numCells number of cells displayed at the start of the game
 		 * @param random value to be used for the random behaviour of the game.
 		 */
-		public Game(int sizeBoard,int numCells, Random random){
+		public Game(int sizeBoard, int numCells, Random random, GameRules rules){
 			size = sizeBoard;
 			initCells = numCells;
 			myRandom = random;
+			currentRules = rules;
+			board = new Board(sizeBoard);
+			for (int i = 0; i < numCells; i++) {
+				insertRandCell();
+			}
+			
+		}
+		
+		public Game(int sizeBoard, int numCells, long seed, GameRules rules) {
+			size = sizeBoard;
+			initCells = numCells;
+			myRandom = (seed == -1) ? new Random(seed) : new Random();
+			currentRules = rules;
+			board = new Board(sizeBoard);
+			for (int i = 0; i < numCells; i++) {
+				insertRandCell();
+			}
+		}
+		
+		public void changeGame(int sizeBoard, int numCells, long seed, GameRules rules) {
+			size = sizeBoard;
+			initCells = numCells;
+			myRandom = (seed == -1) ? new Random(seed) : new Random();
+			currentRules = rules;
 			board = new Board(sizeBoard);
 			for (int i = 0; i < numCells; i++) {
 				insertRandCell();
@@ -83,43 +91,19 @@ public class Game {
 		 */
 		public void move (Direction dir) {
 			undoStack.push(getState());
-			MoveResult result = board.executeMove(dir);
+			MoveResult result = board.executeMove(dir, currentRules);
 			insertRandCell();
 			score += result.getScore();
-			
 		}
 
 		//TODO: just as reminder
 		@Override
 		public String toString(){
 			//calls the toString of the Board
-			return board.toString() + "highest: " + this.highestValueCell + "\tscore: " + this.score + "\n";
+			return board.toString() + "best value: " + currentRules.getWinValue(board) + "\tscore: " + this.score + "\n";
 
 		}
 		
-
-	/**
-	 * Checks if a game is over by checking if the there is a cell with the value of 2048 or if there is no moves to make.
-	 * 
-	 * @return true in the case that the game is over or false if it is
-	
-	*/
-
-	public boolean isOver() {
-		if (highestValueCell == 2048) return true;
-		else if (board.getFree().isEmpty() && board.noMoves()) return true;
-		else return false;
-	}
-	
-	/**
-	 * Checks if there is any cell witha value of 2048.
-	 * 
-	 * @return true if there is a cell with its value equals to 2048.
-	 */
-		
-	public boolean isWon() {
-		return highestValueCell == 2048;
-	}
 	
 
 	/**
@@ -128,13 +112,9 @@ public class Game {
 
 	public void reset() {
 		score = 0;
-		this.highestValueCell = 0;
 		board.reset();
 		for (int i = 0; i < initCells; i++) {
-			if (myRandom.nextInt(100) < 10)
-				board.setCell(new Position(myRandom.nextInt(size), myRandom.nextInt(size)), 4);
-			else
-				board.setCell(new Position(myRandom.nextInt(size), myRandom.nextInt(size)), 2);
+			currentRules.addNewCell(board, myRandom);
 		}
 	}
 	

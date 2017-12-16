@@ -16,9 +16,9 @@ public class RulesInverse implements GameRules {
 	public void addNewCellAt(Board board, Position pos, Random rand) {
 		int random = rand.nextInt(99);
 		if (random < 10) {
-			board.setCell(pos, 2048);
-		} else {
 			board.setCell(pos, 1024);
+		} else {
+			board.setCell(pos, 2048);
 		}
 		
 	}

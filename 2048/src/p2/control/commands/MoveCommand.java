@@ -25,6 +25,7 @@ public class MoveCommand extends Command {
 		
 		if (!commandWords[0].equals(this.commandName)) {
 			return null;
+			
 		} 
 		else {
 			try {

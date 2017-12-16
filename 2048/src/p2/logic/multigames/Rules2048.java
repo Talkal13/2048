@@ -11,9 +11,9 @@ public class Rules2048 implements GameRules {
 	public void addNewCellAt(Board board, Position pos, Random rand) {
 		int random = rand.nextInt(99);
 		if (random < 10) {
-			board.setCell(pos, 2);
-		} else {
 			board.setCell(pos, 4);
+		} else {
+			board.setCell(pos, 2);
 		}
 	}
 
