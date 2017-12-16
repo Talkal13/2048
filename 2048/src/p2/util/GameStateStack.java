@@ -8,15 +8,25 @@ public class GameStateStack {
 	
 	public GameState pop() {
 		if (isEmpty()) return null;
-		index--;
 		return buffer[index];
 	}
 	
 	public void push(GameState state) {
 		if (index < CAPACITY) {
 			buffer[index] = state;
+			index++;
 		}
-		index++;
+		else {
+			shift();
+			buffer[index] = state;
+		}
+		
+	}
+	
+	private void shift() {
+		for (int i = 0; i < index; i++) {
+			buffer[i] = buffer[i + 1];
+		}
 	}
 	
 	public boolean isEmpty() {

@@ -8,4 +8,13 @@ public class MyMathsUtil {
 	return (int) Math.round(phi * previous);
 	}
 	
+	public static int log(int base, int numb) {
+		if (numb == base) return 1;
+		else if (numb == 1) return 0;
+		else if (numb < base) return -1;
+		else {
+			return 1 + log(base, numb/base);
+		}
+	}
+	
 }
