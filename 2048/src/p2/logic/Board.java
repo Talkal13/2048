@@ -285,7 +285,7 @@ public class Board {
 		moveFree_Right();
 		for (int i = 0; i < size; i++) {
 			for (int j = size - 2; j >= 0; j--) {
-				r.setScore(board[i][j + 1].doMerge(board[i][j], currentRules));
+				r.addScore(board[i][j + 1].doMerge(board[i][j], currentRules));
 				free.insert(board[i][j].getPos());
 			}
 		}

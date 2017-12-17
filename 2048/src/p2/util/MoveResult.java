@@ -54,6 +54,10 @@ public class MoveResult {
 		score += a.score;
 	}
 	
+	public void addScore(int a) {
+		score += a;
+	}
+	
 	/**
 	 * Checks wheter a score introduced as paramether and the one in the class is the same.
 	 * 
