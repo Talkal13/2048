@@ -76,10 +76,11 @@ public class Board {
 	 */
 	
 	public int getMin() {
-		int min = board[0][0].getValue();
+		int min = getMax();
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
-				if (min > board[i][j].getValue()) min = board[i][j].getValue();
+				if (board[i][j].getValue() != 0) 
+					if (min > board[i][j].getValue()) min = board[i][j].getValue();
 			}
 		}
 		return min;

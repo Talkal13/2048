@@ -1,5 +1,9 @@
 package p2.control.commands;
 
+import java.io.IOException;
+import java.util.Random;
+import java.util.Scanner;
+
 import p2.control.Controller;
 import p2.logic.Game;
 import p2.logic.multigames.*;
@@ -16,10 +20,10 @@ public class PlayCommand extends Command {
 	
 	private GameType type;
 	private int size = 4, initNumb = 2; // by default a 4*4 board with 2 initial tokens
-	private long seed = -1; // the seed for the random placement of the tokens
+	private long seed = 625;// the seed for the random placement of the tokens //TODO the default values changes maybe new Random().nextLong();
 	
 	/**
-	 * Constructor of the class, implements the parent class Command with it´s parameters.
+	 * Constructor of the class, implements the parent class Command with itï¿½s parameters.
 	 * 
 	 * @param commandInfo string containing the play command and the game to play.
 	 * @param helpInfo explanation of what the play command does.
@@ -67,6 +71,9 @@ public class PlayCommand extends Command {
 	 */
 	
 	public Command parse(String[] commandWords, Controller controller) {
+		
+		Scanner in = new Scanner(System.in);
+		
 		if (!commandWords[0].equals(commandName)) {
 			return null;
 		}
@@ -110,7 +117,25 @@ public class PlayCommand extends Command {
 				
 			}
 			else {
-				//TODO Read the values of the game;
+				System.out.print("Please enter the size of the board: ");
+				String s;
+				s = in.nextLine();
+				if(s.equals("")) {
+					System.out.println("\tUsing the default size of the board: " + size);
+				}
+				else size = Integer.parseInt(s);
+				System.out.print("Please enter the number of initial cells: ");
+				s = in.nextLine();
+				if(s.equals("")) {
+					System.out.println("\tUsing the default number of initial cells: " + initNumb);
+				}
+				else initNumb = Integer.parseInt(s);
+				System.out.print("Please enter the seed for the pseudo-random number generator: ");
+				s = in.nextLine();
+				if(s.equals("")) {
+					System.out.println("\tUsing the default seed for the pseudo-random number generator: " + seed);
+				}
+				else seed = Long.parseLong(s);
 			}
 			
 			return this;
