@@ -1,13 +1,19 @@
 package p2.util;
 
+/**
+ * @author Pablo & Diego
+ * 
+ * Class which provides certain methods to handle the string for the game.
+ */
+
 public class MyStringUtils {
 	
 	/**
-	 * generates a string which will be filled with the element introduced as parameter length times.
+	 * Generates a string which will be filled with the element introduced as parameter length times.
 	 * 
-	 * @param element string which will be repited and stored in the string to return.
+	 * @param element string which will be repeated and stored in the string to return.
 	 * @param length number of times that the parameter element will be replicated.
-	 * @return an String with the element repitted length times.
+	 * @return an String with the element repeated length times.
 	 */
 	
 	public static String repeat(String elmnt, int length) {
@@ -35,4 +41,5 @@ public class MyStringUtils {
 		
 		return out.substring((int)start, (int)end);
 	}
+	
 }

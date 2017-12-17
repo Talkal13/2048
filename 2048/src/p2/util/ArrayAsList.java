@@ -1,7 +1,12 @@
 package p2.util;
 
-
 import java.util.Random;
+
+/**
+ * @author Pablo & Diego
+ *
+ * Class which provides the method to create a list from an array and manipulate it.
+ */
 
 public class ArrayAsList {
 // The rest of the code for the ArrayAsList class is to be added here.
@@ -13,9 +18,9 @@ public class ArrayAsList {
 	private Object arrayAsList[];
 	
 	/**
-	 * Constructor of the class.
+	 * Constructor of the class, creates the list with a size of 0.
 	 * 
-	 * @param lenght lenght which will have the Arraylist of the class.
+	 * @param lenght length which will have the Arraylist of the class.
 	 */
 	
 	public ArrayAsList(int lenght) {
@@ -25,10 +30,10 @@ public class ArrayAsList {
 	}
 	
 	/**
-	 * Shuffles the Arraylist by swaping the positions of the arrayListthe length of the array times.
+	 * Shuffles the Arraylist by swapping the positions of the arrayListthe length of the array times.
 	 * 
 	 * @param list the list to be shuffled.
-	 * @param random seed used to get the random value to sawp.
+	 * @param random seed used to get the random value to swap.
 	 */
 	
 	public static void shuffle(ArrayAsList list, Random random) {
@@ -68,11 +73,11 @@ public class ArrayAsList {
 	}
 	
 	/**
-	 * Insert in the index position of the list the object introduced as paramether.
+	 * Insert in the index position of the list the object introduced as parameter.
 	 * 
 	 * @param index index where the object will be placed.
 	 * @param o object position to introduce in the list.
-	 * @return true if the setting was possible, false if it wasnt.
+	 * @return true if the setting was possible, false if it wasn't.
 	 */
 	
 	protected boolean set(int index, Object o) {
@@ -82,7 +87,7 @@ public class ArrayAsList {
 	}
 	
 	/**
-	 * Return the position (Object) which has been indicated in the paramether index.
+	 * Return the position (Object) which has been indicated in the parameter index.
 	 * 
 	 * @param index the position of the array we are interested in getting.
 	 * @return the object which contains the cell of the array.
@@ -98,8 +103,8 @@ public class ArrayAsList {
 	 * This method is static in order to be similar to the "shuffle () " method.
 	 * 
 	 * @param list which the random position position will be chosen from.
-	 * @param random seed which will be ussed to select the random position.
-	 * @return the radom position encapsulated in an object.
+	 * @param random seed which will be used to select the random position.
+	 * @return the random position encapsulated in an object.
 	 */
 	
 	public static Object choice(ArrayAsList list, Random random) {
@@ -113,6 +118,7 @@ public class ArrayAsList {
 	 * @param i position which will be overwritten and then restored from the temporal value.
 	 * @param j position which will overwrite i.
 	 */
+	
 	private static void swap(Object[] anArray, int i, int j) {
 		Object temp = anArray[i];
 		anArray[i] = anArray[j];	
@@ -120,11 +126,12 @@ public class ArrayAsList {
 	}
 	
 	/**
-	 * Insterts the object introduced as paramether at the end of the list.
+	 * Inserts the object introduced as parameter at the end of the list.
 	 * 
 	 * @param o object Position to include in the list
-	 * @return true if the object was introduced correctly or false if it wasnt.
+	 * @return true if the object was introduced correctly or false if it wasn't.
 	 */
+	
 	public boolean insert(Object o) {
 		if (!isFull() && getIndex(o) == -1) {
 			get()[size] = o;
@@ -135,10 +142,10 @@ public class ArrayAsList {
 	}
 	
 	/**
-	 * Pops one Object introduced as paramether, by moving all the elements in the list that are on its right one position to its left.
+	 * Pops one Object introduced as parameter, by moving all the elements in the list that are on its right one position to its left.
 	 * 
 	 * @param o object to pop from the list
-	 * @return true if it was possible of false if it wasnt.
+	 * @return true if it was possible of false if it wasn't.
 	 */
 	
 	public boolean pop(Object o) {
@@ -152,7 +159,7 @@ public class ArrayAsList {
 	}
 	
 	/**
-	 * Gets the index of a certain object introduced as paramether.
+	 * Gets the index of a certain object introduced as parameter.
 	 * 
 	 * @param o object position which index we want to know.
 	 * @return the index of the object in the list, or -1 if is not on the list.
@@ -182,7 +189,7 @@ public class ArrayAsList {
 	}
 
 	/**
-	 * Getter of the class for its ArrayList
+	 * Getter of the class for its ArrayList.
 	 * 
 	 * @return the arrayAsList
 	 */

@@ -30,7 +30,7 @@ public class MoveCommand extends Command {
 	}
 
 	/**
-	 * Executes the movement in the game in the direction indicated. this is performed through the move method from the class Game in the package  p2.logic
+	 * Executes the movement in the game in the direction indicated. this is performed through the move method from the class Game in the package p2.logic.
 	 * 
 	 * @param game current game which is taking place and where the direction move will be performed.
 	 * @param controller controller of the current game.

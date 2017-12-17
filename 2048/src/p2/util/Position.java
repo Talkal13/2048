@@ -78,7 +78,7 @@ public class Position {
 	}
 	
 	/**
-	 * Equalizer method, checks if the positition of the paramether and the one of the class are equals.
+	 * Equalizer method, checks if the position of the parameter and the one of the class are equals.
 	 * 
 	 * @param position2 position to compare with the one of the class.
 	 * @return true if the values x and y are equals.

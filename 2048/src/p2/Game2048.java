@@ -18,7 +18,7 @@ public class Game2048 {
 	/**
 	 * Main method
 	 *
-	 * @param args the arguments of the game
+	 * @param args the arguments of the game.
 	 */
 	
 	public static void main(String[] args) {

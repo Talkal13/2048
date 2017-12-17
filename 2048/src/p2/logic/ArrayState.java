@@ -36,7 +36,7 @@ public class ArrayState {
 	}
 	
 	/**
-	 * shifts all the positions of the stack to the one on its bottom.
+	 * Shifts all the positions of the stack to the one on its bottom.
 	 */
 	
 	private void shift() {

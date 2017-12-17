@@ -8,7 +8,7 @@ import java.lang.String;
 import p2.util.Position;
 
 /**
- * @author Pablo Vazquez and Diego Ambite
+ * @author Pablo & Diego.
  *
  * Class which represents each of the cells that compose a board.
  */
@@ -110,7 +110,7 @@ public class Cell {
 	}
 	
 	/**
-	 * returns a string containing the value of the cell.
+	 * Returns a string containing the value of the cell.
 	 * 
 	 * @return a String containing the result of the cell.
 	 */
