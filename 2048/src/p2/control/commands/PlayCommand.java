@@ -27,7 +27,7 @@ public class PlayCommand extends Command {
 	private final static int DEFAULT_INIT = 2;
 	private final static long DEFAULT_SEED = 625;
 	/**
-	 * Constructor of the class, implements the parent class Command with it�s parameters.
+	 * Constructor of the class, implements the parent class Command with i's parameters.
 	 * 
 	 * @param commandInfo string containing the play command and the game to play.
 	 * @param helpInfo explanation of what the play command does.
@@ -121,7 +121,7 @@ public class PlayCommand extends Command {
 						try {
 							seed = Integer.parseInt(commandWords[4]);
 						} catch (NumberFormatException e) {
-							System.out.println("The fith argument must be an integer");
+							System.out.println("The fifth argument must be an integer");
 						}
 					}
 				}
