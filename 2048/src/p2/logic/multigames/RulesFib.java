@@ -21,7 +21,8 @@ public class RulesFib implements GameRules {
 
 	@Override
 	public int merge(Cell self, Cell other) {
-		if (other.getValue() == next(self.getValue()) || self.getValue() == next(other.getValue())) {
+		if (self.isEmpty() || other.isEmpty()) return 0;
+		if (other.getValue() == next(self.getValue()) || self.getValue() == next(other.getValue()) || (self.getValue() == 1 && other.getValue() == 1)) {
 			self.setValue(other.getValue() + self.getValue());
 			other.emptyCell();
 			return self.getValue();

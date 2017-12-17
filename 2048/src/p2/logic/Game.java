@@ -96,7 +96,7 @@ public class Game {
 	public void changeGame(int sizeBoard, int numCells, long seed, GameRules rules) {
 		size = sizeBoard;
 		initCells = numCells;
-		myRandom = (seed == -1) ? new Random(seed) : new Random();
+		myRandom = (seed != -1) ? new Random(seed) : new Random();
 		currentRules = rules;
 		board = new Board(sizeBoard);
 		for (int i = 0; i < numCells; i++) {
