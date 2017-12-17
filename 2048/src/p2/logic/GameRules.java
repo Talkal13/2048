@@ -31,6 +31,7 @@ public interface GameRules {
 		ArrayAsList.shuffle(board.getFree(), rand);
 		Position pos = (Position) board.getFree().get(0);
 		addNewCellAt(board, pos, rand);
+		board.removeFree(pos);
 	}
 	
 	default void initBoard(Board board, int numCells, Random rand) {

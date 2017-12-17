@@ -292,6 +292,10 @@ public class Board {
 		moveFree_Right();
 		return r;
 	}
+	
+	public void removeFree(Position pos) {
+		free.pop(pos);
+	}
 
 	/**
 	 * Performs a move to the left in the board of the game.
