@@ -27,7 +27,6 @@ public class MoveResult {
 		return score;
 	}
 	
-	
 	/**
 	 * Setter for the value of score.
 	 * 
@@ -37,12 +36,6 @@ public class MoveResult {
 	public void setScore(int s) {
 		this.score = s;
 	}
-	
-	/**
-	 * Setter for the value of the highest cell.
-	 * 
-	 * @param v the value
-	 */
 	
 	/** 
 	 * Adds the score of two MoveResult objects. 
@@ -54,15 +47,21 @@ public class MoveResult {
 		score += a.score;
 	}
 	
+	/** 
+	 * Adds to the score an integer passed as parameter. 
+	 *  
+	 * @param a integer to add to the score.
+	 */
+	
 	public void addScore(int a) {
 		score += a;
 	}
 	
 	/**
-	 * Checks wheter a score introduced as paramether and the one in the class is the same.
+	 * Checks whether a score introduced as parameter and the one in the class is the same.
 	 * 
 	 * @param score to check if is equal.
-	 * @return true if is equal or false if doesnt.
+	 * @return true if is equal or false if doesn't.
 	 */
 	
 	public boolean isEqualScore(int score) {

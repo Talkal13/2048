@@ -10,7 +10,6 @@ import p2.util.MoveResult;
 import p2.util.Position;
 
 /**
- *
  * @author Pablo and Diego
  *
  * Class which represents the 2048 game.
@@ -152,7 +151,7 @@ public class Game {
 	}
 	
 	/**
-	 * checks if the stack of undo movements is empty.
+	 * Checks if the stack of undo movements is empty.
 	 * 
 	 * @return true if is empty or false if is not.
 	 */
@@ -162,7 +161,7 @@ public class Game {
 	}
 	
 	/**
-	 * checks if the stack of redo movements is empty.
+	 * Checks if the stack of redo movements is empty.
 	 * 
 	 * @return true if is empty or false if is not.
 	 */
@@ -172,7 +171,7 @@ public class Game {
 	}
 	
 	/**
-	 * Redo the last move in the stack
+	 * Redo the last move in the stack.
 	 */
 	
 	public void redo() {

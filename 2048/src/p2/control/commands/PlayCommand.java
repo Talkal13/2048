@@ -167,6 +167,7 @@ public class PlayCommand extends Command {
 	 * 
 	 * @return the attribute seed of this class.
 	 */
+	
 	public long getSeed() {
 		return seed;
 	}

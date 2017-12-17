@@ -25,7 +25,7 @@ public class Controller {
 	private boolean gameEnd, gameState, errorCode;
 
 	/**
-	 * Constructor of the class Controller, which will control the game introduced as paramether.
+	 * Constructor of the class Controller, which will control the game introduced as parameter.
 	 *
 	 * @param currentGame game to control.
 	 */
@@ -143,7 +143,8 @@ public class Controller {
 	}
 	
 	/**
-	 * Method which receives an error code and depending which, returns a string describing in deeper detailed what happened to notify the user about what went wrong.
+	 * Method which receives an error code and depending which, returns a string describing in deeper detailed
+	 * what happened to notify the user about what went wrong.
 	 * 
 	 * @param code one of the possible error that can occur during the interaction with the program, enumerated in the class ErrorCode.
 	 * @return A string with the text which explains more detailed what went wrong, in case that is not one of the error in the cases 
@@ -163,7 +164,6 @@ public class Controller {
 		}
 	}
  
-
 	/**
 	 * Shows the different help messages to help the user about the different possibilities of movement
 	 */
@@ -174,6 +174,5 @@ public class Controller {
 		System.out.println("Help: print this help message");
 		System.out.println("Exit: terminate the program");
 	}
-
-
+	
 }

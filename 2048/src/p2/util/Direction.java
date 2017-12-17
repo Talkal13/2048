@@ -11,7 +11,7 @@ public class Direction {
 	DirectionOption dir;
 	
 	/**
-	 * Constructor, instantiates a Direction Object with a direction introduced as paramether.
+	 * Constructor, instantiates a Direction Object with a direction introduced as parameter.
 	 *
 	 * @param x direction to achieve the movement.
 	 */

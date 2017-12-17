@@ -104,7 +104,6 @@ public class Board {
 	
 	/**
 	 * Resets the board by emptying all it's cells.
-	 *
 	 */
 
 	public void reset() {
@@ -294,6 +293,11 @@ public class Board {
 		return r;
 	}
 	
+	/**
+	 * removes the position indicates as parameter from the list of free positions.
+	 * 
+	 * @param pos position where is the free position of the array to remove. 
+	 */
 	public void removeFree(Position pos) {
 		free.pop(pos);
 	}
