@@ -3,15 +3,11 @@ package p2.logic;
 import p2.util.*;
 
 /**
- *
  * @author Pablo and Diego
  *
- * Class which instance store the current state of a 2048 board and provides the methods to manipulate that state
+ * Class which instance store the current state of a 2048 board and provides the methods to manipulate that state.
  *
  */
-
-
-
 
 public class Board {
 
@@ -20,9 +16,9 @@ public class Board {
 	private PositionAsList free;
 
 	/**
-	 * Construct of the class Board. creates a new board with the specified size
+	 * Construct of the class Board. creates a new board with the specified size.
 	 *
-	 * @param size saves the dimension of the board
+	 * @param size saves the dimension of the board.
 	 */
 
 	public Board(int size){
@@ -37,13 +33,31 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * Getter method of the attribute free.
+	 * 
+	 * @return the PositionAsList attribute free.
+	 */
+	
 	public ArrayAsList getFree() {
 		return free;
 	}
 
+	/**
+	 * Getter method of the attribute size.
+	 * 
+	 * @return the  attribute size.
+	 */
+	
 	public int getSize() {
 		return size;
 	}
+	
+	/**
+	 * Calculates the value of the cell with highest value.
+	 * 
+	 * @return the highest value in the board.
+	 */
 	
 	public int getMax() {
 		int max = board[0][0].getValue();
@@ -55,6 +69,12 @@ public class Board {
 		return max;
 	}
 	
+	/**
+	 * Calculates the value of the cell with lowest value.
+	 * 
+	 * @return the lowest value in the board.
+	 */
+	
 	public int getMin() {
 		int min = board[0][0].getValue();
 		for (int i = 0; i < size; i++) {
@@ -64,6 +84,12 @@ public class Board {
 		}
 		return min;
 	}
+	
+	/**
+	 * Checks if the board have all it's cells occupied.
+	 * 
+	 * @return true is the board is full and false if is not.
+	 */
 	
 	public boolean isFull() {
 		boolean x = true;
@@ -75,9 +101,8 @@ public class Board {
 		return x;
 	}
 	
-	
 	/**
-	 * resets the board by emptying all it's cells
+	 * Resets the board by emptying all it's cells.
 	 *
 	 */
 
@@ -97,6 +122,7 @@ public class Board {
 	 * 
 	 * @return true in the case that there is no possibility of movement in any cell or false if there is.
 	 */
+	
 	public boolean noMoves() {
 		for (int i = 1; i < size - 1; i++) {
 			for (int j = 1; j < size - 1; j++) {
@@ -112,10 +138,10 @@ public class Board {
 	}
 
 	/**
-	 * Sets the value of the cell at a given position on the board
+	 * Sets the value of the cell at a given position on the board.
 	 *
-	 * @param pos position of the cell
-	 * @param value value which will be settled in the cell on the position pos
+	 * @param pos position of the cell.
+	 * @param value value which will be settled in the cell on the position pos.
 	 */
 
 	public void setCell(Position pos, int value){
@@ -124,20 +150,19 @@ public class Board {
 	}
 
 	/**
-	 * checks if the cell in the position given by the paramethers is empty or not
+	 * Checks if the cell in the position given by the parameters is empty or not.
 	 *
-	 * @param row row of the cell to check
-	 * @param col column of the cell to check
-	 * @return true in case the cell is empty or false if is not empty
+	 * @param row row of the cell to check.
+	 * @param col column of the cell to check.
+	 * @return true in case the cell is empty or false if is not empty.
 	 */
+	
 	public boolean isBoardEmpty(int row, int col) {
 		return this.board[row][col].isEmpty();
 	}
 
-
-
 	/**
-	 * Draws the board in that exact moment of the game, with all the differet values that each cell has.
+	 * Draws the board in that exact moment of the game, with all the different values that each cell has.
 	 */
 	
 	public String toString() {
@@ -167,7 +192,7 @@ public class Board {
 	}
 
 	/**
-	 * Goes through the right side of the board and for each position,the cell in that position is swapped for it's trasposed.
+	 * Goes through the right side of the board and for each position,the cell in that position is swapped for it's transposed.
 	 * The transpose of one position is the one which has the same value for the row and column but inverted.
 	 */
 
@@ -197,7 +222,16 @@ public class Board {
 			}
 		}
 	}
-
+	
+	/**
+	 * Check if two cells passed as attribute can merge.
+	 * 
+	 * @param a first cell to check.
+	 * @param b second cell to check.
+	 * 
+	 * @return true if the merge can happen or false if doesn't.
+	 */
+	
 	private boolean canMerge(Cell a, Cell b) {
 		if (!a.isEmpty() && !b.isEmpty() && a.getValue() == b.getValue()) {
 			return true;
@@ -205,6 +239,15 @@ public class Board {
 		return false;
 	}
 
+	/**
+	 * Check if one cell can move to the cell in its right.
+	 * 
+	 * @param a cell which must has some value to move to the right.
+	 * @param b cell that is on the right and should be empty.
+	 * 
+	 * @return true if the movement can happen or not.
+	 */
+	
 	private boolean canMoveFree(Cell a, Cell b) {
 		if (!a.isEmpty() && b.isEmpty()) {
 			return true;
@@ -212,6 +255,10 @@ public class Board {
 		return false;
 	}
 
+	/**
+	 * Moves all the tokens to the most right position going through all the empty cells.
+	 */
+	
 	private void moveFree_Right() {
 		Cell a, b;
 		for (int i = 0; i < size; i++) {
@@ -230,9 +277,8 @@ public class Board {
 	}
 
 	/**
-	 * Performs a move to the right in the board of the game.
+	 * Performs a move to the right in the board of the game, making merges.
 	 */
-
 
 	private MoveResult move_right(GameRules currentRules) {
 		MoveResult r = new MoveResult();
@@ -254,7 +300,7 @@ public class Board {
 	/**
 	 * Performs a move to the left in the board of the game.
 	 *
-	 * @return the object MoveResult that results of the move to the left on the game
+	 * @return the object MoveResult that results of the move to the left on the game.
 	 */
 
 	private MoveResult move_left(GameRules currentRules) {
@@ -268,7 +314,7 @@ public class Board {
 	/**
 	 * Performs a move down in the board of the game.
 	 *
-	 * @return the object MoveResult that results of the moving down on the game
+	 * @return the object MoveResult that results of the moving down on the game.
 	 */
 
 	private MoveResult move_down(GameRules currentRules) {
@@ -282,7 +328,7 @@ public class Board {
 	/**
 	 * Performs a move up in the board of the game.
 	 *
-	 * @return the object MoveResult that results of the moving up on the game
+	 * @return the object MoveResult that results of the moving up on the game.
 	 */
 
 	private MoveResult move_up(GameRules currentRules) {
@@ -294,10 +340,10 @@ public class Board {
 	}
 
 	/**
-	 * Checks the paramether which tell us the direction to perform the movement, and calls to the corresponding method
+	 * Checks the parameter which tell us the direction to perform the movement, and calls to the corresponding method.
 	 *
-	 * @param dir direction where we want to move
-	 * @return the object MoveResult that results of the moving to the desired direction on the game
+	 * @param dir direction where we want to move.
+	 * @return the object MoveResult that results of the moving to the desired direction on the game.
 	 */
 
 	public MoveResult executeMove(Direction dir, GameRules currentRules) {
@@ -317,6 +363,11 @@ public class Board {
 		return r;
 	}
 	
+	/**
+	 * Generates an array of arrays containing just the values of the cells in the same corresponding position of the board.
+	 * 
+	 * @return the array of arrays with all the values of the board.
+	 */
 	
 	public int[][] getState() {
 		int [][] compactBoard = new int[size][size];
@@ -327,6 +378,12 @@ public class Board {
 		}
 		return compactBoard;
 	}
+	
+	/**
+	 * Given an array of arrays this method sets the value of each position to the one corresponding from the board.
+	 * 
+	 * @param aState array of array to set its values to the ones in the board.
+	 */
 	
 	public void setState(int [][] aState) {
 		for (int i = 0; i < size; i++) {

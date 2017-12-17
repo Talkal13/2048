@@ -15,8 +15,8 @@ public abstract class NoParamsCommand extends Command {
 	/**
 	 * Constructor of the class implements the parent class Command with it´s parameters.
 	 * 
-	 * @param commandInfo
-	 * @param helpInfo
+	 * @param commandInfo string containing the command.
+	 * @param helpInfo  explanation of what the command does.
 	 */
 	
 	public NoParamsCommand(String commandInfo, String helpInfo) {

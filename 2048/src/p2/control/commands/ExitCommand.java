@@ -15,9 +15,10 @@ public class ExitCommand extends NoParamsCommand {
 	/**
 	 * Constructor of the class implements the parent class Command with it´s parameters.
 	 * 
-	 * @param commandInfo
-	 * @param helpInfo
+	 * @param commandInfo string containing the exit command.
+	 * @param helpInfo explanation of what the exit command does.
 	 */
+	
 	public ExitCommand(String commandInfo, String helpInfo) {
 		super(commandInfo, helpInfo);
 	}

@@ -16,12 +16,14 @@ public abstract class Command {
 	 private String commandText;
 	 protected final String commandName;
 	 
-	 //TO-DO
 	 /**
 	  * Constructor of the abstract class.
+	  * Once it´s called it will assign the parameters commandInfo and helpInfo to the attributes commandText and helpText respectively.
+	  * In addition commandText will be slip and the first word set as the attribute commandName. In that way once its called, all it´s 
+	  * attributes would be defined.
 	  * 
-	  * @param commandInfo
-	  * @param helpInfo
+	  * @param commandInfo string containing the command to perform.
+	  * @param helpInfo explanation of what that command does.
 	  */
 	 
 	 public Command(String commandInfo, String helpInfo) {

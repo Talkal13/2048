@@ -1,11 +1,11 @@
 package p2;
 
 import java.util.Random;
-
 import p2.control.Controller;
 import p2.logic.Game;
 import p2.logic.GameRules;
 import p2.logic.multigames.Rules2048;
+
 /**
  * @author Pablo and Diego
  *

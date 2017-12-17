@@ -6,6 +6,13 @@ import p2.logic.Board;
 import p2.util.ArrayAsList;
 import p2.util.Position;
 
+/**
+ * @author Pablo & Diego
+ * 
+ * Interface of the rules of the different games.
+ *
+ */
+
 public interface GameRules {
 	void addNewCellAt(Board board, Position pos, Random rand);
 	int merge(Cell self, Cell other);
