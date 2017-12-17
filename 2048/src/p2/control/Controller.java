@@ -84,6 +84,7 @@ public class Controller {
 				control.execute(game, this);
 			else if (errorCode) {
 				System.out.println(Controller.getErrorMessage(ErrorCode.BAD_COMMAND));
+				this.setNoPrintGameState(true);
 			}
 			if (!this.gameState) {
 				System.out.println(game);
@@ -154,7 +155,7 @@ public class Controller {
 	public static String getErrorMessage(ErrorCode code) {
 		switch (code) {
 		case BAD_COMMAND:
-			return "Unknown command";
+			return "Unknown command. Use ’help’ to see the available commands";
 		case BAD_ARGUMENT:
 			return "Unknown direction for move command";
 		case NO_ARGUMENT:

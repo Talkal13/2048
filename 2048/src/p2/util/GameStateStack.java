@@ -20,7 +20,10 @@ public class GameStateStack {
 	
 	public GameState pop() {
 		if (isEmpty()) return null;
-		return buffer[index];
+		else {
+			index--;
+			return buffer[index];
+		}
 	}
 	
 	/**

@@ -103,7 +103,7 @@ public class PlayCommand extends Command {
 			else {
 				System.out.println("Play must be followed by a game type: original, fib, inverse\n");
 				controller.setErrorCode(false);
-				controller.setNoPrintGameState(false);
+				controller.setNoPrintGameState(true);
 				return null;
 			}
 			String s;
