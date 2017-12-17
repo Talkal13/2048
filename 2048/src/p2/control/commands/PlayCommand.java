@@ -19,9 +19,13 @@ import p2.util.GameType;
 public class PlayCommand extends Command {
 	
 	private GameType type;
-	private int size = 4, initNumb = 2; // by default a 4*4 board with 2 initial tokens
-	private long seed = 625;// the seed for the random placement of the tokens //TODO the default values changes maybe new Random().nextLong();
+	private int size = -4, initNumb = -2; // by default a 4*4 board with 2 initial tokens
+	private long seed = -625;// the seed for the random placement of the tokens //TODO the default values changes maybe new Random().nextLong();
 	
+	
+	private final static int DEFAULT_SIZE = 4;
+	private final static int DEFAULT_INIT = 2;
+	private final static long DEFAULT_SEED = 625;
 	/**
 	 * Constructor of the class, implements the parent class Command with it�s parameters.
 	 * 
@@ -78,21 +82,28 @@ public class PlayCommand extends Command {
 			return null;
 		}
 		else {
-			switch(commandWords[1]) {
-			case "original":
-				type = GameType.ORIG;
-				break;
-			case "inverse":
-				type = GameType.INV;
-				break;
-			case "fib":
-				type = GameType.FIB;
-				break;
-			default:
-				System.out.println("Unknown game type for play command");
+			if (commandWords.length > 1) {
+				switch(commandWords[1]) {
+				case "original":
+					type = GameType.ORIG;
+					break;
+				case "inverse":
+					type = GameType.INV;
+					break;
+				case "fib":
+					type = GameType.FIB;
+					break;
+				default:
+					System.out.println("Unknown game type for play command");
+					controller.setErrorCode(false);
+					controller.setNoPrintGameState(true);
+					return null;
+				}
+			}
+			else {
+				System.out.println("Play must be followed by a game type: original, fib, inverse\n");
 				controller.setErrorCode(false);
-				controller.setNoPrintGameState(true);
-				return null;
+				controller.setNoPrintGameState(false);
 			}
 			if (commandWords.length > 2) {
 				try {
@@ -117,25 +128,79 @@ public class PlayCommand extends Command {
 				
 			}
 			else {
-				System.out.print("Please enter the size of the board: ");
 				String s;
-				s = in.nextLine();
-				if(s.equals("")) {
-					System.out.println("\tUsing the default size of the board: " + size);
+				while (size < 0) {
+					System.out.print("Please enter the size of the board: ");
+					s = in.nextLine();
+					if(s.equals("")) {
+						size = DEFAULT_SIZE;
+						System.out.println("\tUsing the default size of the board: " + size);
+						break;
+					}
+					else {
+						try {
+							size = Integer.parseInt(s);
+							if (size > 0)
+								break;
+							else
+								System.out.println("\tThe size of the board must be positive");
+						} catch (NumberFormatException e) {
+							size = -1;
+							System.out.println("\tPlease provide a single positive integer or press return");
+						}
+						
+					}
 				}
-				else size = Integer.parseInt(s);
-				System.out.print("Please enter the number of initial cells: ");
-				s = in.nextLine();
-				if(s.equals("")) {
-					System.out.println("\tUsing the default number of initial cells: " + initNumb);
+				while (initNumb < 0) {
+					System.out.print("Please enter the number of initial cells: ");
+					s = in.nextLine();
+					if(s.equals("")) {
+						initNumb = DEFAULT_INIT;
+						System.out.println("\tUsing the default number of initial cells: " + initNumb);
+						break;
+					}
+					else {
+						try {
+							initNumb = Integer.parseInt(s);
+							if (initNumb > 0)
+								break;
+							else
+								System.out.println("\tThe initial number of cells must be positive");
+						} catch (NumberFormatException e) {
+							System.out.println("\tPlease provide a single positive integer or press return");
+							initNumb = -1;
+						}
+						
+					}
 				}
-				else initNumb = Integer.parseInt(s);
-				System.out.print("Please enter the seed for the pseudo-random number generator: ");
-				s = in.nextLine();
-				if(s.equals("")) {
-					System.out.println("\tUsing the default seed for the pseudo-random number generator: " + seed);
+				while (seed < 0) {
+					System.out.print("Please enter the seed for the pseudo-random number generator: ");
+					s = in.nextLine();
+					if(s.equals("")) {
+						seed = DEFAULT_SEED;
+						System.out.println("\tUsing the default seed for the pseudo-random number generator: " + seed);
+						break;
+					}
+					else {
+						try {
+							seed = Integer.parseInt(s);
+							if (seed > 0)
+								break;
+							else
+								System.out.println("\tThe seed must be positive");
+						} catch (NumberFormatException e) {
+							System.out.println("\tPlease provide a single positive integer or press return");
+							seed = -1;
+						}
+						
+					}
 				}
-				else seed = Long.parseLong(s);
+				if (size < initNumb) {
+					System.out.println("The number of initial cells must be less than the number of cells on the board");
+					controller.setErrorCode(false);
+					controller.setNoPrintGameState(true);
+					return null;
+				}
 			}
 			
 			return this;
