@@ -19,13 +19,12 @@ import p2.util.GameType;
 public class PlayCommand extends Command {
 	
 	private GameType type;
-	private int size = -4, initNumb = -2; // by default a 4*4 board with 2 initial tokens
-	private long seed = -625;// the seed for the random placement of the tokens //TODO the default values changes maybe new Random().nextLong();
+	private int size = 4, initNumb = 2; 
+	private long seed;
 	
 	
-	private final static int DEFAULT_SIZE = 4;
-	private final static int DEFAULT_INIT = 2;
-	private final static long DEFAULT_SEED = 625;
+	private final static int DEFAULT_SIZE = 4; // by default a 4*4 board with 2 initial tokens
+	private final static int DEFAULT_INIT = 2; // the seed for the random placement of the tokens
 	/**
 	 * Constructor of the class, implements the parent class Command with i's parameters.
 	 * 
@@ -107,6 +106,7 @@ public class PlayCommand extends Command {
 				return null;
 			}
 			String s;
+			size = -1;
 			while (size < 0) {
 				System.out.print("Please enter the size of the board: ");
 				s = in.nextLine();
@@ -129,6 +129,7 @@ public class PlayCommand extends Command {
 					
 				}
 			}
+			initNumb = -1;
 			while (initNumb < 0) {
 				System.out.print("Please enter the number of initial cells: ");
 				s = in.nextLine();
@@ -151,11 +152,12 @@ public class PlayCommand extends Command {
 					
 				}
 			}
+			seed = -1;
 			while (seed < 0) {
 				System.out.print("Please enter the seed for the pseudo-random number generator: ");
 				s = in.nextLine();
 				if(s.equals("")) {
-					seed = DEFAULT_SEED;
+					seed = new Random().nextInt(1000);
 					System.out.println("\tUsing the default seed for the pseudo-random number generator: " + seed);
 					break;
 				}
