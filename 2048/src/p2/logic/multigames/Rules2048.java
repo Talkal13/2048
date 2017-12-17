@@ -20,9 +20,9 @@ public class Rules2048 implements GameRules {
 	@Override
 	public int merge(Cell self, Cell other) {
 		if (self.getValue() == other.getValue()) {
-			other.setValue(self.getValue() * 2);
-			self.emptyCell();
-			return other.getValue();
+			self.setValue(self.getValue() * 2);
+			other.emptyCell();
+			return self.getValue();
 		}
 		else return 0;
 	}

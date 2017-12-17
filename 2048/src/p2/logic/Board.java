@@ -284,13 +284,9 @@ public class Board {
 		MoveResult r = new MoveResult();
 		moveFree_Right();
 		for (int i = 0; i < size; i++) {
-			for (int j = size - 1; j > 0; j--) {
-				for (int k = j; k < size; k++) {
-					if (canMerge(board[i][k - 1], board[i][k]) ) {
-						r.setScore(board[i][k - 1].doMerge(board[i][k], currentRules));
-						free.insert(board[i][k - 1].getPos());
-					}
-				}
+			for (int j = size - 1; j >= 0; j--) {
+				r.setScore(board[i][j].doMerge(board[i][j + 1], currentRules));
+				free.insert(board[i][j].getPos());
 			}
 		}
 		moveFree_Right();

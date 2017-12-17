@@ -26,8 +26,8 @@ public class RulesInverse implements GameRules {
 	@Override
 	public int merge(Cell self, Cell other) {
 		if (self.getValue() == other.getValue()) {
-			other.setValue(self.getValue() / 2);
-			self.emptyCell();
+			self.setValue(self.getValue() / 2);
+			other.emptyCell();
 			int pow = MyMathsUtil.log(2, self.getValue());
 			return (int) Math.pow(2, MAX - pow);
 		}

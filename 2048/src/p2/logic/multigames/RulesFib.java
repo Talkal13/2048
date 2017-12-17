@@ -21,17 +21,16 @@ public class RulesFib implements GameRules {
 
 	@Override
 	public int merge(Cell self, Cell other) {
-		if (other.getValue() == next(self.getValue())) {
-			other.setValue(self.getValue() + other.getValue());
-			self.emptyCell();
-			return other.getValue();
+		if (other.getValue() == next(self.getValue()) || self.getValue() == next(other.getValue())) {
+			self.setValue(other.getValue() + self.getValue());
+			other.emptyCell();
+			return self.getValue();
 		}
 		return 0;
 	}
 	
 	private int next(int numb, int sum, int bef) {
-		if (numb == 1) return 1;
-		else if (sum == numb) return sum + bef;
+		if (sum == numb) return sum + bef;
 		else {
 			return next(numb, sum + bef, sum);
 		}
