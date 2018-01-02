@@ -2,6 +2,7 @@ package p2.control.commands;
 
 import p2.control.Controller;
 import p2.control.ErrorCode;
+import p2.exceptions.ParsingException;
 import p2.logic.Game;
 import p2.util.Direction;
 import p2.util.DirectionOption;
@@ -19,7 +20,7 @@ public class MoveCommand extends Command {
 	private Direction dir;
 	
 	/**
-	 * Constructor of the class implements the MoveCommand class Command with it´s parameters.
+	 * Constructor of the class implements the MoveCommand class Command with itï¿½s parameters.
 	 * 
 	 * @param commandInfo string containing the move command and the direction of the movement.
 	 * @param helpInfo explanation of what the move command does.
@@ -50,13 +51,13 @@ public class MoveCommand extends Command {
 	 * @return the command itself with the dir attribute already contending the direction of the movement in the case that all went right.
 	 * If the first word parsed wasn't move, a null will be returned. Also if the second word is not one of the possible directions, in this case in addition
 	 * the errorCode and NoPrintGameSate attributes from controller will be settled and the error BAD_ARGUMENT will be shown.
+	 * @throws ParsingException 
 	 */
 	
-	public Command parse(String[] commandWords, Controller controller) {
+	public Command parse(String[] commandWords, Controller controller) throws ParsingException {
 		
 		if (!commandWords[0].equals(this.commandName)) {
 			return null;
-			
 		} 
 		else {
 			try {
@@ -76,14 +77,14 @@ public class MoveCommand extends Command {
 				default:
 					controller.setErrorCode(false);
 					controller.setNoPrintGameState(true);
-					System.out.println(Controller.getErrorMessage(ErrorCode.BAD_ARGUMENT));
-					return null;
+					throw new ParsingException("Unknown direction for move command");
+					
 				}
 			} catch (ArrayIndexOutOfBoundsException e) {
 				controller.setErrorCode(false);
 				controller.setNoPrintGameState(true);
-				System.out.println(Controller.getErrorMessage(ErrorCode.NO_ARGUMENT));
-				return null;
+				throw new ParsingException("Move must be followed by a direction: up, down, left, right");
+				
 			}
 		}
 		return this;

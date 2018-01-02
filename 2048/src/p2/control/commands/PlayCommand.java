@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import p2.control.Controller;
+import p2.exceptions.ParsingException;
 import p2.logic.Game;
 import p2.logic.multigames.*;
 import p2.util.GameType;
@@ -19,7 +20,7 @@ import p2.util.GameType;
 public class PlayCommand extends Command {
 	
 	private GameType type;
-	private int size = 4, initNumb = 2; 
+	private int size = 4, initNumb = 2;
 	private long seed;
 	
 	
@@ -71,9 +72,10 @@ public class PlayCommand extends Command {
 	 * @return the command itself with the type attribute already contending the modality of the game to switch to, in the case that all went right.
 	 * If the first word parsed wasn't play, a null will be returned. Also if the second word is not one of the possible games, or one of the other
 	 * 3 Parameters to perform the switch is not in the correct format.
+	 * @throws ParsingException 
 	 */
 	
-	public Command parse(String[] commandWords, Controller controller) {
+	public Command parse(String[] commandWords, Controller controller) throws ParsingException {
 		
 		Scanner in = new Scanner(System.in);
 		
@@ -93,17 +95,15 @@ public class PlayCommand extends Command {
 					type = GameType.FIB;
 					break;
 				default:
-					System.out.println("Unknown game type for play command");
 					controller.setErrorCode(false);
 					controller.setNoPrintGameState(true);
-					return null;
+					throw new ParsingException("Unknown game type for play command");
 				}
 			}
 			else {
-				System.out.println("Play must be followed by a game type: original, fib, inverse\n");
 				controller.setErrorCode(false);
 				controller.setNoPrintGameState(true);
-				return null;
+				throw new ParsingException("Play must be followed by a game type: original, fib, inverse\n");
 			}
 			String s;
 			size = -1;
@@ -176,10 +176,9 @@ public class PlayCommand extends Command {
 				}
 			}
 			if (size < initNumb) {
-				System.out.println("The number of initial cells must be less than the number of cells on the board");
 				controller.setErrorCode(false);
 				controller.setNoPrintGameState(true);
-				return null;
+				throw new ParsingException("The number of initial cells must be less than the number of cells on the board");
 			}
 		}
 		

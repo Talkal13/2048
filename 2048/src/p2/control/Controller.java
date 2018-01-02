@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import p2.control.commands.Command;
 import p2.control.invoker.CommandParser;
+import p2.exceptions.ParsingException;
 import p2.logic.Game;
 import p2.util.Direction;
 import p2.util.DirectionOption;
@@ -79,16 +80,24 @@ public class Controller {
 			System.out.print("Command > ");
 			input = in.nextLine().toLowerCase();
 			String[] parts = input.split("\\s+");
-			Command control = CommandParser.parseCommand(parts, this);
-			if (control != null) 
+			Command control;
+			try {
+				control = CommandParser.parseCommand(parts, this);
 				control.execute(game, this);
-			else if (errorCode) {
-				System.out.println(Controller.getErrorMessage(ErrorCode.BAD_COMMAND));
-				this.setNoPrintGameState(true);
+				if (!this.gameState) {
+					System.out.println(game);
+				}
+				/*
+				if (errorCode) {
+					System.out.println(Controller.getErrorMessage(ErrorCode.BAD_COMMAND));
+					this.setNoPrintGameState(true);
+				}
+				*/
+			} catch (ParsingException e) {
+				System.out.println(e.getMessage());
 			}
-			if (!this.gameState) {
-				System.out.println(game);
-			}
+				
+			
 		}
 			/*
 			String[] parts = input.split(" ");

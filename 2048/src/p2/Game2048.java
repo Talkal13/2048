@@ -30,6 +30,9 @@ public class Game2048 {
 			nums = Integer.parseInt(args[1]);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			seed = new Random().nextInt(1000);
+		} catch (NumberFormatException e) {
+			System.out.println("The command-line arguments must be numbers");
+			return;
 		}
 		
 		if(args.length == 2){

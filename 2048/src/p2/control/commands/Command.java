@@ -1,6 +1,7 @@
  package p2.control.commands;
 
 import p2.control.Controller;
+import p2.exceptions.ParsingException;
 import p2.logic.Game;
 
 /**
@@ -18,8 +19,8 @@ public abstract class Command {
 	 
 	 /**
 	  * Constructor of the abstract class.
-	  * Once it´s called it will assign the parameters commandInfo and helpInfo to the attributes commandText and helpText respectively.
-	  * In addition commandText will be slip and the first word set as the attribute commandName. In that way once its called, all it´s 
+	  * Once itï¿½s called it will assign the parameters commandInfo and helpInfo to the attributes commandText and helpText respectively.
+	  * In addition commandText will be slip and the first word set as the attribute commandName. In that way once its called, all itï¿½s 
 	  * attributes would be defined.
 	  * 
 	  * @param commandInfo string containing the command to perform.
@@ -48,9 +49,10 @@ public abstract class Command {
 	  * @param commandWords string which contains in each position each word introduced as command.
 	  * @param controller which rules the games and performs the corresponding actions.
 	  * @return the corresponding command to perform. 
+	  * @throws ParsingException 
 	  */
 	 
-	 public abstract Command parse(String[] commandWords, Controller controller);
+	 public abstract Command parse(String[] commandWords, Controller controller) throws ParsingException;
 	 
 	 /**
 	  * Method which builds the returned string composed by the attribute commandText a space and the other attribute helpText.

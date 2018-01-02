@@ -2,6 +2,7 @@ package p2.control.invoker;
 
 import p2.control.Controller;
 import p2.control.commands.*;
+import p2.exceptions.ParsingException;
 
 /**
  * @author Pablo & Diego
@@ -27,14 +28,15 @@ public class CommandParser {
 	 * 
 	 * @param commandWords array of string which contain the command.
 	 * @param controller of the current game.
-	 * @return the corresponding command, this is the one which during the loop won�t return null, in case any fixes, a null would be returned.
+	 * @return the corresponding command, this is the one which during the loop won�t return null, in case any fixes, a null would be returned.
+	 * @throws ParsingException 
 	 */
 	
-	public static Command parseCommand(String[] commandWords, Controller controller) {
+	public static Command parseCommand(String[] commandWords, Controller controller) throws ParsingException {
 		for (Command x : availableCommands) {
 			if (x.parse(commandWords, controller) != null) return x;
 		}
-		return null;
+		throw new ParsingException("Unknown command. Use ’help’ to see the available commands");
 	}
 	
 	/**
