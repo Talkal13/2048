@@ -1,5 +1,7 @@
 package p2.logic;
 
+import java.util.EmptyStackException;
+
 import p2.util.GameState;
 
 /**
@@ -33,6 +35,8 @@ public class ArrayState {
 			shift();
 		}
 		array[size] = state;
+		if (size != CAPACITY)
+			size++;
 	}
 	
 	/**
@@ -52,6 +56,7 @@ public class ArrayState {
 	 */
 	
 	public GameState pop() {
+		if (size == 0) throw new EmptyStackException();
 		size--;
 		return array[size + 1];
 	}

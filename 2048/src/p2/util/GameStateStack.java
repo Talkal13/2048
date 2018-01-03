@@ -1,5 +1,7 @@
 package p2.util;
 
+import java.util.EmptyStackException;
+
 /**
  * @author Pablo & Diego
  *
@@ -19,6 +21,7 @@ public class GameStateStack {
 	 */
 	
 	public GameState pop() {
+		if (index == 0) throw new EmptyStackException();
 		index--;
 		return buffer[index];
 	}

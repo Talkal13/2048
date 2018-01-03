@@ -1,6 +1,7 @@
  package p2.control.commands;
 
 import p2.control.Controller;
+import p2.exceptions.ExecutionException;
 import p2.exceptions.ParsingException;
 import p2.logic.Game;
 
@@ -39,9 +40,10 @@ public abstract class Command {
 	  * 
 	  * @param game current game which is taking place.
 	  * @param controller which rules the games and performs the corresponding actions.
+	 * @throws ExecutionException 
 	  */
 	 
-	 public abstract void execute(Game game, Controller controller);
+	 public abstract void execute(Game game, Controller controller) throws ExecutionException;
 	 
 	 /**
 	  * Abstract parser of the class which parses the command introduced.

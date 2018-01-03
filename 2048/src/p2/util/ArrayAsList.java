@@ -80,8 +80,8 @@ public class ArrayAsList {
 	 * @return true if the setting was possible, false if it wasn't.
 	 */
 	
-	protected boolean set(int index, Object o) {
-		if (index > size) return false;
+	protected boolean set(int index, Object o) throws IndexOutOfBoundsException {
+		if (index > size) throw new IndexOutOfBoundsException();
 		arrayAsList[index] = o;
 		return true;
 	}
@@ -93,8 +93,8 @@ public class ArrayAsList {
 	 * @return the object which contains the cell of the array.
 	 */
 	
-	public Object get(int index){
-		if (index > size) return null;
+	public Object get(int index) throws IndexOutOfBoundsException {
+		if (index > size) throw new IndexOutOfBoundsException();
 		return arrayAsList[index];
 	}
 

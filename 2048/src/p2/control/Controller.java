@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import p2.control.commands.Command;
 import p2.control.invoker.CommandParser;
+import p2.exceptions.ExecutionException;
 import p2.exceptions.ParsingException;
 import p2.logic.Game;
 import p2.util.Direction;
@@ -94,6 +95,8 @@ public class Controller {
 				}
 				*/
 			} catch (ParsingException e) {
+				System.out.println(e.getMessage());
+			} catch (ExecutionException e) {
 				System.out.println(e.getMessage());
 			}
 				

@@ -1,6 +1,9 @@
 package p2.control.commands;
 
+import java.util.EmptyStackException;
+
 import p2.control.Controller;
+import p2.exceptions.ExecutionException;
 import p2.logic.Game;
 
 /**
@@ -13,7 +16,7 @@ import p2.logic.Game;
 public class UndoCommand extends NoParamsCommand {
 
 	/**
-	 * Constructor of the class implements the NoParamsCommand parent class with it´s parameters.
+	 * Constructor of the class implements the NoParamsCommand parent class with itï¿½s parameters.
 	 * 
 	 * @param commandInfo string containing the undo command.
 	 * @param helpInfo explanation of what the undo command does.
@@ -29,17 +32,17 @@ public class UndoCommand extends NoParamsCommand {
 	 * the method undo from the class game of the package p2.logic called to undo the last movement in the board.
 	 * 
 	 * @param game current game which is taking place and which movement would be undone.
-	 * @param controller controller of the current game, it´s attributes will be modified as described below.
+	 * @param controller controller of the current game, itï¿½s attributes will be modified as described below.
+	 * @throws ExecutionException 
 	 */
 	
-	public void execute(Game game, Controller controller) {
-		if (game.isUndoStackEmpty()) {
-			System.out.println("Nothing to undo");
-			controller.setNoPrintGameState(true);
-			return;
+	public void execute(Game game, Controller controller) throws ExecutionException {
+		try {
+			game.undo();
+			System.out.println("Undoing one move...");
+		} catch (EmptyStackException e) {
+			throw new ExecutionException("Nothing to undo");
 		}
-		System.out.println("Undoing one move...");
-		game.undo();
 		
 	}
 
