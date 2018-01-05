@@ -1,7 +1,8 @@
 package p2.control.commands;
 
+import java.util.Scanner;
+
 import p2.control.Controller;
-import p2.control.ErrorCode;
 import p2.exceptions.ParsingException;
 import p2.logic.Game;
 
@@ -32,7 +33,7 @@ public abstract class NoParamsCommand extends Command {
 	 * is the one that would be returned as result of the parse.
 	 */
 	
-	public Command parse(String[] commandWords, Controller controller) throws ParsingException {
+	public Command parse(String[] commandWords, Scanner in) throws ParsingException {
 		try {
 			if (commandWords[0].equals(this.commandName)) 
 				return this;

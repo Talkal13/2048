@@ -1,7 +1,8 @@
 package p2.control.commands;
 
-import p2.control.Controller;
-import p2.control.ErrorCode;
+import java.util.Scanner;
+
+import p2.exceptions.EndException;
 import p2.exceptions.ParsingException;
 import p2.logic.Game;
 import p2.util.Direction;
@@ -36,8 +37,9 @@ public class MoveCommand extends Command {
 	 * @param game current game which is taking place and where the direction move will be performed.
 	 * @param controller controller of the current game.
 	 */
-	public void execute(Game game, Controller controller) {
+	public boolean execute(Game game) throws EndException {
 		game.move(dir);
+		return true;
 	}
 
 	/**
@@ -54,7 +56,7 @@ public class MoveCommand extends Command {
 	 * @throws ParsingException 
 	 */
 	
-	public Command parse(String[] commandWords, Controller controller) throws ParsingException {
+	public Command parse(String[] commandWords, Scanner in) throws ParsingException {
 		
 		if (!commandWords[0].equals(this.commandName)) {
 			return null;
@@ -75,14 +77,10 @@ public class MoveCommand extends Command {
 					dir = new Direction(DirectionOption.LEFT);
 					break;
 				default:
-					controller.setErrorCode(false);
-					controller.setNoPrintGameState(true);
 					throw new ParsingException("Unknown direction for move command");
 					
 				}
 			} catch (ArrayIndexOutOfBoundsException e) {
-				controller.setErrorCode(false);
-				controller.setNoPrintGameState(true);
 				throw new ParsingException("Move must be followed by a direction: up, down, left, right");
 				
 			}

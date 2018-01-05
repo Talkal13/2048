@@ -14,7 +14,7 @@ import p2.logic.Game;
 public class HelpCommand extends NoParamsCommand {
 
 	/**
-	 * Constructor of the class implements the NoParamsCommand parent class with it´s parameters.
+	 * Constructor of the class implements the NoParamsCommand parent class with itï¿½s parameters.
 	 * 
 	 * @param commandInfo string containing the help command.
 	 * @param helpInfo explanation of what the help command does.
@@ -30,13 +30,13 @@ public class HelpCommand extends NoParamsCommand {
 	 * not the game board.
 	 * 
 	 * @param game current game which is taking place, in this extension of the class this game wont be use.
-	 * @param controller controller of the current game, it´s attributes will be modified as described below.
+	 * @param controller controller of the current game, itï¿½s attributes will be modified as described below.
 	 */
 	
-	public void execute(Game game, Controller controller) {
+	public boolean execute(Game game) {
 		System.out.println("The available commands are:");
 		System.out.println(CommandParser.commandHelp());
-		controller.setNoPrintGameState(true);
+		return false;
 	}
 
 }

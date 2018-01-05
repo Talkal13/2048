@@ -124,13 +124,17 @@ public class Board {
 	 */
 	
 	public boolean noMoves() {
-		for (int i = 1; i < size - 1; i++) {
-			for (int j = 1; j < size - 1; j++) {
-				
-				if (board[i][j].equals(board[i + 1][j])) return false;
-				else if (board[i][j].equals(board[i - 1][j])) return false;
-				else if (board[i][j].equals(board[i][j + 1])) return false;
-				else if (board[i][j].equals(board[i][j - 1])) return false;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				if (i != size - 1) {
+					if (board[i][j].equals(board[i + 1][j])) return false;
+				} else if (i != 0) {
+					if (board[i][j].equals(board[i - 1][j])) return false;
+				} else if (j != size - 1) {
+					if (board[i][j].equals(board[i][j + 1])) return false;
+				} else if (j != 0) {
+					if (board[i][j].equals(board[i][j - 1])) return false;
+				}
 				
 			}
 		}
@@ -281,12 +285,16 @@ public class Board {
 	 */
 
 	private MoveResult move_right(GameRules currentRules) {
+		int NewScore;
 		MoveResult r = new MoveResult();
 		moveFree_Right();
 		for (int i = 0; i < size; i++) {
 			for (int j = size - 2; j >= 0; j--) {
-				r.addScore(board[i][j + 1].doMerge(board[i][j], currentRules));
-				free.insert(board[i][j].getPos());
+				NewScore = board[i][j + 1].doMerge(board[i][j], currentRules);
+				if (NewScore != 0) {
+					free.insert(board[i][j].getPos());
+				}
+				r.addScore(NewScore);
 			}
 		}
 		moveFree_Right();

@@ -36,10 +36,11 @@ public class RedoCommand extends NoParamsCommand {
 	 * @throws ExecutionException 
 	 */
 	
-	public void execute(Game game, Controller controller) throws ExecutionException {
+	public boolean execute(Game game) throws ExecutionException {
 		try {
 			game.redo();
 			System.out.println("Redoing one move...");
+			return true;
 		} catch (EmptyStackException e) {
 			throw new ExecutionException("Nothing to redo");
 		}

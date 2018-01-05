@@ -1,6 +1,9 @@
  package p2.control.commands;
 
+import java.util.Scanner;
+
 import p2.control.Controller;
+import p2.exceptions.EndException;
 import p2.exceptions.ExecutionException;
 import p2.exceptions.ParsingException;
 import p2.logic.Game;
@@ -41,9 +44,11 @@ public abstract class Command {
 	  * @param game current game which is taking place.
 	  * @param controller which rules the games and performs the corresponding actions.
 	 * @throws ExecutionException 
+	 * @throws WinException 
+	 * @throws EndException 
 	  */
 	 
-	 public abstract void execute(Game game, Controller controller) throws ExecutionException;
+	 public abstract boolean execute(Game game) throws ExecutionException, EndException;
 	 
 	 /**
 	  * Abstract parser of the class which parses the command introduced.
@@ -54,7 +59,7 @@ public abstract class Command {
 	  * @throws ParsingException 
 	  */
 	 
-	 public abstract Command parse(String[] commandWords, Controller controller) throws ParsingException;
+	 public abstract Command parse(String[] commandWords, Scanner in) throws ParsingException;
 	 
 	 /**
 	  * Method which builds the returned string composed by the attribute commandText a space and the other attribute helpText.
@@ -63,7 +68,7 @@ public abstract class Command {
 	  */
 	 
 	 public String helpText() {
-		 return " " + commandText + ": " + helpText;
+		 return commandText + ": " + helpText;
 	 }
 	 
  }

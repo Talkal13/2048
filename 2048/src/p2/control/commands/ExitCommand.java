@@ -1,6 +1,7 @@
 package p2.control.commands;
 
 import p2.control.Controller;
+import p2.exceptions.EndException;
 import p2.logic.Game;
 
 /**
@@ -13,7 +14,7 @@ import p2.logic.Game;
 public class ExitCommand extends NoParamsCommand {
 
 	/**
-	 * Constructor of the class implements the parent class Command with it´s parameters.
+	 * Constructor of the class implements the parent class Command with itï¿½s parameters.
 	 * 
 	 * @param commandInfo string containing the exit command.
 	 * @param helpInfo explanation of what the exit command does.
@@ -29,13 +30,12 @@ public class ExitCommand extends NoParamsCommand {
 	 * Finally a message of "Game Over." will be displayed.
 	 * 
 	 * @param game current game which is taking place, in this extension of the class this game wont be use.
-	 * @param controller controller of the current game, it´s attributes will be modified as described below.
+	 * @param controller controller of the current game, itï¿½s attributes will be modified as described below.
+	 * @throws EndException 
 	 */
 	
-	public void execute(Game game, Controller controller) {
-		controller.setOver(true);
-		controller.setNoPrintGameState(true);
-		System.out.println("Game Over.");
+	public boolean execute(Game game) throws EndException {
+		throw new EndException("Game over.");
 	}
 	
 }

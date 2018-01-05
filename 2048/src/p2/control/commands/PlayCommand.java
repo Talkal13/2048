@@ -1,10 +1,7 @@
 package p2.control.commands;
 
-import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
-
-import p2.control.Controller;
 import p2.exceptions.ParsingException;
 import p2.logic.Game;
 import p2.logic.multigames.*;
@@ -45,18 +42,19 @@ public class PlayCommand extends Command {
 	 * @param controller controller of the current game.
 	 */
 	
-	public void execute(Game game, Controller controller) {
+	public boolean execute(Game game) {
 		switch(type) {
 		case ORIG:
 			game.changeGame(size, initNumb, seed, new Rules2048());
-			return;
+			return true;
 		case INV:
 			game.changeGame(size, initNumb, seed, new RulesInverse());
-			return;
+			return true;
 		case FIB:
 			game.changeGame(size, initNumb, seed, new RulesFib());
-			return;
+			return true;
 		}
+		return true;
 		
 	}
 
@@ -75,9 +73,7 @@ public class PlayCommand extends Command {
 	 * @throws ParsingException 
 	 */
 	
-	public Command parse(String[] commandWords, Controller controller) throws ParsingException {
-		
-		Scanner in = new Scanner(System.in);
+	public Command parse(String[] commandWords, Scanner in) throws ParsingException {
 		
 		if (!commandWords[0].equals(commandName)) {
 			return null;
@@ -95,14 +91,10 @@ public class PlayCommand extends Command {
 					type = GameType.FIB;
 					break;
 				default:
-					controller.setErrorCode(false);
-					controller.setNoPrintGameState(true);
 					throw new ParsingException("Unknown game type for play command");
 				}
 			}
 			else {
-				controller.setErrorCode(false);
-				controller.setNoPrintGameState(true);
 				throw new ParsingException("Play must be followed by a game type: original, fib, inverse\n");
 			}
 			String s;
@@ -176,12 +168,9 @@ public class PlayCommand extends Command {
 				}
 			}
 			if (size < initNumb) {
-				controller.setErrorCode(false);
-				controller.setNoPrintGameState(true);
 				throw new ParsingException("The number of initial cells must be less than the number of cells on the board");
 			}
 		}
-		
 		return this;
 	}
 	

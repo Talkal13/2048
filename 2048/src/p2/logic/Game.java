@@ -4,6 +4,7 @@ import java.util.Random;
 
 import p2.util.GameStateStack;
 import p2.util.GameState;
+import p2.exceptions.EndException;
 import p2.util.ArrayAsList;
 import p2.util.Direction;
 import p2.util.MoveResult;
@@ -107,13 +108,16 @@ public class Game {
 	 * Method that performs a move in the direction dir in the board it updates the score and the value of the highest value.
 	 *
 	 * @param dir direction in which the move will take place.
+	 * @throws EndException 
 	 */
 		
-	public void move (Direction dir) {
+	public void move (Direction dir) throws EndException {
 		undoStack.push(getState());
 		MoveResult result = board.executeMove(dir, currentRules);
 		insertRandCell();
 		score += result.getScore();
+		if (currentRules.win(board)) throw new EndException("Congratulations. You won the game!!");
+		else if (currentRules.lose(board)) throw new EndException("Sorry, more luck next time :(");
 	}
 
 	/**

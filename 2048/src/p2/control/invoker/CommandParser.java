@@ -1,5 +1,7 @@
 package p2.control.invoker;
 
+import java.util.Scanner;
+
 import p2.control.Controller;
 import p2.control.commands.*;
 import p2.exceptions.ParsingException;
@@ -32,9 +34,9 @@ public class CommandParser {
 	 * @throws ParsingException 
 	 */
 	
-	public static Command parseCommand(String[] commandWords, Controller controller) throws ParsingException {
+	public static Command parseCommand(String[] commandWords, Scanner in) throws ParsingException {
 		for (Command x : availableCommands) {
-			if (x.parse(commandWords, controller) != null) return x;
+			if (x.parse(commandWords, in) != null) return x;
 		}
 		throw new ParsingException("Unknown command. Use ’help’ to see the available commands");
 	}

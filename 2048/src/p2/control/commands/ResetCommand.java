@@ -12,7 +12,7 @@ import p2.logic.Game;
 public class ResetCommand extends NoParamsCommand {
 	
 	/**
-	 * Constructor of the class implements the NoParamsCommand parent class with it´s parameters.
+	 * Constructor of the class implements the NoParamsCommand parent class with itï¿½s parameters.
 	 * 
 	 * @param commandInfo string containing the redo command.
 	 * @param helpInfo explanation of what the redo command does.
@@ -29,8 +29,9 @@ public class ResetCommand extends NoParamsCommand {
 	 * @param controller controller of the current game.
 	 */
 	
-	public void execute(Game game, Controller controller) {
+	public boolean execute(Game game) {
 		game.reset();
+		return true;
 	}
 
 }
