@@ -1,5 +1,6 @@
 package p2.logic;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Random;
@@ -214,5 +215,14 @@ public class Game {
 		buffer.write(initCells + " " + score + " " + currentType.externalise());
 		buffer.newLine();
 	}
+
+	public void load(BufferedReader buffer) throws IOException {
+		board.load(buffer);
+		String[] parts = buffer.readLine().split("\\s+");
+		initCells = Integer.parseInt(parts[0]);
+		score = Integer.parseInt(parts[1]);
+		currentType = GameType.parse(parts[2]);
+	}
+
 	
 }

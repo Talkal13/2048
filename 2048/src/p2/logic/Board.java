@@ -1,5 +1,6 @@
 package p2.logic;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
@@ -417,4 +418,31 @@ public class Board {
 			buffer.newLine();
 		}
 	}
+
+	public void load(BufferedReader buffer) throws IOException {
+		String line;
+		line = buffer.readLine();
+		String[] vector = line.split("\\s+");
+		int size = vector.length;
+		int[][] bufferedBoard = new int[size][size];
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				bufferedBoard[i][j] = Integer.parseInt(vector[j]);
+			}
+			line = buffer.readLine();
+			vector = line.split("\\s+");
+		}
+		free = new PositionAsList(size * size);
+		board = new Cell[size][size];
+		this.size = size;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				board[i][j] = new Cell(i, j, bufferedBoard[i][j]);
+				if (board[i][j].isEmpty()) {
+					free.insert(new Position(i, j));
+				}
+			}
+		}
+	}
+
 }

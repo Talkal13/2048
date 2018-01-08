@@ -29,6 +29,14 @@ public class Cell {
 		pos = new Position(x, y);
 	}
 	
+	public Cell(int i, int j, int k) {
+		pos = new Position(i, j);
+		value = k;
+		if (k != 0) {
+			empty = false;
+		}
+	}
+
 	/**
 	 * Changes the value of the current cell to the new value introduced as parameter.
 	 * 

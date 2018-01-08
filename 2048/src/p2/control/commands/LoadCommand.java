@@ -1,6 +1,11 @@
 package p2.control.commands;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 import p2.exceptions.EndException;
@@ -11,14 +16,23 @@ import p2.util.MyStringUtils;
 
 public class LoadCommand extends Command {
 	
+	private String filename;
+	
 	public LoadCommand(String commandInfo, String helpInfo) {
 		super(commandInfo, helpInfo);
 	}
 
 	@Override
 	public boolean execute(Game game) throws ExecutionException {
-		// TODO Auto-generated method stub
-		return false;
+		try (BufferedReader buffer = new BufferedReader(new FileReader(filename))) {
+			buffer.readLine();
+			buffer.readLine();
+			game.load(buffer);
+		} catch (IOException | IndexOutOfBoundsException e) {
+			throw new ExecutionException("Load failed: invalid file format");
+		}
+		
+		return true;
 	}
 
 	@Override
@@ -32,8 +46,10 @@ public class LoadCommand extends Command {
 					throw new ParsingException("Invalid filename: the filename contains spaces");
 				}
 				else {
-					if (MyStringUtils.validFileName(commandWords[1]))
+					if (MyStringUtils.validFileName(commandWords[1])) {
+						filename = commandWords[1];
 						return this;
+					}
 					else
 						throw new ParsingException("Invalid filename: the filename contains invalid characters");
 				}
