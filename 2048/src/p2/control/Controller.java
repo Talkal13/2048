@@ -47,8 +47,9 @@ public class Controller {
 		String input;
 		while(true){
 			System.out.print("Command > ");
-			input = in.nextLine().toLowerCase();
+			input = in.nextLine();
 			String[] parts = input.split("\\s+");
+			parts[0] = parts[0].toLowerCase();
 			Command control;
 			try {
 				control = CommandParser.parseCommand(parts, in);

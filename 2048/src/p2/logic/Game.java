@@ -1,8 +1,11 @@
 package p2.logic;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.Random;
 
 import p2.util.GameStateStack;
+import p2.util.GameType;
 import p2.util.GameState;
 import p2.exceptions.EndException;
 import p2.util.ArrayAsList;
@@ -25,7 +28,7 @@ public class Game {
 	private int score;
 	private GameStateStack undoStack = new GameStateStack();
 	private GameStateStack redoStack = new GameStateStack();
-	private GameRules currentRules;
+	private GameType currentType;
 
 	/**
 	 * Inserts a given value in the position passed as parameter.
@@ -43,7 +46,7 @@ public class Game {
 	 */
 
 	public void insertRandCell() {
-		currentRules.addNewCell(board, myRandom);
+		currentType.getRules().addNewCell(board, myRandom);
 	}
 
 	/**
@@ -54,11 +57,11 @@ public class Game {
 	 * @param random value to be used for the random behavior of the game.
 	 */
 		
-	public Game(int sizeBoard, int numCells, Random random, GameRules rules){
+	public Game(int sizeBoard, int numCells, Random random, GameType rules){
 		size = sizeBoard;
 		initCells = numCells;
 		myRandom = random;
-		currentRules = rules;
+		currentType = rules;
 		board = new Board(sizeBoard);
 		for (int i = 0; i < numCells; i++) {
 			insertRandCell();
@@ -73,11 +76,11 @@ public class Game {
 	 * @param random value to be used for the random behavior of the game.
 	 */
 		
-	public Game(int sizeBoard, int numCells, long seed, GameRules rules) {
+	public Game(int sizeBoard, int numCells, long seed, GameType rules) {
 		size = sizeBoard;
 		initCells = numCells;
 		myRandom = (seed == -1) ? new Random(seed) : new Random();
-		currentRules = rules;
+		currentType = rules;
 		board = new Board(sizeBoard);
 		for (int i = 0; i < numCells; i++) {
 			insertRandCell();
@@ -93,11 +96,11 @@ public class Game {
 	 * @param rules rules of the new game.
 	 */
 		
-	public void changeGame(int sizeBoard, int numCells, long seed, GameRules rules) {
+	public void changeGame(int sizeBoard, int numCells, long seed, GameType rules) {
 		size = sizeBoard;
 		initCells = numCells;
 		myRandom = new Random(seed);
-		currentRules = rules;
+		currentType = rules;
 		board = new Board(sizeBoard);
 		for (int i = 0; i < numCells; i++) {
 			insertRandCell();
@@ -113,11 +116,11 @@ public class Game {
 		
 	public void move (Direction dir) throws EndException {
 		undoStack.push(getState());
-		MoveResult result = board.executeMove(dir, currentRules);
+		MoveResult result = board.executeMove(dir, currentType.getRules());
 		insertRandCell();
 		score += result.getScore();
-		if (currentRules.win(board)) throw new EndException("Congratulations. You won the game!!");
-		else if (currentRules.lose(board)) throw new EndException("Sorry, more luck next time :(");
+		if (currentType.getRules().win(board)) throw new EndException("Congratulations. You won the game!!");
+		else if (currentType.getRules().lose(board)) throw new EndException("Sorry, more luck next time :(");
 	}
 
 	/**
@@ -125,7 +128,7 @@ public class Game {
 	 */
 		
 	public String toString(){
-		return board.toString() + "best value: " + currentRules.getWinValue(board) + "\tscore: " + this.score + "\n";
+		return board.toString() + "best value: " + currentType.getRules().getWinValue(board) + "\tscore: " + this.score + "\n";
 	}
 
 	/**
@@ -136,7 +139,7 @@ public class Game {
 		score = 0;
 		board.reset();
 		for (int i = 0; i < initCells; i++) {
-			currentRules.addNewCell(board, myRandom);
+			currentType.getRules().addNewCell(board, myRandom);
 		}
 	}
 	
@@ -203,6 +206,13 @@ public class Game {
 	public void setState(GameState aState) {
 		board.setState(aState.getState());
 		score = aState.getScore();
+	}
+	
+	public void store(BufferedWriter buffer) throws IOException {
+		board.store(buffer);
+		buffer.newLine();
+		buffer.write(initCells + " " + score + " " + currentType.externalise());
+		buffer.newLine();
 	}
 	
 }

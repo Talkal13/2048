@@ -1,5 +1,8 @@
 package p2.logic;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 import p2.util.*;
 
 /**
@@ -403,6 +406,15 @@ public class Board {
 			for (int j = 0; j < size; j++) {
 				board[i][j].setValue(aState[i][j]);
 			}
+		}
+	}
+
+	public void store(BufferedWriter buffer) throws IOException {
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				buffer.write(board[i][j].getValue() + " ");
+			}
+			buffer.newLine();
 		}
 	}
 }

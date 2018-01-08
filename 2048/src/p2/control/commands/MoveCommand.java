@@ -63,6 +63,7 @@ public class MoveCommand extends Command {
 		} 
 		else {
 			try {
+				commandWords[1] = commandWords[1].toLowerCase();
 				switch (commandWords[1]) {
 				case "up":
 					dir = new Direction(DirectionOption.UP);

@@ -35,7 +35,7 @@ public class ExitCommand extends NoParamsCommand {
 	 */
 	
 	public boolean execute(Game game) throws EndException {
-		throw new EndException("Game over.");
+		throw new EndException("Game over......");
 	}
 	
 }
