@@ -10,9 +10,15 @@ import java.util.EmptyStackException;
 
 public class GameStateStack {
 	
-	private static final int CAPACITY = 20;
-	private GameState[] buffer = new GameState[CAPACITY + 1];
-	private int index = 0;
+	private static final int CAPACITY = 1;
+	private GameState[] buffer;
+	private int initial, index;
+	
+	public GameStateStack() {
+		buffer  = new GameState[CAPACITY + 1];
+		initial = 0;
+		index = 0;
+	}
 	
 	/**
 	 * Pops the last game state stored in the stack, if there is any.
@@ -21,8 +27,9 @@ public class GameStateStack {
 	 */
 	
 	public GameState pop() {
-		if (index == 0) throw new EmptyStackException();
-		index--;
+		if (isEmpty()) throw new EmptyStackException();
+		if (index == 0) index = CAPACITY;
+		else index--;
 		return buffer[index];
 	}
 	
@@ -33,26 +40,19 @@ public class GameStateStack {
 	 */
 	
 	public void push(GameState state) {
-		if (index < CAPACITY) {
+		if (isFull()) {
+			buffer[index] = state;
+			index = initial;
+			initial++;
+		}
+		else {
+			
 			buffer[index] = state;
 			index++;
 		}
-		else {
-			shift();
-			buffer[index] = state;
-		}	
+		
 	}
 	
-	/**
-	 * Shifts all the elements in the stack in the way that the one in the position 0 is lost and the one in the index position is two times,
-	 * in the index position and in the one before.
-	 */
-	
-	private void shift() {
-		for (int i = 0; i < index; i++) {
-			buffer[i] = buffer[i + 1];
-		}
-	}
 	
 	/**
 	 * Checks if the stack is empty.
@@ -61,6 +61,27 @@ public class GameStateStack {
 	 */
 	
 	public boolean isEmpty() {
-		return index <= 0;
+		return index == initial;
 	}
+	
+	/**
+	 * 
+	 * Checks if the stack is full
+	 * 
+	 * @return if the board is full or not
+	 */
+	
+	private boolean isFull() {
+		if (initial == 0)
+			return index == CAPACITY;
+		else
+			return index == initial - 1;
+	}
+
+	public void reset() {
+		// TODO Auto-generated method stub
+		initial = 0;
+		index = initial;
+	}
+	
 }

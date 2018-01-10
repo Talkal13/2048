@@ -30,7 +30,8 @@ public class Game2048 {
 			dim = Integer.parseInt(args[0]);
 			nums = Integer.parseInt(args[1]);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			seed = new Random().nextInt(1000);
+			System.out.println("Usage: ./Game2048 <size> <initial-cells> [<seeds>]");
+			return;
 		} catch (NumberFormatException e) {
 			System.out.println("The command-line arguments must be numbers");
 			return;

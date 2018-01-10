@@ -102,6 +102,7 @@ public class Game {
 		initCells = numCells;
 		myRandom = new Random(seed);
 		currentType = rules;
+		score = 0;
 		board = new Board(sizeBoard);
 		for (int i = 0; i < numCells; i++) {
 			insertRandCell();
@@ -116,6 +117,7 @@ public class Game {
 	 */
 		
 	public void move (Direction dir) throws EndException {
+		redoStack.reset();
 		undoStack.push(getState());
 		MoveResult result = board.executeMove(dir, currentType.getRules());
 		insertRandCell();
