@@ -43,7 +43,7 @@ public class GameStateStack {
 		if (isFull()) {
 			buffer[index] = state;
 			index = initial;
-			initial++;
+			if (initial == CAPACITY) initial = 0;
 		}
 		else {
 			

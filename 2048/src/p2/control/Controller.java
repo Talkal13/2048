@@ -62,6 +62,7 @@ public class Controller {
 				System.out.println(e.getMessage());
 			} catch (EndException e) {
 				System.out.println(e.getMessage());
+				System.out.println(game);
 				break;
 			}
 		}

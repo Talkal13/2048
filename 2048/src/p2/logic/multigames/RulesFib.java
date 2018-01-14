@@ -40,7 +40,7 @@ public class RulesFib implements GameRules {
 	 * the resulting value will the addition of both and will be returned.
 	 * 
 	 * @param self cell where the merge will result with the addition of both cells.
-	 * @param other cell where the merge will result with an empty cell.
+	 * @param cell1 cell where the merge will result with an empty cell.
 	 * @return if the merge is possible the resulting number, if is not 0.
 	 */
 	
@@ -106,4 +106,11 @@ public class RulesFib implements GameRules {
 	public boolean win(Board board) {
 		return (board.getMax() == 144);
 	}
+	
+	@Override
+	public boolean canMergeNeighbours(Cell cell1, Cell cell2) {
+		return (cell2.getValue() == next(cell1.getValue()) || cell1.getValue() == next(cell2.getValue()) || (cell1.getValue() == 1 && cell2.getValue() == 1));
+	}
+	
+	
 }

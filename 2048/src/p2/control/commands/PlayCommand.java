@@ -180,7 +180,7 @@ public class PlayCommand extends Command {
 					}
 				}
 			}
-			if (size < initNumb) {
+			if (size * size < initNumb) {
 				throw new ParsingException("The number of initial cells must be less than the number of cells on the board");
 			}
 		}

@@ -61,7 +61,7 @@ public interface GameRules {
 	 */
 	
 	default boolean lose(Board board) {
-		return board.getFree().isEmpty() && board.noMoves();
+		return board.getFree().isEmpty() && board.noMoves(this);
 	}
 	
 	/**
@@ -88,6 +88,10 @@ public interface GameRules {
 		Position pos = (Position) board.getFree().get(0);
 		addNewCellAt(board, pos, rand);
 		board.removeFree(pos);
+	}
+	
+	default boolean canMergeNeighbours(Cell cell1, Cell cell2) {
+		return cell1.getValue() == cell2.getValue();
 	}
 	
 	/**

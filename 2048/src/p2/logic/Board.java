@@ -127,17 +127,17 @@ public class Board {
 	 * @return true in the case that there is no possibility of movement in any cell or false if there is.
 	 */
 	
-	public boolean noMoves() {
+	public boolean noMoves(GameRules rules) {
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				if (i != size - 1) {
-					if (board[i][j].equals(board[i + 1][j])) return false;
+					if (rules.canMergeNeighbours(board[i][j], board[i + 1][j])) return false;
 				} else if (i != 0) {
-					if (board[i][j].equals(board[i - 1][j])) return false;
+					if (rules.canMergeNeighbours(board[i][j], board[i - 1][j])) return false;
 				} else if (j != size - 1) {
-					if (board[i][j].equals(board[i][j + 1])) return false;
+					if (rules.canMergeNeighbours(board[i][j], board[i][j + 1])) return false;
 				} else if (j != 0) {
-					if (board[i][j].equals(board[i][j - 1])) return false;
+					if (rules.canMergeNeighbours(board[i][j], board[i][j - 1])) return false;
 				}
 				
 			}
