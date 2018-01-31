@@ -25,10 +25,13 @@ public class LoadCommand extends Command {
 	@Override
 	public boolean execute(Game game) throws ExecutionException {
 		try (BufferedReader buffer = new BufferedReader(new FileReader(filename))) {
-			buffer.readLine();
+			String f_line = buffer.readLine();
+			if (!f_line.equals("This file stores a saved 2048 game")) throw new ExecutionException("Load failed: The first line does not match the standard");
 			buffer.readLine();
 			game.load(buffer);
-		} catch (IOException | IndexOutOfBoundsException e) {
+		} catch (IOException e) {
+			throw new ExecutionException("Load failed: There was a problem reading from the disk :'(");
+		} catch (Exception e) {
 			throw new ExecutionException("Load failed: invalid file format");
 		}
 		

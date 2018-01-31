@@ -218,12 +218,13 @@ public class Game {
 		buffer.newLine();
 	}
 
-	public void load(BufferedReader buffer) throws IOException {
+	public void load(BufferedReader buffer) throws Exception {
 		board.load(buffer);
 		String[] parts = buffer.readLine().split("\\s+");
 		initCells = Integer.parseInt(parts[0]);
 		score = Integer.parseInt(parts[1]);
 		currentType = GameType.parse(parts[2]);
+		System.out.println("Successfull load of the game " + currentType.toString());
 	}
 
 	

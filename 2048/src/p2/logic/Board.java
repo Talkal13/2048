@@ -419,7 +419,7 @@ public class Board {
 		}
 	}
 
-	public void load(BufferedReader buffer) throws IOException {
+	public void load(BufferedReader buffer) throws Exception {
 		String line;
 		line = buffer.readLine();
 		String[] vector = line.split("\\s+");
