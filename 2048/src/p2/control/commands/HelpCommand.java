@@ -13,6 +13,9 @@ import p2.logic.Game;
 
 public class HelpCommand extends NoParamsCommand {
 
+	private static final String commandInfo = "help";
+	private static final String helpInfo = "print this help message.";
+	
 	/**
 	 * Constructor of the class implements the NoParamsCommand parent class with it�s parameters.
 	 * 
@@ -20,7 +23,7 @@ public class HelpCommand extends NoParamsCommand {
 	 * @param helpInfo explanation of what the help command does.
 	 */
 	
-	public HelpCommand(String commandInfo, String helpInfo) {
+	public HelpCommand() {
 		super(commandInfo, helpInfo);
 	}
 

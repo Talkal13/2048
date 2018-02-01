@@ -20,6 +20,9 @@ public class PlayCommand extends Command {
 	private int size = 4, initNumb = 2;
 	private long seed;
 	
+	private static final String commandInfo = "play <game>";
+	private static final String helpInfo = "start a new game of one of the game types: ";
+	
 	
 	private final static int DEFAULT_SIZE = 4; // by default a 4*4 board with 2 initial tokens
 	private final static int DEFAULT_INIT = 2; // the seed for the random placement of the tokens
@@ -30,8 +33,8 @@ public class PlayCommand extends Command {
 	 * @param helpInfo explanation of what the play command does.
 	 */
 
-	public PlayCommand(String commandInfo, String helpInfo) {
-		super(commandInfo, helpInfo);
+	public PlayCommand() {
+		super(commandInfo, helpInfo + GameType.externaliseAll());
 	}
 
 	/**

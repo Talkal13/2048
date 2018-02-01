@@ -15,6 +15,9 @@ import p2.logic.Game;
 
 public class RedoCommand extends NoParamsCommand {
 
+	private static final String commandInfo = "redo";
+	private static final String helpInfo = "allows a previously undone command to be re-executed";
+	
 	/**
 	 * Constructor of the class implements the NoParamsCommand parent class with it�s parameters.
 	 * 
@@ -22,7 +25,7 @@ public class RedoCommand extends NoParamsCommand {
 	 * @param helpInfo explanation of what the redo command does.
 	 */
 	
-	public RedoCommand(String commandInfo, String helpInfo) {
+	public RedoCommand() {
 		super(commandInfo, helpInfo);
 	}
 

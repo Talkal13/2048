@@ -16,15 +16,15 @@ public class CommandParser {
 	
 	//Array of commands containing all the commands available.
 	private static Command[] availableCommands = { 
-			new HelpCommand("help", "print this help message."), 
-			new ResetCommand("reset", "start a new game."),
-			new ExitCommand("exit", "terminate the program."), 
-			new MoveCommand("move <direction>", "execute a move in one of the directions: up, down, left, right."),
-			new UndoCommand("undo", "restores the state of the game previous to executing the last move"), 
-			new RedoCommand("redo", " allows a previously undone command to be re-executed"), 
-			new PlayCommand("play <game>", "start a new game of one of the game types: original, fib, inverse."),
-			new SaveCommand("save <filename>", "Save the game in a filename"),
-			new LoadCommand("load <filename>", "Load the game from a filename")
+			new HelpCommand(), 
+			new ResetCommand(),
+			new ExitCommand(), 
+			new MoveCommand(),
+			new UndoCommand(), 
+			new RedoCommand(), 
+			new PlayCommand(),
+			new SaveCommand(),
+			new LoadCommand()
 	} ;
 
 	/**

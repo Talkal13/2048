@@ -25,8 +25,11 @@ public class SaveCommand extends Command {
 	public static final String filenameInUseMsg = "The file already exists; do you want to overwrite it ? (Y/N)";
 	public static final String FirstLine = "This file stores a saved 2048 game";
 	private String filename;
+	
+	private static final String commandInfo = "save <filename>";
+	private static final String helpInfo = "Save the game in a filename";
 	 
-	public SaveCommand(String commandInfo, String helpInfo) {
+	public SaveCommand() {
 		super(commandInfo, helpInfo);
 		// TODO Auto-generated constructor stub
 	}

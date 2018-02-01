@@ -13,6 +13,9 @@ import p2.logic.Game;
 
 public class ExitCommand extends NoParamsCommand {
 
+	private static final String commandInfo = "exit";
+	private static final String helpInfo = "terminate the program.";
+	
 	/**
 	 * Constructor of the class implements the parent class Command with it�s parameters.
 	 * 
@@ -20,7 +23,7 @@ public class ExitCommand extends NoParamsCommand {
 	 * @param helpInfo explanation of what the exit command does.
 	 */
 	
-	public ExitCommand(String commandInfo, String helpInfo) {
+	public ExitCommand() {
 		super(commandInfo, helpInfo);
 	}
 	

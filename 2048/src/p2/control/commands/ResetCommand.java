@@ -11,6 +11,9 @@ import p2.logic.Game;
  */
 public class ResetCommand extends NoParamsCommand {
 	
+	private static final String commandInfo = "reset";
+	private static final String helpInfo = "start a new game.";
+	
 	/**
 	 * Constructor of the class implements the NoParamsCommand parent class with it�s parameters.
 	 * 
@@ -18,7 +21,7 @@ public class ResetCommand extends NoParamsCommand {
 	 * @param helpInfo explanation of what the redo command does.
 	 */
 	
-	public ResetCommand(String commandInfo, String helpInfo) {
+	public ResetCommand() {
 		super(commandInfo, helpInfo);
 	}
 

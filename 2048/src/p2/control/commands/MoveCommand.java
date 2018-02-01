@@ -17,6 +17,9 @@ import p2.util.DirectionOption;
 
 public class MoveCommand extends Command {
 
+	private static final String commandInfo = "move <direction>";
+	private static final String helpInfo = "execute a move in one of the directions: up, down, left, right.";
+	
 	//attribute of direction of the movement to perform
 	private Direction dir;
 	
@@ -27,7 +30,7 @@ public class MoveCommand extends Command {
 	 * @param helpInfo explanation of what the move command does.
 	 */
 	
-	public MoveCommand(String commandInfo, String helpInfo) {
+	public MoveCommand() {
 		super(commandInfo, helpInfo);
 	}
 

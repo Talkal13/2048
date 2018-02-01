@@ -18,7 +18,10 @@ public class LoadCommand extends Command {
 	
 	private String filename;
 	
-	public LoadCommand(String commandInfo, String helpInfo) {
+	private static final String commandInfo = "load <filename>";
+	private static final String helpInfo = "Load the game from a filename";
+	
+	public LoadCommand() {
 		super(commandInfo, helpInfo);
 	}
 

@@ -15,6 +15,9 @@ import p2.logic.Game;
 
 public class UndoCommand extends NoParamsCommand {
 
+	private static final String commandInfo = "undo";
+	private static final String helpInfo = "Restores the state of the game previous to executing the last move.";
+	
 	/**
 	 * Constructor of the class implements the NoParamsCommand parent class with it�s parameters.
 	 * 
@@ -22,7 +25,7 @@ public class UndoCommand extends NoParamsCommand {
 	 * @param helpInfo explanation of what the undo command does.
 	 */
 	
-	public UndoCommand(String commandInfo, String helpInfo) {
+	public UndoCommand() {
 		super(commandInfo, helpInfo);
 	}
 
